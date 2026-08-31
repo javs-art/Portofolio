@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laksita Javas Kayana Arfiansah - Tech Portfolio</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --card-border: #1f2937;
+            --primary: #38bdf8;
+            --primary-glow: rgba(56, 189, 248, 0.15);
+            --secondary: #818cf8;
+            --accent: #34d399;
+            --warning: #fbbf24;
+            --text-main: #f3f4f6;
+            --text-sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(129, 140, 248, 0.08) 0%, transparent 40%);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), rgba(31, 41, 55, 0.4));
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 3.5rem 2.5rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(12px);
+            overflow: hidden;
+        }
+
+        .badge-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-glow);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero .bio-quote {
+            color: var(--text-sub);
+            font-size: 1.05rem;
+            max-width: 750px;
+            border-left: 3px solid var(--primary);
+            padding-left: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Layout Grids */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.8rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.2rem;
+        }
+
+        .icon-box {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--primary-glow);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .card-header h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        /* Tags */
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .tech-tag {
+            background: #1f2937;
+            color: var(--text-main);
+            border: 1px solid #374151;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* List Items Umun */
+        .list-item {
+            margin-bottom: 1.2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .list-item:last-child {
+            margin-bottom: 0; padding-bottom: 0; border-bottom: none;
+        }
+        .list-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .list-desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        /* STYLING KHUSUS JEJAK PENDIDIKAN (Gambar di Kanan + Pop Up Animasi + Nama Sekolah) */
+        .school-list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .school-list-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .school-info {
+            flex: 1;
+        }
+
+        .school-img-wrapper {
+            position: relative;
+            flex-shrink: 0;
+            width: 230px;
+            height: 135px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            text-decoration: none;
+            /* Efek Pop-up Bounce Halus */
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        box-shadow 0.4s ease, 
+                        border-color 0.4s ease;
+        }
+
+        .school-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        /* Animasi saat Kursor Menyentuh Gambar (Pop Up & Zooming Glow) */
+        .school-img-wrapper:hover {
+            transform: translateY(-8px) scale(1.25);
+            border-color: var(--primary);
+            box-shadow: 0 12px 25px rgba(56, 189, 248, 0.3);
+        }
+
+        .school-img-wrapper:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.85);
+        }
+
+        /* Overlay Pop-Up Nama Sekolah saat Kursor Menyentuh Gambar */
+        .school-img-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(11, 15, 25, 0.95), rgba(11, 15, 25, 0.3));
+            padding: 8px 10px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            backdrop-filter: blur(4px);
+        }
+
+        .school-img-wrapper:hover .school-img-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Social Network Styles */
+        .social-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(31, 41, 55, 0.5);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        .social-link .handle { color: var(--primary); font-family: monospace; }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--card-border);
+            margin-top: 2rem;
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero { padding: 2rem 1.5rem; }
+            .school-list-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .school-img-wrapper {
+                width: 100%;
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="badge-group">
+            <div class="badge"><i class="fa-solid fa-location-dot" style="color: #ef4444;"></i> Surakarta, ID</div>
+            <div class="badge" style="color: var(--accent); border-color: rgba(52, 211, 153, 0.3); background: rgba(52, 211, 153, 0.1);">
+                <i class="fa-solid fa-graduation-cap" style="color: #10b981;"></i> SMP ABBS & SMK IDN (TKJ)
+            </div>
+        </div>
+        <h1>Laksita Javas Kayana Arfiansah</h1>
+        <div class="subtitle">Future Network/Cloud Engineer & Tech Enthusiast</div>
+        
+        <p class="bio-quote">
+            "Siswa IT dengan fokus pada Networking, Cloud Computing, dan Logika Pemrograman. Memiliki passion merancang arsitektur jaringan, mengembangkan UI/UX modern (Dark-mode/Aesthetic), dan bercita-cita membangun karir di Google Singapore hingga menjadi Tech Founder."
+        </p>
+    </header>
+
+    <!-- SECTION: JEJAK PENDIDIKAN -->
+    <div class="card" style="margin-bottom: 1.5rem;">
+        <div class="card-header">
+            <div class="icon-box" style="color: var(--secondary); background: rgba(129, 140, 248, 0.1); border-color: rgba(129, 140, 248, 0.3);">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h2>Jejak Pendidikan</h2>
+        </div>
+        
+        <!-- SMK IDN -->
+        <div class="school-list-item">
+            <div class="school-info">
+                <div class="list-title">
+                    <i class="fa-solid fa-school" style="color: #38bdf8;"></i> SMK IDN Boarding School Solo
+                </div>
+                <div class="list-desc">
+                    Sekolah Menengah Kejuruan berbasis <em>boarding school</em> dengan konsentrasi keahlian Teknik Komputer dan Jaringan (TKJ). Berfokus pada praktik arsitektur jaringan skala industri (MikroTik, PNETLab), simulasi sistem operasi (VirtualBox), Cloud Architecture, serta dasar-dasar pengembangan aplikasi berbasis web dan mobile.
+                </div>
+            </div>
+            <a href="https://imgbb.com/" target="_blank" class="school-img-wrapper">
+                <img src="https://i.ibb.co.com/JRqMtYpX/smk-idn.jpg" alt="SMK IDN Boarding School Solo">
+                <div class="school-img-overlay">
+                    <i class="fa-solid fa-school" style="color: #38bdf8;"></i> SMK IDN Solo
+                </div>
+            </a>
+        </div>
+
+        <!-- SMP ABBS -->
+        <div class="school-list-item">
+            <div class="school-info">
+                <div class="list-title">
+                    <i class="fa-solid fa-building-columns" style="color: #818cf8;"></i> SMP ABBS Surakarta
+                </div>
+                <div class="list-desc">
+                    Pendidikan Sekolah Menengah Pertama (Al-Abidin Bilingual Boarding School) yang membentuk fondasi akademis yang kuat, melatih logika dasar matematika dan pemrosesan ICT (seperti JavaScript & pemrograman dasar), serta memperkuat pembentukan karakter kepemimpinan berbasis Islam.
+                </div>
+            </div>
+            <a href="https://ibb.co.com/tMkQZrS5" target="_blank" class="school-img-wrapper">
+                <img src="https://i.ibb.co.com/vxgVsnb8/smp-abbs.jpg" alt="SMP ABBS Surakarta">
+                <div class="school-img-overlay">
+                    <i class="fa-solid fa-building-columns" style="color: #818cf8;"></i> SMP ABBS Surakarta
+                </div>
+            </a>
+        </div>
+
+        <!-- SDIT AR-RISALAH -->
+        <div class="school-list-item">
+            <div class="school-info">
+                <div class="list-title">
+                    <i class="fa-solid fa-book-bookmark" style="color: #34d399;"></i> SDIT Ar-Risalah
+                </div>
+                <div class="list-desc">
+                    Sekolah Dasar Islam Terpadu yang menanamkan fondasi awal pendidikan nilai-nilai keagamaan, kedisiplinan, serta membangun ketertarikan awal terhadap ilmu pengetahuan umum dan dasar-dasar teknologi informasi.
+                </div>
+            </div>
+            <a href="https://ibb.co.com/whGvJMvX" target="_blank" class="school-img-wrapper">
+                <img src="https://i.ibb.co.com/hFQqXDqj/sdit-arisalah.jpg" alt="SDIT Ar-Risalah">
+                <div class="school-img-overlay">
+                    <i class="fa-solid fa-book-bookmark" style="color: #34d399;"></i> SDIT Ar-Risalah
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- SECTION 1: SKILLS & GEAR -->
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
+                <h2>Tech & Design Stack</h2>
+            </div>
+            <h4 style="font-size: 0.9rem; color: var(--text-main); margin: 1rem 0 0.5rem;">Network & Development</h4>
+            <div class="tag-group">
+                <span class="tech-tag"><i class="fa-solid fa-server" style="color: #0ea5e9;"></i> MikroTik & Networking</span>
+                <span class="tech-tag"><i class="fa-solid fa-network-wired" style="color: #8b5cf6;"></i> PNETLab</span>
+                <span class="tech-tag"><i class="fa-solid fa-box" style="color: #10b981;"></i> VirtualBox</span>
+                <span class="tech-tag"><i class="fa-solid fa-cloud" style="color: #38bdf8;"></i> Cloud Architect</span>
+                <span class="tech-tag"><i class="fa-brands fa-python" style="color: #f59e0b;"></i> Python / Django</span>
+                <span class="tech-tag"><i class="fa-brands fa-js" style="color: #facc15;"></i> JavaScript</span>
+                <span class="tech-tag"><i class="fa-brands fa-html5" style="color: #f97316;"></i> HTML/CSS</span>
+                <span class="tech-tag"><i class="fa-solid fa-mobile-screen" style="color: #3b82f6;"></i> Flutter & Dart</span>
+            </div>
+
+            <h4 style="font-size: 0.9rem; color: var(--text-main); margin: 1.5rem 0 0.5rem;">Creative & Design</h4>
+            <div class="tag-group">
+                <span class="tech-tag"><i class="fa-brands fa-figma" style="color: #ec4899;"></i> Figma (UI/UX)</span>
+                <span class="tech-tag"><i class="fa-solid fa-wand-magic-sparkles" style="color: #a855f7;"></i> Gamma App</span>
+                <span class="tech-tag"><i class="fa-solid fa-image" style="color: #14b8a6;"></i> Photo Manipulation</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box" style="color: var(--warning); background: rgba(251, 191, 36, 0.1); border-color: rgba(251, 191, 36, 0.3);"><i class="fa-solid fa-laptop"></i></div>
+                <h2>Hardware & Gear Setup</h2>
+            </div>
+            <div class="list-item">
+                <div class="list-title"><i class="fa-brands fa-apple" style="color: #94a3b8;"></i> Workstation</div>
+                <div class="list-desc">MacBook Pro 14" M1 Pro (16GB RAM / 512GB SSD). Mesin utama untuk komputasi berat, simulasi jaringan, dan desain.</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title"><i class="fa-solid fa-mobile-screen-button" style="color: #3b82f6;"></i> Mobile Ecosystem</div>
+                <div class="list-desc">Samsung A35 & A36 Series (dilengkapi dengan aksesoris MagSafe Clear TPU Case).</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title"><i class="fa-solid fa-car" style="color: #10b981;"></i> Mobility</div>
+                <div class="list-desc">Daily commute menggunakan layanan Ride-hailing (Gojek, GrabCar, GrabBike).</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: PROJECTS & ACADEMICS -->
+    <div class="card" style="margin-bottom: 1.5rem;">
+        <div class="card-header">
+            <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+            <h2>Portofolio Proyek & Akademik</h2>
+        </div>
+        <div class="grid-2">
+            <div class="list-item">
+                <div class="list-title"><i class="fa-solid fa-network-wired" style="color: #0ea5e9;"></i> Network Emulation & Routing</div>
+                <div class="list-desc">Mempraktikkan routing jaringan dengan <strong>MikroTik</strong>, virtualisasi OS via <strong>VirtualBox</strong>, dan simulasi topologi menggunakan <strong>PNETLab</strong>.</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title"><i class="fa-solid fa-diagram-project" style="color: #8b5cf6;"></i> Mobile Student App</div>
+                <div class="list-desc">Eksplorasi aplikasi mahasiswa (Flutter/Dart) dengan backend MySQL, HTTPS, Push Notification, dan Dark Mode.</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title"><i class="fa-solid fa-laptop-code" style="color: #f59e0b;"></i> ICT & Logika Algoritma</div>
+                <div class="list-desc">Menyelesaikan simulasi logika pemrograman (Loops & Branching), kuis fundamental JS, dan Troubleshooting jaringan.</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title"><i class="fa-solid fa-utensils" style="color: #10b981;"></i> Food Festival Website</div>
+                <div class="list-desc">Web interaktif mempromosikan kuliner lokal (Rendang, Gado-Gado, Rawon, Papeda) berbasis Bootstrap 5 & JS.</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title"><i class="fa-solid fa-book-quran" style="color: #3b82f6;"></i> Desain Edukasi Islam</div>
+                <div class="list-desc">Merancang slide presentasi modern (Monochrome Aesthetic) mengenai 3 Pilar Tauhid dan konsep akidah.</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title"><i class="fa-solid fa-masks-theater" style="color: #ef4444;"></i> Presentasi Budaya</div>
+                <div class="list-desc">Menyusun slide digital tentang Suku Baduy menggunakan Gamma, serta membuat desain infografis sastra Pantun.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: HOBBIES, LIFESTYLE & SOCIALS -->
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box" style="color: var(--accent); background: rgba(52, 211, 153, 0.1); border-color: rgba(52, 211, 153, 0.3);"><i class="fa-solid fa-dumbbell"></i></div>
+                <h2>Lifestyle & Minat</h2>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title"><i class="fa-solid fa-person-walking" style="color: #f97316;"></i> Bodybuilding & Fitness</div>
+                <div class="list-desc">Rutin nge-gym (Heavy Back & Full Shoulder split). Membangun massa otot dengan dukungan alat *home workout* dan suplemen Pro-Creatine.</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title"><i class="fa-solid fa-compass" style="color: #10b981;"></i> Traveling & Kuliner</div>
+                <div class="list-desc">Gemar mengeksplorasi destinasi lokal seperti Waduk Gajah Mungkur dan Taman Dirgantara. Penikmat kuliner khas Nusantara (Seruit, Rawon, Gado-gado).</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title"><i class="fa-solid fa-book-open" style="color: #3b82f6;"></i> Entertainment & Grooming</div>
+                <div class="list-desc">Pembaca komik digital/Manhwa. Peduli pada *personal care* pria (pengguna *hair treatment oil, face wash*, dan alat *grooming*).</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box"><i class="fa-solid fa-gamepad"></i></div>
+                <h2>Gaming & Online Presence</h2>
+            </div>
+            
+            <h4 style="font-size: 0.9rem; color: var(--text-main); margin-bottom: 0.8rem;">Social Handles</h4>
+            <div class="social-link"><span><i class="fa-brands fa-x-twitter" style="color: #ffffff;"></i> X (Twitter)</span> <span class="handle">@splesnot</span></div>
+            <div class="social-link"><span><i class="fa-brands fa-instagram" style="color: #e1306c;"></i> Instagram</span> <span class="handle">kkay4na</span></div>
+            <div class="social-link"><span><i class="fa-brands fa-tiktok" style="color: #25f4ee;"></i> TikTok</span> <span class="handle">4bcdefgh.00</span></div>
+            <div class="social-link"><span><i class="fa-brands fa-discord" style="color: #5865f2;"></i> Discord</span> <span class="handle">acuuuuuuumalaka</span></div>
+
+            <h4 style="font-size: 0.9rem; color: var(--text-main); margin: 1.2rem 0 0.8rem;">Gaming Profiles</h4>
+            <div class="social-link"><span><i class="fa-solid fa-cube" style="color: #dc2626;"></i> Roblox (Main)</span> <span class="handle">santaiwoi</span></div>
+            <div class="social-link"><span><i class="fa-solid fa-cube" style="color: #ef4444;"></i> Roblox (Alt)</span> <span class="handle">rava536</span></div>
+            <div class="social-link"><span><i class="fa-solid fa-chess-knight" style="color: #739552;"></i> Chess.com</span> <span class="handle">Splele</span></div>
+            <div class="social-link"><span><i class="fa-brands fa-steam" style="color: #66c0f4;"></i> Steam</span> <span class="handle">@splesnot</span></div>
+            <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 0.5rem; text-align: center;">Aktif bermain "The Forge" & "Islands 2.0".</p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Laksita Javas Kayana Arfiansah. Built with HTML, CSS, & JavaScript.</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
