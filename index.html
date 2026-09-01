@@ -7,6 +7,7 @@
     <!-- Google Fonts & Font Awesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
         :root {
@@ -117,7 +118,7 @@
         }
 
         .card:hover {
-            transform: translateY(-10px) scale(1.05);
+            transform: translateY(-6px);
             border-color: rgba(56, 189, 248, 0.4);
         }
 
@@ -143,7 +144,8 @@
 
         .card-header h2 {
             font-size: 1.2rem;
-            font-weight: 700;
+            font-weight: 800;
+            color: #ffffff;
         }
 
         /* Tags */
@@ -165,6 +167,19 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            text-align: left;
+            transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+        }
+
+        .tech-tag:hover, .tech-tag:focus-visible {
+            background: rgba(56, 189, 248, 0.13);
+            border-color: var(--primary);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(56, 189, 248, .14);
+            outline: none;
         }
 
         /* List Items Umun */
@@ -177,9 +192,9 @@
             margin-bottom: 0; padding-bottom: 0; border-bottom: none;
         }
         .list-title {
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1rem;
-            color: var(--text-main);
+            color: #ffffff;
             margin-bottom: 0.3rem;
             display: flex;
             align-items: center;
@@ -219,6 +234,9 @@
             overflow: hidden;
             border: 1px solid var(--card-border);
             text-decoration: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
             /* Efek Pop-up Bounce Halus */
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
                         box-shadow 0.4s ease, 
@@ -235,7 +253,7 @@
 
         /* Animasi saat Kursor Menyentuh Gambar (Pop Up & Zooming Glow) */
         .school-img-wrapper:hover {
-            transform: translateY(-8px) scale(1.25);
+            transform: translateY(-8px) scale(1.04);
             border-color: var(--primary);
             box-shadow: 0 12px 25px rgba(56, 189, 248, 0.3);
         }
@@ -272,6 +290,46 @@
             transform: translateY(0);
         }
 
+        .detail-button {
+            margin-top: .9rem;
+            border: 1px solid rgba(56, 189, 248, .5);
+            background: rgba(56, 189, 248, .1);
+            color: var(--primary);
+            border-radius: 9px;
+            padding: .48rem .8rem;
+            font: 600 .82rem 'Plus Jakarta Sans', sans-serif;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .detail-button:hover, .detail-button:focus-visible {
+            background: var(--primary);
+            color: #07111f;
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        .modal-content {
+            background: #111827;
+            color: var(--text-main);
+            border: 1px solid rgba(56, 189, 248, .35);
+            border-radius: 18px;
+        }
+        .modal-header, .modal-footer { border-color: var(--card-border); }
+        .modal .btn-close { filter: invert(1); }
+        .modal-body { color: var(--text-sub); }
+        .modal-body strong { color: var(--text-main); }
+
+        .card h4 {
+            color: #ffffff !important;
+            font-weight: 800;
+        }
+
+        .social-link > span:first-child {
+            color: #ffffff;
+            font-weight: 800;
+        }
+
         /* Social Network Styles */
         .social-link {
             display: flex;
@@ -282,6 +340,16 @@
             border-radius: 8px;
             margin-bottom: 8px;
             font-size: 0.9rem;
+            color: var(--text-main);
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: transform .2s ease, border-color .2s ease, background .2s ease;
+        }
+        .social-link:hover, .social-link:focus-visible {
+            transform: translateX(4px);
+            background: rgba(56, 189, 248, .1);
+            border-color: rgba(56, 189, 248, .45);
+            outline: none;
         }
         .social-link .handle { color: var(--primary); font-family: monospace; }
 
@@ -347,13 +415,14 @@
                 <div class="list-desc">
                     Sekolah Menengah Kejuruan berbasis <em>boarding school</em> dengan konsentrasi keahlian Teknik Komputer dan Jaringan (TKJ). Berfokus pada praktik arsitektur jaringan skala industri (MikroTik, PNETLab), simulasi sistem operasi (VirtualBox), Cloud Architecture, serta dasar-dasar pengembangan aplikasi berbasis web dan mobile.
                 </div>
+                <button type="button" class="detail-button" data-bs-toggle="modal" data-bs-target="#schoolIdnModal"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat detail</button>
             </div>
-            <a href="https://imgbb.com/" target="_blank" class="school-img-wrapper">
-                <img src="https://i.ibb.co.com/JRqMtYpX/smk-idn.jpg" alt="SMK IDN Boarding School Solo">
+            <button type="button" class="school-img-wrapper" data-bs-toggle="modal" data-bs-target="#schoolIdnModal" aria-label="Buka detail SMK IDN Boarding School Solo">
+                <img src="https://i.ibb.co/JRqMtYpX/smk-idn.jpg" alt="SMK IDN Boarding School Solo">
                 <div class="school-img-overlay">
                     <i class="fa-solid fa-school" style="color: #38bdf8;"></i> SMK IDN Solo
                 </div>
-            </a>
+            </button>
         </div>
 
         <!-- SMP ABBS -->
@@ -365,13 +434,14 @@
                 <div class="list-desc">
                     Pendidikan Sekolah Menengah Pertama (Al-Abidin Bilingual Boarding School) yang membentuk fondasi akademis yang kuat, melatih logika dasar matematika dan pemrosesan ICT (seperti JavaScript & pemrograman dasar), serta memperkuat pembentukan karakter kepemimpinan berbasis Islam.
                 </div>
+                <button type="button" class="detail-button" data-bs-toggle="modal" data-bs-target="#schoolAbbsModal"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat detail</button>
             </div>
-            <a href="https://ibb.co.com/tMkQZrS5" target="_blank" class="school-img-wrapper">
-                <img src="https://i.ibb.co.com/vxgVsnb8/smp-abbs.jpg" alt="SMP ABBS Surakarta">
+            <button type="button" class="school-img-wrapper" data-bs-toggle="modal" data-bs-target="#schoolAbbsModal" aria-label="Buka detail SMP ABBS Surakarta">
+                <img src="https://i.ibb.co/vxgVsnb8/smp-abbs.jpg" alt="SMP ABBS Surakarta">
                 <div class="school-img-overlay">
                     <i class="fa-solid fa-building-columns" style="color: #818cf8;"></i> SMP ABBS Surakarta
                 </div>
-            </a>
+            </button>
         </div>
 
         <!-- SDIT AR-RISALAH -->
@@ -383,13 +453,14 @@
                 <div class="list-desc">
                     Sekolah Dasar Islam Terpadu yang menanamkan fondasi awal pendidikan nilai-nilai keagamaan, kedisiplinan, serta membangun ketertarikan awal terhadap ilmu pengetahuan umum dan dasar-dasar teknologi informasi.
                 </div>
+                <button type="button" class="detail-button" data-bs-toggle="modal" data-bs-target="#schoolRisalahModal"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat detail</button>
             </div>
-            <a href="https://ibb.co.com/whGvJMvX" target="_blank" class="school-img-wrapper">
-                <img src="https://i.ibb.co.com/hFQqXDqj/sdit-arisalah.jpg" alt="SDIT Ar-Risalah">
+            <button type="button" class="school-img-wrapper" data-bs-toggle="modal" data-bs-target="#schoolRisalahModal" aria-label="Buka detail SDIT Ar-Risalah">
+                <img src="https://i.ibb.co/hFQqXDqj/sdit-arisalah.jpg" alt="SDIT Ar-Risalah">
                 <div class="school-img-overlay">
                     <i class="fa-solid fa-book-bookmark" style="color: #34d399;"></i> SDIT Ar-Risalah
                 </div>
-            </a>
+            </button>
         </div>
     </div>
 
@@ -402,21 +473,23 @@
             </div>
             <h4 style="font-size: 0.9rem; color: var(--text-main); margin: 1rem 0 0.5rem;">Network & Development</h4>
             <div class="tag-group">
-                <span class="tech-tag"><i class="fa-solid fa-server" style="color: #0ea5e9;"></i> MikroTik & Networking</span>
-                <span class="tech-tag"><i class="fa-solid fa-network-wired" style="color: #8b5cf6;"></i> PNETLab</span>
-                <span class="tech-tag"><i class="fa-solid fa-box" style="color: #10b981;"></i> VirtualBox</span>
-                <span class="tech-tag"><i class="fa-solid fa-cloud" style="color: #38bdf8;"></i> Cloud Architect</span>
-                <span class="tech-tag"><i class="fa-brands fa-python" style="color: #f59e0b;"></i> Python / Django</span>
-                <span class="tech-tag"><i class="fa-brands fa-js" style="color: #facc15;"></i> JavaScript</span>
-                <span class="tech-tag"><i class="fa-brands fa-html5" style="color: #f97316;"></i> HTML/CSS</span>
-                <span class="tech-tag"><i class="fa-solid fa-mobile-screen" style="color: #3b82f6;"></i> Flutter & Dart</span>
+                <button class="tech-tag" type="button" data-tech="MikroTik & Networking" data-detail="Praktik konfigurasi dan pemahaman arsitektur jaringan untuk simulasi routing dan troubleshooting."><i class="fa-solid fa-server" style="color: #0ea5e9;"></i> MikroTik & Networking</button>
+                <button class="tech-tag" type="button" data-tech="PNETLab" data-detail="Digunakan untuk membangun dan menguji topologi jaringan virtual secara lebih mendekati skenario industri."><i class="fa-solid fa-network-wired" style="color: #8b5cf6;"></i> PNETLab</button>
+                <button class="tech-tag" type="button" data-tech="VirtualBox" data-detail="Lingkungan virtualisasi untuk menjalankan serta mengeksplorasi sistem operasi dan lab teknis."><i class="fa-solid fa-box" style="color: #10b981;"></i> VirtualBox</button>
+                <button class="tech-tag" type="button" data-tech="Cloud Architecture" data-detail="Fokus belajar pada konsep layanan cloud dan rancangan arsitektur sistem yang modern."><i class="fa-solid fa-cloud" style="color: #38bdf8;"></i> Cloud Architecture</button>
+                <button class="tech-tag" type="button" data-tech="Python / Django" data-detail="Dasar pengembangan aplikasi dengan Python dan framework Django."><i class="fa-brands fa-python" style="color: #f59e0b;"></i> Python / Django</button>
+                <button class="tech-tag" type="button" data-tech="JavaScript" data-detail="Digunakan untuk logika pemrograman, interaksi halaman web, loop, branching, dan kuis fundamental."><i class="fa-brands fa-js" style="color: #facc15;"></i> JavaScript</button>
+                <button class="tech-tag" type="button" data-tech="HTML/CSS" data-detail="Fondasi untuk membuat halaman web responsif dengan tampilan modern dan dark mode aesthetic."><i class="fa-brands fa-html5" style="color: #f97316;"></i> HTML/CSS</button>
+                <button class="tech-tag" type="button" data-tech="Flutter & Dart" data-detail="Eksplorasi pembuatan aplikasi mobile, termasuk ide aplikasi mahasiswa dengan backend dan notifikasi."><i class="fa-solid fa-mobile-screen" style="color: #3b82f6;"></i> Flutter & Dart</button>
+                <button class="tech-tag" type="button" data-tech="Construct 3" data-detail="Membuat game 2D saat SMP, termasuk Flying Bird, game racing, dan Space Shooter."><i class="fa-solid fa-gamepad" style="color: #e879f9;"></i> Construct 3</button>
+                <button class="tech-tag" type="button" data-tech="Arduino & IoT" data-detail="Membuat dan menguji proyek Arduino, seperti mobil Arduino, pengukur suhu, tong sampah otomatis, dan LED dance melalui Tinkercad serta Wokwi."><i class="fa-solid fa-microchip" style="color: #22c55e;"></i> Arduino & IoT</button>
             </div>
 
             <h4 style="font-size: 0.9rem; color: var(--text-main); margin: 1.5rem 0 0.5rem;">Creative & Design</h4>
             <div class="tag-group">
-                <span class="tech-tag"><i class="fa-brands fa-figma" style="color: #ec4899;"></i> Figma (UI/UX)</span>
-                <span class="tech-tag"><i class="fa-solid fa-wand-magic-sparkles" style="color: #a855f7;"></i> Gamma App</span>
-                <span class="tech-tag"><i class="fa-solid fa-image" style="color: #14b8a6;"></i> Photo Manipulation</span>
+                <button class="tech-tag" type="button" data-tech="Figma (UI/UX)" data-detail="Digunakan untuk mengeksplorasi desain UI/UX dengan gaya modern, rapi, dan nyaman digunakan."><i class="fa-brands fa-figma" style="color: #ec4899;"></i> Figma (UI/UX)</button>
+                <button class="tech-tag" type="button" data-tech="Gamma App" data-detail="Digunakan untuk menyusun presentasi digital, termasuk materi budaya dan edukasi."><i class="fa-solid fa-wand-magic-sparkles" style="color: #a855f7;"></i> Gamma App</button>
+                <button class="tech-tag" type="button" data-tech="Photo Manipulation" data-detail="Eksplorasi pengolahan visual untuk melengkapi kebutuhan desain dan presentasi."><i class="fa-solid fa-image" style="color: #14b8a6;"></i> Photo Manipulation</button>
             </div>
         </div>
 
@@ -503,17 +576,14 @@
             </div>
             
             <h4 style="font-size: 0.9rem; color: var(--text-main); margin-bottom: 0.8rem;">Social Handles</h4>
-            <div class="social-link"><span><i class="fa-brands fa-x-twitter" style="color: #ffffff;"></i> X (Twitter)</span> <span class="handle">@splesnot</span></div>
-            <div class="social-link"><span><i class="fa-brands fa-instagram" style="color: #e1306c;"></i> Instagram</span> <span class="handle">kkay4na</span></div>
-            <div class="social-link"><span><i class="fa-brands fa-tiktok" style="color: #25f4ee;"></i> TikTok</span> <span class="handle">4bcdefgh.00</span></div>
-            <div class="social-link"><span><i class="fa-brands fa-discord" style="color: #5865f2;"></i> Discord</span> <span class="handle">acuuuuuuumalaka</span></div>
+            <a class="social-link" href="https://wa.me/628156563851" target="_blank" rel="noopener noreferrer"><span><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> WhatsApp</span> <span class="handle">08156563851</span></a>
+            <a class="social-link" href="https://www.instagram.com/kkay4na/" target="_blank" rel="noopener noreferrer"><span><i class="fa-brands fa-instagram" style="color: #e1306c;"></i> Instagram</span> <span class="handle">kkay4na</span></a>
+            <a class="social-link" href="https://www.tiktok.com/@4bcdefgh.00" target="_blank" rel="noopener noreferrer"><span><i class="fa-brands fa-tiktok" style="color: #25f4ee;"></i> TikTok</span> <span class="handle">4bcdefgh.00</span></a>
+            <a class="social-link" href="https://discord.com/channels/@me" target="_blank" rel="noopener noreferrer"><span><i class="fa-brands fa-discord" style="color: #5865f2;"></i> Discord</span> <span class="handle">acuuuuuuumalaka</span></a>
 
             <h4 style="font-size: 0.9rem; color: var(--text-main); margin: 1.2rem 0 0.8rem;">Gaming Profiles</h4>
-            <div class="social-link"><span><i class="fa-solid fa-cube" style="color: #dc2626;"></i> Roblox (Main)</span> <span class="handle">santaiwoi</span></div>
-            <div class="social-link"><span><i class="fa-solid fa-cube" style="color: #ef4444;"></i> Roblox (Alt)</span> <span class="handle">rava536</span></div>
-            <div class="social-link"><span><i class="fa-solid fa-chess-knight" style="color: #739552;"></i> Chess.com</span> <span class="handle">Splele</span></div>
-            <div class="social-link"><span><i class="fa-brands fa-steam" style="color: #66c0f4;"></i> Steam</span> <span class="handle">@splesnot</span></div>
-            <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 0.5rem; text-align: center;">Aktif bermain "The Forge" & "Islands 2.0".</p>
+            <a class="social-link" href="https://www.chess.com/member/splele" target="_blank" rel="noopener noreferrer"><span><i class="fa-solid fa-chess-knight" style="color: #739552;"></i> Chess.com</span> <span class="handle">Splele</span></a>
+            <a class="social-link" href="https://steamcommunity.com/search/users/#text=splesnot" target="_blank" rel="noopener noreferrer"><span><i class="fa-brands fa-steam" style="color: #66c0f4;"></i> Steam</span> <span class="handle">@splesnot</span></a>
         </div>
     </div>
 
@@ -523,6 +593,51 @@
     </footer>
 
 </div>
+
+<!-- Modal detail pendidikan -->
+<div class="modal fade" id="schoolIdnModal" tabindex="-1" aria-labelledby="schoolIdnTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title" id="schoolIdnTitle"><i class="fa-solid fa-school me-2 text-info"></i>SMK IDN Boarding School Solo</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
+        <div class="modal-body"><p>SMK IDN Boarding School Solo menjadi ruang pendalaman minat aku di bidang <strong>Teknik Komputer dan Jaringan (TKJ)</strong> dalam lingkungan boarding school.</p><p>Selama dua bulan pertama, aku telah menikmati pembelajaran TKJ yang terasa seru dan menantang. Materi yang dipelajari mencakup praktik MikroTik, PNETLab, VirtualBox, konsep cloud architecture, serta fondasi pengembangan aplikasi web dan mobile.</p><p class="mb-0">Pembelajaran keamanan sistem juga memperkenalkan cara mengakses dan menguji sistem dalam lingkungan yang diizinkan, dengan penekanan pada penggunaan yang bertanggung jawab. Pengalaman awal ini semakin menguatkan arah karierku sebagai Network/Cloud Engineer.</p></div>
+        <div class="modal-footer"><button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Tutup</button></div>
+    </div></div>
+</div>
+
+<div class="modal fade" id="schoolAbbsModal" tabindex="-1" aria-labelledby="schoolAbbsTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title" id="schoolAbbsTitle"><i class="fa-solid fa-building-columns me-2" style="color:#818cf8"></i>SMP ABBS Surakarta</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
+        <div class="modal-body"><p>SMP Al-Abidin Bilingual Boarding School membentuk fondasi akademis, karakter, dan ketertarikan aku pada teknologi. Saat kelas 7, aku memiliki tiga teman dekat yang oleh guru dijuluki <strong>“Trio Wek Wek”</strong> karena kami sering berjalan sambil saling merangkul.</p><p>Di kelas 7, aku belajar <strong>Construct 3</strong> dan membuat beberapa game, seperti Flying Bird, game racing, serta Space Shooter. Di kelas 8, aku belajar <strong>MIT App Inventor</strong> dan <strong>Arduino</strong>; salah satu proyekku adalah aplikasi untuk menjalankan mobil Arduino yang aku rakit sendiri.</p><p>Aku juga membuat proyek virtual pengukuran suhu, tong sampah otomatis, dan LED dance menggunakan <strong>Tinkercad</strong> serta <strong>Wokwi</strong>. Dalam lomba Soccer Car sekolah, aku menjadi perwakilan tim dan meraih juara 2 setelah kalah adu penalti pada partai final.</p><p class="mb-0">Di kelas 9, aku mulai mendalami HTML, JavaScript, dan Bootstrap. Aku membuat proyek seperti website festival kuliner serta profil diri. Dari fase ini, minatku pada coding semakin tumbuh, tetapi aku memilih jurusan TKJ di SMK untuk mendalami jaringan komputer.</p></div>
+        <div class="modal-footer"><button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Tutup</button></div>
+    </div></div>
+</div>
+
+<div class="modal fade" id="schoolRisalahModal" tabindex="-1" aria-labelledby="schoolRisalahTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title" id="schoolRisalahTitle"><i class="fa-solid fa-book-bookmark me-2 text-success"></i>SDIT Ar-Risalah</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
+        <div class="modal-body"><p>SDIT Ar-Risalah menjadi fondasi awal perjalanan pendidikan aku sebagai Sekolah Dasar Islam Terpadu. Di sini aku mempelajari mata pelajaran umum seperti Matematika, IPA, IPS, dan PPKn, sekaligus pelajaran keislaman seperti Akidah Akhlak, Sirah, dan hafalan Al-Qur'an.</p><p class="mb-0">Salah satu pengalaman yang paling aku ingat adalah masa pandemi <strong>COVID-19</strong>. Situasi ini membuat kegiatan belajar berubah dan mengajarkan aku untuk tetap disiplin, beradaptasi, serta terus belajar meskipun dalam kondisi yang tidak biasa.</p></div>
+        <div class="modal-footer"><button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Tutup</button></div>
+    </div></div>
+</div>
+
+<!-- Modal detail tech/design diisi JavaScript saat tag dipilih -->
+<div class="modal fade" id="techModal" tabindex="-1" aria-labelledby="techModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title" id="techModalTitle">Tech &amp; Design Stack</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
+        <div class="modal-body" id="techModalBody"></div>
+        <div class="modal-footer"><button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Tutup</button></div>
+    </div></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.querySelectorAll('.tech-tag').forEach((tag) => {
+        tag.addEventListener('click', () => {
+            document.getElementById('techModalTitle').textContent = tag.dataset.tech;
+            document.getElementById('techModalBody').innerHTML = `<p class="mb-0">${tag.dataset.detail}</p>`;
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('techModal')).show();
+        });
+    });
+</script>
 
 </body>
 </html>
