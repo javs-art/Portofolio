@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio & Rekam Jejak SMK — Laksita Javas Kayana Arfiansah</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --accent-blue: #38bdf8;
+            --accent-purple: #a855f7;
+            --accent-green: #34d399;
+            --accent-yellow: #fbbf24;
+            --accent-red: #f87171;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 60px;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.1) 0%, transparent 40%);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Hero */
+        header {
+            padding: 60px 0 40px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, rgba(56, 189, 248, 0.14) 0%, rgba(15, 23, 42, 0) 100%);
+            border-radius: 0 0 24px 24px;
+        }
+
+        .badge-school {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .badge-school:hover {
+            background: rgba(56, 189, 248, 0.25);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .student-name {
+            color: var(--accent-blue);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vision-box {
+            margin-top: 24px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px dashed var(--accent-blue);
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            color: #cbd5e1;
+            font-style: italic;
+            backdrop-filter: blur(8px);
+            transition: border-color 0.3s ease;
+        }
+
+        .vision-box:hover {
+            border-color: var(--accent-purple);
+        }
+
+        /* Stats Strip */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
+        }
+
+        .stat-card .num {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+        }
+
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Section Styling */
+        section {
+            margin-top: 50px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .color-net { color: var(--accent-blue); }
+        .color-cloud { color: var(--accent-purple); }
+        .color-prog { color: var(--accent-green); }
+        .color-soft { color: var(--accent-yellow); }
+
+        /* Grid Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 12px 25px rgba(56, 189, 248, 0.15);
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .tag-mikrotik { background: rgba(56, 189, 248, 0.2); color: var(--accent-blue); }
+        .tag-cisco { background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); }
+        .tag-cloud { background: rgba(52, 211, 153, 0.2); color: var(--accent-green); }
+        .tag-cert { background: rgba(251, 191, 36, 0.2); color: var(--accent-yellow); }
+
+        .card-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .card-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            transition: color 0.2s ease;
+        }
+
+        .card:hover .card-list li {
+            color: #cbd5e1;
+        }
+
+        .card-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+        }
+
+        .code-box {
+            background-color: #090d16;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.82rem;
+            color: #e2e8f0;
+            margin-top: 12px;
+            overflow-x: auto;
+            transition: border-color 0.3s ease;
+        }
+
+        .card:hover .code-box {
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .code-box .prompt { color: var(--accent-purple); }
+        .code-box .command { color: var(--accent-blue); }
+        .code-box .comment { color: #64748b; font-style: italic; }
+
+        .pill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .pill:hover {
+            background: rgba(56, 189, 248, 0.12);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+        }
+
+        /* Footer & Tombol Back */
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding: 12px 24px;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-back:hover {
+            background: var(--accent-blue);
+            color: var(--bg-main);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.7rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO HEADER -->
+    <header>
+        <div class="container">
+            <div class="badge-school">
+                <i class="fa-solid fa-server"></i> SMK IDN BOARDING SCHOOL SOLO
+            </div>
+            <h1>Jejak Pendidikan Kejuruan — <span class="student-name">Laksita Javas Kayana Arfiansah</span></h1>
+            <p class="subtitle">
+                Konsentrasi Keahlian Network Engineer (TKJ). Berfokus pada Arsitektur Jaringan Skala Industri, Virtualisasi & Emulasi Topologi, Cloud Infrastructure, serta Otomasi Jaringan di Kampus Solo (Ngargoyoso, Karanganyar).
+            </p>
+            
+            <div class="vision-box">
+                “Mempersiapkan Network & Cloud Engineer Unggul Berkarakter Islamic Boarding, Menguasai Sertifikasi Internasional, serta Siap Bersaing di Industri Global.”
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="num">MIKROTIK</div>
+                    <div class="label">MTCNA & MTCRE</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">CISCO</div>
+                    <div class="label">CCNA & CCNP Labs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">CLOUD & SECURITY</div>
+                    <div class="label">AWS & Fortinet Firewall</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">1 TAHUN MAGANG</div>
+                    <div class="label">Program PKL Industri</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- KONSENTRASI NETWORK ENGINEERING -->
+        <section>
+            <div class="section-header">
+                <i class="fa-solid fa-network-wired color-net"></i>
+                <h2>Arsitektur & Infrastruktur Jaringan</h2>
+            </div>
+
+            <div class="card-grid">
+                <!-- MikroTik Routing & Switching -->
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-router" style="color:var(--accent-blue);"></i> MikroTik RouterOS</span>
+                            <span class="tag tag-mikrotik">Routing & Switching</span>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">Pendalaman materi sertifikasi tingkat MTCNA & MTCRE:</p>
+                        <ul class="card-list">
+                            <li><strong>Basic Configuration:</strong> IP Addressing, DHCP Server/Client, NAT, dan DNS Resolver.</li>
+                            <li><strong>Routing Protocol:</strong> Static Routing, OSPF Dynamic Routing, dan Failover/Load Balancing (ECMP/PBR).</li>
+                            <li><strong>Network Security:</strong> Firewall Filter Rules, Mangle, Address List, dan Layer 7 Protocol.</li>
+                            <li><strong>Tunneling & Wireless:</strong> PPPoE Server, L2TP/IPsec VPN, dan Wireless PtP/PtMP Link.</li>
+                        </ul>
+                    </div>
+                    <div class="code-box">
+                        <span class="comment"># MikroTik OSPF Basic Setup</span><br>
+                        <span class="prompt">[admin@MikroTik] &gt;</span> <span class="command">routing ospf instance add name=default</span><br>
+                        <span class="prompt">[admin@MikroTik] &gt;</span> <span class="command">routing ospf network add network=192.168.10.0/24 area=backbone</span>
+                    </div>
+                </div>
+
+                <!-- Cisco Enterprise Networking -->
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-server" style="color:var(--accent-purple);"></i> Cisco Enterprise Systems</span>
+                            <span class="tag tag-cisco">CCNA Track</span>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">Penguasaan arsitektur jaringan skala besar (Cisco CCNA):</p>
+                        <ul class="card-list">
+                            <li><strong>Switching Technologies:</strong> VLAN, Trunking 802.1Q, Inter-VLAN Routing (ROAS), LACP EtherChannel.</li>
+                            <li><strong>Redundancy Protocol:</strong> Spanning Tree Protocol (STP/RSTP) dan First Hop Redundancy Protocol (HSRP).</li>
+                            <li><strong>IP Services & Routing:</strong> Multi-area OSPFv2/v3, IPv6 Addressing, Standard/Extended ACL.</li>
+                        </ul>
+                    </div>
+                    <div class="code-box">
+                        <span class="comment">! Cisco Switch VLAN Trunking</span><br>
+                        <span class="prompt">Switch(config)#</span> <span class="command">interface range g0/1 - 2</span><br>
+                        <span class="prompt">Switch(config-if-range)#</span> <span class="command">switchport mode trunk</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EMULASI & CLOUD COMPUTING -->
+        <section>
+            <div class="section-header">
+                <i class="fa-solid fa-cloud color-cloud"></i>
+                <h2>Virtualisasi, Emulasi Lab & Cloud Computing</h2>
+            </div>
+
+            <div class="card-grid">
+                <!-- PNETLab & VirtualBox -->
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-box" style="color:var(--accent-green);"></i> Lab Emulasi Topologi</span>
+                            <span class="tag tag-cloud">PNETLab & VirtualBox</span>
+                        </div>
+                        <ul class="card-list">
+                            <li><strong>PNETLab Environment:</strong> Perancangan topologi rumit berbasis gambar vRouter (MikroTik CHR, Cisco IOL/vIOS, Fortinet).</li>
+                            <li><strong>Virtualization:</strong> Pengelolaan VM Debian Server, Ubuntu Server, dan Windows Client di VirtualBox.</li>
+                            <li><strong>Testing & Troubleshooting:</strong> Simulasi mati jalur (failover testing), sniffing paket via Wireshark.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- AWS Cloud & Security -->
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-shield-halved" style="color:var(--accent-yellow);"></i> Cloud Foundation & Firewall</span>
+                            <span class="tag tag-cert">AWS & Fortinet</span>
+                        </div>
+                        <ul class="card-list">
+                            <li><strong>AWS Cloud Foundations:</strong> Konsep EC2 Compute, VPC Networking, S3 Storage, IAM Policy, dan Security Groups.</li>
+                            <li><strong>Fortinet Firewall:</strong> Pengenalan Next-Generation Firewall (NGFW), Inspection Rules, dan SSL VPN.</li>
+                            <li><strong>Linux Sysadmin:</strong> Dasar perintah terminal Linux Debian/Ubuntu (SSH, UFW, Apache/Nginx, DNS BIND9).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRAMMER & PUBLIC SPEAKING -->
+        <section>
+            <div class="section-header">
+                <i class="fa-solid fa-code color-prog"></i>
+                <h2>Otomasi Pemrograman & Public Speaking</h2>
+            </div>
+
+            <div class="card-grid">
+                <!-- Python & Web Automation -->
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-brands fa-python" style="color:var(--accent-blue);"></i> Network Automation & Web</span>
+                            <span class="tag tag-mikrotik">Python & Scripting</span>
+                        </div>
+                        <ul class="card-list">
+                            <li><strong>Network Scripting:</strong> Menggunakan Python (Paramiko/Netmiko) untuk otomatisasi konfigurasi massal router.</li>
+                            <li><strong>Fullstack Foundation:</strong> Pengenalan struktur backend (Python/Django) dan UI/UX Frontend (HTML/CSS/JS).</li>
+                            <li><strong>Mobile Intro:</strong> Eksplorasi pembuatan antarmuka aplikasi mobile dengan Flutter & Dart.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Soft Skills & Keynote Speaker -->
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-person-chalkboard" style="color:var(--accent-purple);"></i> Public Speaking & Teaching</span>
+                            <span class="tag tag-cisco">Soft Skills</span>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">Program unggulan santri IDN dalam mengasah komunikasi publik:</p>
+                        <ul class="card-list">
+                            <li><strong>Teaching Project:</strong> Program mengajar materi IT ke sekolah-sekolah luar (Komunitas / SMP).</li>
+                            <li><strong>Keynote Speaker:</strong> Latihan menjadi pemateri teknis seminar jaringan dan teknologi.</li>
+                            <li><strong>English Communication:</strong> Presentasi teknis (*technical demo*) menggunakan Bahasa Inggris.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOKASI & LINGKUNGAN KAMPUS -->
+        <section>
+            <div class="section-header">
+                <i class="fa-solid fa-mountain color-soft"></i>
+                <h2>Fasilitas & Lingkungan Kampus Solo</h2>
+            </div>
+
+            <div class="card">
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 14px;">
+                    Kampus IDN Solo terletak di kawasan lereng Gunung Lawu (Tambak, Berjo, Ngargoyoso, Karanganyar), memberikan suasana belajar asrama (*boarding school*) yang sejuk dan fokus:
+                </p>
+                <div class="pill-group">
+                    <span class="pill"><i class="fa-solid fa-wifi" style="color:var(--accent-blue);"></i> Koneksi Internet Dedicated High-Speed</span>
+                    <span class="pill"><i class="fa-solid fa-laptop-code" style="color:var(--accent-purple);"></i> Lab Komputer & Emulasi Server</span>
+                    <span class="pill"><i class="fa-solid fa-mosque" style="color:var(--accent-green);"></i> Masjid & Asrama Santri</span>
+                    <span class="pill"><i class="fa-solid fa-mountain-sun" style="color:var(--accent-yellow);"></i> Lingkungan Pegunungan Sejuk (Ngargoyoso)</span>
+                    <span class="pill"><i class="fa-solid fa-briefcase" style="color:var(--accent-red);"></i> Program PKL / Magang Industri 1 Tahun</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div>
+                <a href="portfolio-laksita.html" class="btn-back">
+                    <i class="fa-solid fa-arrow-left"></i> Kembali ke Portofolio Utama
+                </a>
+            </div>
+            <p>Portofolio Rekam Jejak SMK — SMK IDN Boarding School Solo (Tambak, Berjo, Ngargoyoso, Karanganyar)</p>
+            <p style="font-size: 0.8rem; margin-top: 4px; color: #64748b;">Disusun oleh Laksita Javas Kayana Arfiansah sebagai dokumentasi persiapan karier Network & Cloud Engineer.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

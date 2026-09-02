@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio & Rekam Jejak SMP — Laksita Javas Kayana Arfiansah</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --accent-blue: #38bdf8;
+            --accent-purple: #a855f7;
+            --accent-green: #34d399;
+            --accent-yellow: #fbbf24;
+            --accent-red: #f87171;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 60px;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Hero */
+        header {
+            padding: 60px 0 40px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, rgba(56, 189, 248, 0.12) 0%, rgba(15, 23, 42, 0) 100%);
+            border-radius: 0 0 24px 24px;
+        }
+
+        .badge-school {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .badge-school:hover {
+            background: rgba(56, 189, 248, 0.25);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .student-name {
+            color: var(--accent-blue);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vision-box {
+            margin-top: 24px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px dashed var(--accent-blue);
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            color: #cbd5e1;
+            font-style: italic;
+            backdrop-filter: blur(8px);
+            transition: border-color 0.3s ease;
+        }
+
+        .vision-box:hover {
+            border-color: var(--accent-purple);
+        }
+
+        /* Stats Strip */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
+        }
+
+        .stat-card .num {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+        }
+
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Section Styling */
+        section {
+            margin-top: 50px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .color-ict { color: var(--accent-blue); }
+        .color-g7 { color: var(--accent-green); }
+        .color-g8 { color: var(--accent-purple); }
+        .color-g9 { color: var(--accent-yellow); }
+
+        /* Grid Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 12px 25px rgba(56, 189, 248, 0.15);
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .tag-ict { background: rgba(56, 189, 248, 0.2); color: var(--accent-blue); }
+        .tag-tcp { background: rgba(52, 211, 153, 0.2); color: var(--accent-green); }
+        .tag-mit { background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); }
+        .tag-arduino { background: rgba(248, 113, 113, 0.2); color: var(--accent-red); }
+        .tag-game { background: rgba(251, 191, 36, 0.2); color: var(--accent-yellow); }
+
+        .card-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .card-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            transition: color 0.2s ease;
+        }
+
+        .card:hover .card-list li {
+            color: #cbd5e1;
+        }
+
+        .card-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+        }
+
+        /* Image Container inside Card */
+        .project-img-box {
+            width: 100%;
+            height: 180px;
+            background-color: #090d16;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-top: 14px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .project-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .project-img-box a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .project-img-box:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
+        }
+
+        .project-img-box:hover img {
+            transform: scale(1.08);
+            filter: brightness(1.1);
+        }
+
+        .project-img-dual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+
+        .code-box {
+            background-color: #090d16;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.82rem;
+            color: #e2e8f0;
+            margin-top: 12px;
+            overflow-x: auto;
+            transition: border-color 0.3s ease;
+        }
+
+        .card:hover .code-box {
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .code-box .keyword { color: var(--accent-purple); }
+        .code-box .function { color: var(--accent-blue); }
+        .code-box .string { color: var(--accent-green); }
+        .code-box .comment { color: #64748b; font-style: italic; }
+
+        .pill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .pill:hover {
+            background: rgba(56, 189, 248, 0.12);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+        }
+
+        /* Footer & Tombol Back */
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding: 12px 24px;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-back:hover {
+            background: var(--accent-blue);
+            color: var(--bg-main);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.7rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO HEADER -->
+    <header>
+        <div class="container">
+            <div class="badge-school">
+                <i class="fa-solid fa-laptop-code"></i> SMP ABBS SURAKARTA (Al Abidin Bilingual Boarding School)
+            </div>
+            <h1>Jejak Pendidikan SMP — <span class="student-name">Laksita Javas Kayana Arfiansah</span></h1>
+            <p class="subtitle">
+                Di bawah Yayasan Al Abidin Surakarta (Akreditasi A). Pembelajaran berbasis STEM, Program ICT khusus, Tahfidz Class Program (TCP), serta eksplorasi IoT & Mikrokontroler.
+            </p>
+            
+            <div class="vision-box">
+                “Menjadi lembaga pendidikan Islam terdepan yang menghasilkan generasi berilmu, berakhlak mulia, berprestasi, dan mampu berkomunikasi global tanpa meninggalkan nilai keislaman.”
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="num">AKREDITASI A</div>
+                    <div class="label">BAN-S/M Resmi</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">PROGRAM ICT</div>
+                    <div class="label">Jaringan & Pemrograman</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">IOT & ARDUINO</div>
+                    <div class="label">Simulasi Tinkercad & Wokwi</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">MIT APP INVENTOR</div>
+                    <div class="label">Mobile Controller Dev</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- KELAS 7 -->
+        <section>
+            <div class="section-header">
+                <i class="fa-solid fa-gamepad color-g7"></i>
+                <h2>Kelas 7 — Game Development & CMS</h2>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-cubes" style="color:var(--accent-yellow);"></i> Construct 2D Game Engine</span>
+                            <span class="tag tag-game">Logika Visual</span>
+                        </div>
+                        <ul class="card-list">
+                            <li><strong>Flying Bird:</strong> Logika <em>gravity vector</em>, <em>jump force</em>, dan <em>spawning obstacle</em>.</li>
+                            <li><strong>Racing Game:</strong> <em>Movement logic</em>, <em>collision detection</em>, dan perhitungan <em>lap</em>.</li>
+                            <li><strong>Space Shooter:</strong> Manajemen peluru/musuh, sistem skor, dan <em>health bar</em>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-brands fa-wordpress" style="color:var(--accent-blue);"></i> Web Visual & Geometri</span>
+                            <span class="tag tag-ict">WordPress & Math</span>
+                        </div>
+                        <ul class="card-list">
+                            <li><strong>WordPress CMS:</strong> Pengelolaan tata letak web visual, header, dan struktur konten.</li>
+                            <li><strong>Matematika Dasar:</strong> Perhitungan Luas Trapesium dengan rumus:</li>
+                        </ul>
+                        <div class="code-box">
+                            <span class="comment">// Rumus Luas Trapesium</span><br>
+                            Luas = ((a + b) * t) / 2;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KELAS 8 -->
+        <section>
+            <div class="section-header">
+                <i class="fa-solid fa-robot color-g8"></i>
+                <h2>Kelas 8 — Mobile App Dev, IoT & Simulasi Arduino (Tinkercad & Wokwi)</h2>
+            </div>
+
+            <div class="card-grid">
+
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-mobile-screen-button" style="color:var(--accent-purple);"></i> Mobile App: RC Controller</span>
+                            <span class="tag tag-mit">MIT App Inventor</span>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                            Pengembangan aplikasi Android <strong>App_RCcontroller_Javas_8A</strong> untuk mengontrol mobil/robot berbasis Bluetooth secara <em>realtime</em>:
+                        </p>
+                        <ul class="card-list">
+                            <li><strong>UI/UX Layout:</strong> Kontrol navigasi (Maju, Mundur, Kiri, Kanan), Tombol Sein Kiri/Kanan, Hazard, dan Lampu Utama.</li>
+                            <li><strong>Bluetooth Client Logic:</strong> Blok pemrograman komunikasi serial (`ListPicker1` & `BluetoothClient1`).</li>
+                            <li><strong>Event Handling:</strong> Mengirimkan sinyal perintah karakter saat tombol ditekan (`TouchDown`) dan dilepas (`TouchUp`).</li>
+                        </ul>
+                    </div>
+                    <div class="project-img-box project-img-dual">
+                        <a href="https://ibb.co.com/mVNJHdpS" target="_blank" rel="noopener noreferrer" aria-label="Lihat tampilan RC Controller"><img src="https://i.ibb.co.com/zT6sSCdN/codex-clipboard-83161bda-6a50-4e56-bee4-d19bbde5c245.png" alt="Tampilan aplikasi RC Controller di MIT App Inventor" loading="lazy"></a>
+                        <a href="https://ibb.co.com/PZZRWRnX" target="_blank" rel="noopener noreferrer" aria-label="Lihat blok kode RC Controller"><img src="https://i.ibb.co.com/tMMS2Stj/codex-clipboard-74a99522-c9da-4a0c-9703-756ee6c27851.png" alt="Blok kode RC Controller di MIT App Inventor" loading="lazy"></a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-car" style="color:var(--accent-red);"></i> Robot Obstacle Avoider</span>
+                            <span class="tag tag-arduino">Tinkercad / Wokwi</span>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                            Simulasi mobil robotik otonom berbasis Arduino Uno yang mampu menghindari rintangan secara otomatis:
+                        </p>
+                        <ul class="card-list">
+                            <li><strong>Sensor & Actuator:</strong> Sensor Ultrasonik HC-SR04 & IC Motor Driver L293D untuk menggerakkan DC Motor.</li>
+                            <li><strong>Logika Navigasi:</strong> Mengukur jarak objek; jika jarak &lt; 20 cm, robot akan belok/mundur otomatis.</li>
+                        </ul>
+                        <div class="code-box">
+                            <span class="keyword">if</span> (distance < <span class="string">20</span>) {<br>
+                            &nbsp;&nbsp;<span class="comment">// Hindari halangan</span><br>
+                            &nbsp;&nbsp;<span class="function">digitalWrite</span>(motor1Pin1, LOW);<br>
+                            &nbsp;&nbsp;<span class="function">digitalWrite</span>(motor1Pin2, HIGH);<br>
+                            }
+                        </div>
+                    </div>
+                    <div class="project-img-box">
+                        <a href="https://ibb.co.com/v6pHR8jp" target="_blank" rel="noopener noreferrer" aria-label="Lihat Robot Obstacle Avoider"><img src="https://i.ibb.co.com/xtWDdQ7W/codex-clipboard-ef5e0545-4da2-4939-87a2-71f9b863c713.png" alt="Robot Obstacle Avoider di Tinkercad" loading="lazy"></a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-dumpster" style="color:var(--accent-green);"></i> Tong Sampah Otomatis</span>
+                            <span class="tag tag-arduino">Tinkercad / Wokwi</span>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                            Sistem tempat sampah pintar (Smart Dustbin) berbasis pencetus jarak ultrasonik:
+                        </p>
+                        <ul class="card-list">
+                            <li><strong>Komponen:</strong> Arduino Uno, Sensor HC-SR04, Servo Motor (Pembuka tutup), LCD 16x2 I2C, dan LED Indikator.</li>
+                            <li><strong>Mekanisme:</strong> Deteksi tangan/objek &lt; 50 cm mendatangkan aksi pembukaan servo 180° serta menampilkan pesan <em>"Silahkan Buang / Terimakasih"</em> pada layar LCD.</li>
+                        </ul>
+                    </div>
+                    <div class="project-img-box">
+                        <a href="https://ibb.co.com/FLRhH1zv" target="_blank" rel="noopener noreferrer" aria-label="Lihat Automatic Dustbin"><img src="https://i.ibb.co.com/G4zdHDRw/codex-clipboard-a9b08ab0-940b-4de8-9b88-f4501b267625.png" alt="Automatic Dustbin di Tinkercad" loading="lazy"></a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-warehouse" style="color:var(--accent-blue);"></i> Pintu Garasi Otomatis</span>
+                            <span class="tag tag-arduino">Tinkercad / Wokwi</span>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                            Sistem otomasi palang garasi kendaraan otomatis:
+                        </p>
+                        <ul class="card-list">
+                            <li><strong>Pengoperasian:</strong> Sensor mengukur keberadaan mobil (&lt; 100 cm) untuk memicu Motor Servo membuka pintu garasi.</li>
+                            <li><strong>Umpan Balik Visual:</strong> Layar LCD menampilkan status secara dinamis: <em>"Membuka Garasi"</em> atau <em>"Pintu Garasi Tertutup"</em>.</li>
+                        </ul>
+                    </div>
+                    <div class="project-img-box">
+                        <a href="https://ibb.co.com/WpzGKRwT" target="_blank" rel="noopener noreferrer" aria-label="Lihat Pintu Garasi Otomatis"><img src="https://i.ibb.co.com/fGNq0T5c/codex-clipboard-2ae59bdb-32fe-43a0-b6ef-fe87416fd74a.png" alt="Pintu Garasi Otomatis di Tinkercad" loading="lazy"></a>
+                    </div>
+                </div>
+
+                <div class="card" style="grid-column: span 1;">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-lightbulb" style="color:var(--accent-yellow);"></i> LED Dance & Pengukuran Suhu</span>
+                            <span class="tag tag-arduino">Mikrokontroler</span>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                            Eksperimen kontrol output digital sekuensial dan pembacaan sensor analog:
+                        </p>
+                        <ul class="card-list">
+                            <li><strong>LED Dance (Pertemuan 6):</strong> Pemrograman animasi ritmis menggunakan 10 LED warna-warni yang dikontrol melalui pin digital Arduino dengan pewaktuan `delay(200)`.</li>
+                            <li><strong>Pengukuran Suhu:</strong> Integrasi sensor suhu (TMP36/DHT11) untuk memproses kalkulasi temperatur dalam derajat Celsius.</li>
+                        </ul>
+                    </div>
+                    <div class="project-img-box">
+                        <a href="https://ibb.co.com/Zzy22mS7" target="_blank" rel="noopener noreferrer" aria-label="Lihat LED Dance"><img src="https://i.ibb.co.com/zVK66JFD/codex-clipboard-023185c0-cb8c-465c-8116-17f40a7eace0.png" alt="Rangkaian LED Dance di Tinkercad" loading="lazy"></a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-bell" style="color:var(--accent-blue);"></i> Smart Distance Alarm</span>
+                            <span class="tag tag-ict">Wokwi</span>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                            Simulasi sistem alarm jarak berbasis Arduino Uno yang memberikan respons visual dan suara saat objek terdeteksi.
+                        </p>
+                        <ul class="card-list">
+                            <li><strong>Input Sensor:</strong> HC-SR04 mengukur jarak objek secara berkala.</li>
+                            <li><strong>Output Otomatis:</strong> Buzzer, LED, dan servo bekerja sebagai indikator serta respons alarm.</li>
+                        </ul>
+                    </div>
+                    <div class="project-img-box">
+                        <a href="https://ibb.co.com/C36GXRk1" target="_blank" rel="noopener noreferrer" aria-label="Lihat Smart Distance Alarm di Wokwi"><img src="https://i.ibb.co.com/PvMHbq7m/Screenshot-2026-09-02-at-09-17-02.png" alt="Simulasi Smart Distance Alarm di Wokwi" loading="lazy"></a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- KELAS 9 -->
+        <section>
+            <div class="section-header">
+                <i class="fa-solid fa-code color-g9"></i>
+                <h2>Kelas 9 — Pendalaman Pemrograman JavaScript & Ujian</h2>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-brands fa-js" style="color:#f7df1e;"></i> Pemrograman JavaScript</span>
+                            <span class="tag tag-ict">Text-Based Coding</span>
+                        </div>
+                        <ul class="card-list">
+                            <li><strong>Variabel & Tipe Data:</strong> Penggunaan `let` dan `const` (String, Number, Boolean).</li>
+                            <li><strong>Alur Kontrol:</strong> Perulangan (`for`, `while`) dan Percabangan (`if-else`).</li>
+                            <li><strong>Function Parameters:</strong> Pengiriman argumen dan pemrosesan logika modular.</li>
+                            <li><strong>Event Handling:</strong> Penanganan aksi pengguna seperti `onClick` dan `onChange`.</li>
+                            <li><strong>Evaluasi:</strong> Penuntasan Kuis JavaScript 25 Soal.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-terminal" style="color:var(--accent-blue);"></i> Implementasi Logika JS</span>
+                            <span class="tag tag-ict">Code Snippet</span>
+                        </div>
+                        <div class="code-box">
+                            <span class="comment">// Function Parameter & Event Listener</span><br>
+                            <span class="keyword">const</span> hitungNilai = (<span class="function">skor</span>) => {<br>
+                            &nbsp;&nbsp;<span class="keyword">if</span> (skor >= <span class="string">75</span>) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Lulus PSAJ"</span>;<br>
+                            &nbsp;&nbsp;} <span class="keyword">else</span> {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Remedial"</span>;<br>
+                            &nbsp;&nbsp;}<br>
+                            };<br><br>
+                            btn.<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => {<br>
+                            &nbsp;&nbsp;console.<span class="function">log</span>(hitungNilai(<span class="string">90</span>));<br>
+                            });
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-file-signature" style="color:var(--accent-green);"></i> Persiapan Akhir Jenjang</span>
+                            <span class="tag tag-tcp">PSAJ Preparedness</span>
+                        </div>
+                        <ul class="card-list">
+                            <li><strong>Bahasa Indonesia:</strong> Kuis 50 soal ejaan/tanda baca dan penyelesaian Proyek Remedial.</li>
+                            <li><strong>Pembahasan PSAJ:</strong> Latihan soal Penilaian Sumatif Akhir Jenjang (PKn, Bahasa Indonesia, Matematika, PJOK).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FASILITAS SEKOLAH -->
+        <section>
+            <div class="section-header">
+                <i class="fa-solid fa-building-columns color-ict"></i>
+                <h2>Fasilitas Pendukung ABBS</h2>
+            </div>
+
+            <div class="card">
+                <div class="pill-group">
+                    <span class="pill"><i class="fa-solid fa-snowflake" style="color:var(--accent-blue);"></i> Gedung Ber-AC & Multimedia</span>
+                    <span class="pill"><i class="fa-solid fa-basketball" style="color:var(--accent-yellow);"></i> Rooftop Arena</span>
+                    <span class="pill"><i class="fa-solid fa-book-open" style="color:var(--accent-purple);"></i> Smart Library (Digital & Fisik)</span>
+                    <span class="pill"><i class="fa-solid fa-utensils" style="color:var(--accent-green);"></i> Health Cafe</span>
+                    <span class="pill"><i class="fa-solid fa-shield-halved" style="color:var(--accent-red);"></i> Asrama Pengawasan 24 Jam</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div>
+                <a href="portfolio-laksita.html" class="btn-back">
+                    <i class="fa-solid fa-arrow-left"></i> Kembali ke Portofolio Utama
+                </a>
+            </div>
+            <p>Portofolio Rekam Jejak SMP — SMP ABBS Surakarta (Jl. Tarumanegara III, Banyuanyar, Surakarta)</p>
+            <p style="font-size: 0.8rem; margin-top: 4px; color: #64748b;">Disusun sebagai portofolio persiapan masuk SMK IDN Boarding School Solo (Network Engineer / TKJ).</p>
+        </div>
+    </footer>
+
+</body>
+</html>

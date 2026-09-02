@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio & Rekam Jejak SD — Laksita Javas Kayana Arfiansah</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --accent-green: #10b981;
+            --accent-emerald: #34d399;
+            --accent-blue: #38bdf8;
+            --accent-yellow: #fbbf24;
+            --accent-purple: #a855f7;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 60px;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(56, 189, 248, 0.08) 0%, transparent 40%);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Hero */
+        header {
+            padding: 60px 0 40px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, rgba(16, 185, 129, 0.12) 0%, rgba(15, 23, 42, 0) 100%);
+            border-radius: 0 0 24px 24px;
+        }
+
+        .badge-school {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-emerald);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        h1 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .student-name {
+            color: var(--accent-blue);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vision-box {
+            margin-top: 24px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px dashed var(--accent-green);
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            font-style: italic;
+            backdrop-filter: blur(8px);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-emerald);
+        }
+
+        .stat-card .num {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent-emerald);
+        }
+
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Section Styling */
+        section {
+            margin-top: 50px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-header i {
+            font-size: 1.5rem;
+            color: var(--accent-emerald);
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Grid Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-emerald);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.12);
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .tag-quran { background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald); }
+        .tag-diniyah { background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); }
+        .tag-merdeka { background: rgba(56, 189, 248, 0.2); color: var(--accent-blue); }
+        .tag-character { background: rgba(251, 191, 36, 0.2); color: var(--accent-yellow); }
+
+        .card-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .card-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+        }
+
+        .card-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-emerald);
+        }
+
+        .pill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .pill:hover {
+            background: rgba(16, 185, 129, 0.12);
+            border-color: var(--accent-emerald);
+            transform: translateY(-2px);
+        }
+
+        /* Footer & Tombol Back */
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding: 12px 24px;
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--accent-emerald);
+            border: 1px solid var(--accent-emerald);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: var(--accent-emerald);
+            color: var(--bg-main);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.7rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO HEADER -->
+    <header>
+        <div class="container">
+            <span class="badge-school"><i class="fa-solid fa-mosque"></i> SDIT AR-RISALAH KARTASURA</span>
+            <h1>Jejak Pendidikan Dasar — <span class="student-name">Laksita Javas Kayana Arfiansah</span></h1>
+            <p class="subtitle">Dokumentasi integrasi Kurikulum Diniyah, Kurikulum Merdeka, pembentukan karakter adab, serta program Tahfidzul Qur’an di Dregan, Pabelan, Kartasura.</p>
+            
+            <div class="vision-box">
+                “Terwujudnya Generasi Pembelajar Sepanjang Hayat yang Religius, Mandiri, Kreatif, Unggul dalam Adab dan Tahfidzul Qur’an serta Peduli Lingkungan”
+            </div>
+
+            <!-- Stats Ringkas -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="num">3 JUZ</div>
+                    <div class="label">Target Hafalan Qur’an</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">30 HADITS</div>
+                    <div class="label">Pilihan Lulusan</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">FULLDAY</div>
+                    <div class="label">Senin – Sabtu</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">AHLUSSUNNAH</div>
+                    <div class="label">Pondasi Diniyah</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- KURIKULUM & AKADEMIK -->
+        <section>
+            <div class="section-header">
+                <i class="fa-solid fa-book-quran"></i>
+                <h2>Struktur Kurikulum Perpaduan</h2>
+            </div>
+
+            <div class="card-grid">
+                
+                <!-- Diniyah -->
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-kaaba" style="color:var(--accent-purple);"></i> Kurikulum Diniyah</span>
+                            <span class="tag tag-diniyah">Manhaj Ahlussunnah</span>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">Pendalaman ilmu syar’i dengan alokasi jam terpisah untuk memperkuat pondasi agama:</p>
+                        <ul class="card-list">
+                            <li><strong>Aqidah Akhlaq:</strong> Pembentukan pemikiran tauhid dan kebiasaan beradab sejak dini.</li>
+                            <li><strong>Fiqih:</strong> Pemahaman praktis tata cara bersuci, sholat, dan ibadah harian.</li>
+                            <li><strong>Qur’an Hadits & Siroh:</strong> Pembelajaran sejarah Nabi dan pemahaman hadits pilihan.</li>
+                            <li><strong>Bahasa Arab:</strong> Pengenalan kosakata dasar dan struktur bahasa Al-Qur’an.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Kurikulum Merdeka / Dinas -->
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-school" style="color:var(--accent-blue);"></i> Kurikulum Merdeka</span>
+                            <span class="tag tag-merdeka">Sains & Nasional</span>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">Pengembangan literasi, numerasi, dan logika sains dasar sekolah dasar:</p>
+                        <ul class="card-list">
+                            <li><strong>Matematika & IPAS:</strong> Logika perhitungan dasar dan pengenalan alam sekitar.</li>
+                            <li><strong>Bahasa Indonesia:</strong> Tata bahasa baku, membaca pemahaman, dan ekspresi lisan.</li>
+                            <li><strong>Pendidikan Pancasila:</strong> Penanaman nilai kebangsaan dan kewarganegaraan.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROGRAM UNGGULAN & CHARACTER BUILDING -->
+        <section>
+            <div class="section-header">
+                <i class="fa-solid fa-star"></i>
+                <h2>Program Unggulan & Pembiasaan Karakter</h2>
+            </div>
+
+            <div class="card-grid">
+
+                <!-- Tahfidz -->
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-heart-pulse" style="color:var(--accent-emerald);"></i> Tahfidzul Qur’an</span>
+                            <span class="tag tag-quran">Target 3 Juz</span>
+                        </div>
+                        <ul class="card-list">
+                            <li>Target hafalan lulusan <strong>3 Juz Al-Qur’an</strong> + <strong>30 Hadits Pilihan</strong>.</li>
+                            <li><strong>Metode Program:</strong> Halaqoh Tahfidz harian, Karantina Tahfidz, dan Wisuda Tahfidz.</li>
+                            <li>Skema pendampingan melalui Jalur Akselerasi, Reguler, maupun Pembimbingan Khusus.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Fullday & Mentoring -->
+                <div class="card">
+                    <div>
+                        <div class="card-title">
+                            <span><i class="fa-solid fa-clock" style="color:var(--accent-yellow);"></i> Fullday & Character Building</span>
+                            <span class="tag tag-character">Adab & Mandiri</span>
+                        </div>
+                        <ul class="card-list">
+                            <li><strong>Sistem Pembelajaran:</strong> Fullday School (Senin–Jumat 07.00–15.00, Sabtu 07.00–12.00).</li>
+                            <li><strong>Separasi Kelas:</strong> Pemisahan ruang kelas putra dan putri sejak kelas 1.</li>
+                            <li><strong>Mentoring Harian:</strong> Bimbingan adab 3 kali sehari (pagi, siang, dan sore).</li>
+                            <li><strong>Pembiasaan Ibadah:</strong> Sholat Dhuha, sholat fardhu berjamaah, dan adab makan bersama.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- EKSTRAKURIKULER & FASILITAS -->
+        <section>
+            <div class="section-header">
+                <i class="fa-solid fa-cubes"></i>
+                <h2>Ekstrakurikuler & Fasilitas Pendukung</h2>
+            </div>
+
+            <div class="card">
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 14px;">
+                    Pengembangan bakat fisik, kreativitas, dan keterampilan hidup (*life skill*) siswa:
+                </p>
+                <div class="pill-group">
+                    <span class="pill"><i class="fa-solid fa-hand-fist" style="color:var(--accent-yellow);"></i> Karate</span>
+                    <span class="pill"><i class="fa-solid fa-palette" style="color:var(--accent-purple);"></i> Membatik</span>
+                    <span class="pill"><i class="fa-solid fa-utensils" style="color:var(--accent-emerald);"></i> Tata Boga</span>
+                    <span class="pill"><i class="fa-solid fa-football" style="color:var(--accent-blue);"></i> Futsal</span>
+                    <span class="pill"><i class="fa-solid fa-campground" style="color:var(--accent-yellow);"></i> Pramuka / Kepanduan</span>
+                    <span class="pill"><i class="fa-solid fa-bullseye" style="color:var(--accent-emerald);"></i> Memanah</span>
+                    <span class="pill"><i class="fa-solid fa-horse" style="color:var(--accent-blue);"></i> Berkuda</span>
+                </div>
+
+                <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 16px;">
+                    <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                        <strong style="color: var(--text-primary);">Fasilitas Sekolah:</strong> Ruang Kelas, Lab Komputer, Perpustakaan, Ruang BK, UKS, serta Layanan Katering & Kantin Sekolah.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER (DENGAN TOMBOL BACK) -->
+    <footer>
+        <div class="container">
+            <div>
+                <a href="portfolio-laksita.html" class="btn-back">
+                    <i class="fa-solid fa-arrow-left"></i> Kembali ke Portofolio Utama
+                </a>
+            </div>
+            <p>Portofolio Jejak Pendidikan Dasar — SDIT Ar-Risalah Kartasura</p>
+            <p style="font-size: 0.8rem; margin-top: 4px; color: #64748b;">Fondasi karakter, adab, dan akademis sebelum melangkah ke SMP ABBS Surakarta & SMK IDN Boarding School.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
