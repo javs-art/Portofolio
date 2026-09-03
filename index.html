@@ -11,14 +11,17 @@
     
     <style>
         :root {
-            --bg-color: #0b0f19;
+            --bg-color: #0a0e17;
             --card-bg: #111827;
+            --card-bg-alt: #131b2e;
             --card-border: #1f2937;
             --primary: #38bdf8;
             --primary-glow: rgba(56, 189, 248, 0.15);
             --secondary: #818cf8;
             --accent: #34d399;
             --warning: #fbbf24;
+            --coral: #fb7185;
+            --violet: #c084fc;
             --text-main: #f3f4f6;
             --text-sub: #9ca3af;
         }
@@ -36,8 +39,10 @@
             line-height: 1.6;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 85% 85%, rgba(129, 140, 248, 0.08) 0%, transparent 40%);
+                radial-gradient(circle at 12% 8%, rgba(56, 189, 248, 0.10) 0%, transparent 38%),
+                radial-gradient(circle at 88% 18%, rgba(192, 132, 252, 0.08) 0%, transparent 36%),
+                radial-gradient(circle at 90% 90%, rgba(129, 140, 248, 0.08) 0%, transparent 42%),
+                radial-gradient(circle at 8% 85%, rgba(52, 211, 153, 0.06) 0%, transparent 40%);
             padding-top: 60px;
         }
 
@@ -172,16 +177,36 @@
             outline: none;
         }
 
-        /* Hero Section Refactored Layout */
+        /* Hero Section */
         .hero {
             position: relative;
-            background: linear-gradient(135deg, rgba(17, 24, 39, 0.85), rgba(31, 41, 55, 0.45));
+            background:
+                radial-gradient(circle at 100% 0%, rgba(192, 132, 252, 0.16) 0%, transparent 55%),
+                radial-gradient(circle at 0% 100%, rgba(56, 189, 248, 0.14) 0%, transparent 55%),
+                linear-gradient(135deg, rgba(17, 24, 39, 0.92), rgba(31, 41, 55, 0.55));
             border: 1px solid var(--card-border);
             border-radius: 24px;
             padding: 3rem 2.5rem;
             margin-bottom: 2rem;
             backdrop-filter: blur(12px);
             overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 60%;
+            height: 180%;
+            background: conic-gradient(from 0deg, transparent 0%, rgba(56, 189, 248, 0.10) 15%, transparent 30%, rgba(192, 132, 252, 0.10) 50%, transparent 65%, rgba(52, 211, 153, 0.08) 80%, transparent 100%);
+            animation: heroSpin 22s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes heroSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .hero-layout {
@@ -191,9 +216,7 @@
             gap: 2rem;
         }
 
-        .hero-text {
-            flex: 1;
-        }
+        .hero-text { flex: 1; }
 
         .hero-profile-box {
             position: relative;
@@ -201,15 +224,22 @@
             width: 300px;
             height: 300px;
             border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+            padding: 3px;
+            background: linear-gradient(135deg, var(--primary), var(--violet), var(--accent));
+            background-size: 240% 240%;
+            animation: gradientShift 8s ease infinite;
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.22);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
         .hero-profile-box:hover {
             transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 12px 34px rgba(56, 189, 248, 0.38);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .hero-profile-img {
@@ -217,6 +247,7 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            border-radius: 17px;
         }
 
         .badge-group {
@@ -244,6 +275,10 @@
             font-weight: 800;
             letter-spacing: -0.02em;
             margin-bottom: 0.4rem;
+            background: linear-gradient(90deg, #ffffff 40%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero .subtitle {
@@ -284,7 +319,7 @@
             outline: none;
         }
 
-        /* Layout Grids */
+        /* Layout Grids & Cards */
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -293,16 +328,25 @@
         }
 
         .card {
+            position: relative;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
+            border-top: 3px solid var(--card-accent, var(--card-border));
             border-radius: 20px;
             padding: 1.8rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-6px);
             border-color: rgba(56, 189, 248, 0.4);
+            border-top-color: var(--card-accent, rgba(56, 189, 248, 0.6));
+            box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+        }
+
+        .card:has(.tech-tag:hover) {
+            transform: none;
+            box-shadow: none;
         }
 
         .card-header {
@@ -355,15 +399,15 @@
             cursor: pointer;
             font-family: inherit;
             text-align: left;
-            transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+            transition: transform .3s cubic-bezier(0.22, 1, 0.36, 1), border-color .3s ease, background-color .3s ease, color .3s ease, box-shadow .3s ease;
         }
 
         .tech-tag:hover, .tech-tag:focus-visible {
-            background: rgba(246, 247, 247, 0.13);
-            border-color: var(--primary);
-            color: #fff;
+            background: #1f2937;
+            border-color: #ffffff;
+            color: var(--text-main);
             transform: translateY(-3px);
-            box-shadow: 0 8px 18px rgba(245, 246, 247, 0.14);
+            box-shadow: 0 0 0 1px #ffffff, 0 8px 16px rgba(255, 255, 255, 0.14);
             outline: none;
         }
 
@@ -373,9 +417,8 @@
             padding-bottom: 1.2rem;
             border-bottom: 1px solid var(--card-border);
         }
-        .list-item:last-child {
-            margin-bottom: 0; padding-bottom: 0; border-bottom: none;
-        }
+        .list-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        
         .list-title {
             font-weight: 800;
             font-size: 1rem;
@@ -385,12 +428,9 @@
             align-items: center;
             gap: 8px;
         }
-        .list-desc {
-            font-size: 0.9rem;
-            color: var(--text-sub);
-        }
+        .list-desc { font-size: 0.9rem; color: var(--text-sub); }
 
-        /* STYLING KHUSUS JEJAK PENDIDIKAN */
+        /* Styling Khusus Jejak Pendidikan */
         .school-list-item {
             display: flex;
             align-items: center;
@@ -400,15 +440,9 @@
             padding-bottom: 1.5rem;
             border-bottom: 1px solid var(--card-border);
         }
-        .school-list-item:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
+        .school-list-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
 
-        .school-info {
-            flex: 1;
-        }
+        .school-info { flex: 1; }
 
         .school-img-wrapper {
             position: relative;
@@ -422,9 +456,7 @@
             background: transparent;
             padding: 0;
             cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                        box-shadow 0.4s ease, 
-                        border-color 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
         }
 
         .school-img-wrapper img {
@@ -441,16 +473,11 @@
             box-shadow: 0 12px 25px rgba(56, 189, 248, 0.3);
         }
 
-        .school-img-wrapper:hover img {
-            transform: scale(1.1);
-            filter: brightness(0.85);
-        }
+        .school-img-wrapper:hover img { transform: scale(1.1); filter: brightness(0.85); }
 
         .school-img-overlay {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             background: linear-gradient(to top, rgba(11, 15, 25, 0.95), rgba(11, 15, 25, 0.3));
             padding: 8px 10px;
             text-align: center;
@@ -467,10 +494,7 @@
             backdrop-filter: blur(4px);
         }
 
-        .school-img-wrapper:hover .school-img-overlay {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .school-img-wrapper:hover .school-img-overlay { opacity: 1; transform: translateY(0); }
 
         .detail-button {
             margin-top: .9rem;
@@ -491,11 +515,8 @@
             outline: none;
         }
 
-        .modal-dialog {
-            max-width: 820px;
-            margin: 1.5rem auto;
-        }
-
+        /* Modal Styles */
+        .modal-dialog { max-width: 820px; margin: 1.5rem auto; }
         .modal-content {
             background: #111827;
             color: var(--text-main);
@@ -549,7 +570,6 @@
 
         .school-modal-header .modal-title { font-weight: 800; letter-spacing: -.02em; }
         .school-modal-body { padding: 1.35rem; }
-
         .school-modal-body p {
             margin: 0 0 .85rem;
             padding: .85rem 1rem;
@@ -559,54 +579,54 @@
             line-height: 1.75;
             transition: background .2s ease, transform .2s ease;
         }
-
         .school-modal-body p:hover {
             background: linear-gradient(90deg, rgba(56, 189, 248, .15), rgba(17, 24, 39, .2));
             transform: translateX(4px);
         }
-
         .school-modal-body p:last-child { margin-bottom: 0; }
 
+        .timeline { position: relative; padding-left: 1.75rem; margin-top: 1.1rem; }
+        .timeline::before {
+            content: "";
+            position: absolute; left: 5px; top: 4px; bottom: 4px; width: 2px;
+            background: linear-gradient(to bottom, var(--secondary), var(--primary), var(--accent));
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.1rem;
+            font-size: .92rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+        }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item::before {
+            content: "";
+            position: absolute; left: -1.75rem; top: .35rem; width: 11px; height: 11px;
+            border-radius: 50%; background: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(129, 140, 248, .18);
+        }
+        .timeline-year { font-size: .78rem; font-weight: 800; letter-spacing: .03em; color: var(--secondary); margin-bottom: .25rem; }
+
         .school-modal-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: .75rem;
-            padding: 1rem 1.35rem;
+            display: flex; justify-content: space-between; align-items: center; gap: .75rem; padding: 1rem 1.35rem;
         }
 
         .location-button {
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-            padding: .55rem .9rem;
-            border: 1px solid #ef4444;
-            border-radius: 10px;
-            color: #fca5a5;
-            background: rgba(239, 68, 68, .08);
-            font: 700 .82rem 'Plus Jakarta Sans', sans-serif;
-            text-decoration: none;
-            transition: transform .22s ease, background .22s ease, color .22s ease, box-shadow .22s ease;
+            display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .9rem;
+            border: 1px solid #ef4444; border-radius: 10px; color: #fca5a5;
+            background: rgba(239, 68, 68, .08); font: 700 .82rem 'Plus Jakarta Sans', sans-serif;
+            text-decoration: none; transition: transform .22s ease, background .22s ease, color .22s ease, box-shadow .22s ease;
         }
 
         .location-button:hover, .location-button:focus-visible {
-            color: #fff;
-            background: #dc2626;
-            border-color: #f87171;
+            color: #fff; background: #dc2626; border-color: #f87171;
             box-shadow: 0 0 12px rgba(239, 68, 68, .7), 0 0 28px rgba(220, 38, 38, .45);
-            transform: translateY(-2px);
-            outline: none;
+            transform: translateY(-2px); outline: none;
         }
 
-        .card h4 {
-            color: #ffffff !important;
-            font-weight: 800;
-        }
-
-        .social-link > span:first-child {
-            color: #ffffff;
-            font-weight: 800;
-        }
+        .card h4 { color: #ffffff !important; font-weight: 800; }
+        
+        .social-link > span:first-child { color: #ffffff; font-weight: 800; }
 
         /* Social Network Styles */
         .social-link {
@@ -616,13 +636,13 @@
             padding: 8px 12px;
             background: rgba(31, 41, 55, 0.5);
             border-radius: 8px;
-            margin-bottom: 8px;
             font-size: 0.9rem;
             color: var(--text-main);
             text-decoration: none;
             border: 1px solid transparent;
-            transition: transform .2s ease, border-color .2s ease, background .2s ease;
+            transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
         }
+        
         .social-link:hover, .social-link:focus-visible {
             transform: translateX(4px);
             background: rgba(56, 189, 248, .1);
@@ -630,6 +650,45 @@
             outline: none;
         }
         .social-link .handle { color: var(--primary); font-family: monospace; }
+
+        /* Online Presence Layout Khusus */
+        .presence-section {
+            background: rgba(17, 24, 39, 0.5);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .presence-section:hover {
+            border-color: rgba(129, 140, 248, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .presence-section h4 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            color: #ffffff;
+        }
+        
+        /* Overrides Hover Untuk Online Presence Supaya Selaras dengan Garis Kartu (#818cf8) */
+        .online-presence-card .social-link:hover, 
+        .online-presence-card .social-link:focus-visible {
+            background: rgba(129, 140, 248, 0.15);
+            border-color: rgba(129, 140, 248, 0.6);
+            transform: translateX(6px);
+            box-shadow: 0 4px 15px rgba(129, 140, 248, 0.15);
+        }
+
+        .online-presence-card .social-link .handle {
+            color: var(--secondary);
+        }
 
         footer {
             text-align: center;
@@ -640,63 +699,154 @@
             margin-top: 2rem;
         }
 
+        /* Pop-up Fullscreen */
+        #fullscreen-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 15, 25, 0.75); 
+            backdrop-filter: blur(12px); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; 
+        }
+
+        .fs-popup-card {
+            background: var(--card-bg);
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            max-width: 480px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 25px var(--primary-glow);
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin: 1rem;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8) translateY(20px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .fs-popup-header {
+            display: flex; align-items: center; justify-content: center; gap: 15px;
+            margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--card-border);
+        }
+
+        .fs-profile-img {
+            width: 65px; height: 65px; border-radius: 50%; object-fit: cover;
+            border: 2px solid var(--primary); box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        .fs-popup-title {
+            color: #ffffff; font-size: 1.15rem; font-weight: 800; margin: 0; text-align: left; line-height: 1.3;
+        }
+
+        .fs-popup-body {
+            color: var(--text-sub); font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.7;
+        }
+        .fs-popup-body strong { color: var(--text-main); }
+
+        .fs-code-explain {
+            margin-top: 1rem; padding: 1rem; background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px;
+            font-size: 0.85rem; color: #bae6fd; text-align: left;
+        }
+
+        .btn-fullscreen {
+            padding: 14px 30px; font-size: 1rem; font-weight: 800; color: #0b0f19;
+            background: var(--primary); border: none; border-radius: 12px; cursor: pointer;
+            width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px;
+            transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
+        }
+
+        .btn-fullscreen:hover {
+            background: #0ea5e9; transform: translateY(-3px); box-shadow: 0 12px 25px rgba(56, 189, 248, 0.4);
+        }
+
         @media (min-width: 1024px) {
-            .container {
-                width: min(100% - 3rem, 1280px);
-                padding-right: 0;
-                padding-left: 0;
-            }
-
-            .grid-2 {
-                gap: 1.75rem;
-            }
-
-            .card {
-                padding: 2rem;
-            }
-
-            .school-img-wrapper {
-                width: 270px;
-                height: 155px;
-            }
+            .container { width: min(100% - 3rem, 1280px); padding-right: 0; padding-left: 0; }
+            .grid-2 { gap: 1.75rem; }
+            .card { padding: 2rem; }
+            .school-img-wrapper { width: 270px; height: 155px; }
         }
 
-        /* Responsif untuk HP & Tablet */
         @media (max-width: 768px) {
-            .hero-layout {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-            .hero-profile-box {
-                width: 240px;
-                height: 240px;
-            }
-            .badge-group {
-                justify-content: center;
-            }
-            .hero .bio-quote {
-                border-left: none;
-                border-top: 2px solid var(--primary);
-                padding-left: 0;
-                padding-top: 0.8rem;
-            }
-            .dashboard-nav {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .dashboard-links {
-                width: 100%;
-                justify-content: space-between;
-            }
-            .school-list-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .school-img-wrapper {
-                width: 100%;
-                height: 160px;
-            }
+            .hero-layout { flex-direction: column-reverse; text-align: center; }
+            .hero-profile-box { width: 240px; height: 240px; }
+            .badge-group { justify-content: center; }
+            .hero .bio-quote { border-left: none; border-top: 2px solid var(--primary); padding-left: 0; padding-top: 0.8rem; }
+            .dashboard-nav { flex-direction: column; align-items: flex-start; }
+            .dashboard-links { width: 100%; justify-content: space-between; }
+            .school-list-item { flex-direction: column; align-items: flex-start; }
+            .school-img-wrapper { width: 100%; height: 160px; }
         }
+
+        /* 1. Transisi dasar untuk pergerakan kartu yang lebih mulus */
+.school-list-item {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden; /* Memastikan efek glow tidak bocor */
+}
+
+/* 2. Efek Hover Dinamis untuk SMK IDN (Tema Biru) */
+#smk:hover {
+    background: rgba(56, 189, 248, 0.08);
+    border-color: rgba(56, 189, 248, 0.6);
+    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15), inset 0 0 20px rgba(56, 189, 248, 0.05);
+    transform: translateX(10px) translateY(-4px); /* Mengambang ke atas dan kanan */
+}
+#smk:hover .timeline-dot {
+    background: #38bdf8;
+    box-shadow: 0 0 20px #38bdf8;
+    transform: scale(1.4);
+}
+#smk:hover .list-title {
+    text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+
+/* 3. Efek Hover Dinamis untuk SMP ABBS (Tema Ungu) */
+#smp:hover {
+    background: rgba(129, 140, 248, 0.08);
+    border-color: rgba(129, 140, 248, 0.6);
+    box-shadow: 0 15px 35px rgba(129, 140, 248, 0.15), inset 0 0 20px rgba(129, 140, 248, 0.05);
+    transform: translateX(10px) translateY(-4px);
+}
+#smp:hover .timeline-dot {
+    background: #818cf8;
+    box-shadow: 0 0 20px #818cf8;
+    transform: scale(1.4);
+}
+#smp:hover .list-title {
+    text-shadow: 0 0 15px rgba(129, 140, 248, 0.5);
+}
+
+/* 4. Efek Hover Dinamis untuk SDIT Ar-Risalah (Tema Hijau) */
+#sd:hover {
+    background: rgba(52, 211, 153, 0.08);
+    border-color: rgba(52, 211, 153, 0.6);
+    box-shadow: 0 15px 35px rgba(52, 211, 153, 0.15), inset 0 0 20px rgba(52, 211, 153, 0.05);
+    transform: translateX(10px) translateY(-4px);
+}
+#sd:hover .timeline-dot {
+    background: #34d399;
+    box-shadow: 0 0 20px #34d399;
+    transform: scale(1.4);
+}
+#sd:hover .list-title {
+    text-shadow: 0 0 15px rgba(52, 211, 153, 0.5);
+}
+
+/* 5. Gambar ikut merespons saat KARTU di-hover (bukan hanya saat gambar di-hover) */
+.school-list-item:hover .school-img-wrapper img {
+    transform: scale(1.03);
+    filter: brightness(0.85) contrast(1.1);
+}
+
+/* 6. Memunculkan overlay teks pada gambar secara otomatis saat kartu di-hover */
+.school-list-item:hover .school-img-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
     </style>
 </head>
 <body>
@@ -715,6 +865,7 @@
             <li class="academic-menu">
                 <a class="dashboard-link" href="#akademik" aria-haspopup="true"><i class="fa-solid fa-graduation-cap"></i> Akademik <i class="fa-solid fa-chevron-down" style="font-size:.65rem"></i></a>
                 <ul class="academic-submenu" aria-label="Pilihan akademik">
+                    <!-- Tautan sudah disesuaikan langsung ke .html masing-masing -->
                     <li><a href="sd.html">SD</a></li>
                     <li><a href="smp.html">SMP</a></li>
                     <li><a href="smk.html">SMK</a></li>
@@ -723,7 +874,7 @@
         </ul>
     </nav>
 
-    <!-- HERO SECTION DENGAN FOTO PROFIL DI KANAN -->
+    <!-- HERO SECTION -->
     <header class="hero" id="about-me">
         <div class="hero-layout">
             <div class="hero-text">
@@ -742,7 +893,6 @@
                 <button type="button" class="identity-button" data-bs-toggle="modal" data-bs-target="#identityModal"><i class="fa-solid fa-id-card"></i> Lihat Data Diri</button>
             </div>
             
-            <!-- Foto Profil Kanan -->
             <div class="hero-profile-box">
                 <img src="https://i.ibb.co.com/xKGd2xgk/20260526-073702.jpg" alt="Laksita Javas Kayana Arfiansah" class="hero-profile-img">
             </div>
@@ -750,7 +900,7 @@
     </header>
 
     <!-- SECTION: JEJAK PENDIDIKAN -->
-    <div class="card" id="akademik" style="margin-bottom: 1.5rem;">
+    <div class="card" id="akademik" style="margin-bottom: 1.5rem; --card-accent: #818cf8;">
         <div class="card-header">
             <div class="icon-box" style="color: #818cf8; background: rgba(129, 140, 248, 0.1); border-color: rgba(129, 140, 248, 0.3);">
                 <i class="fa-solid fa-graduation-cap"></i>
@@ -758,67 +908,46 @@
             <h2>Jejak Pendidikan</h2>
         </div>
         
-        <!-- SMK IDN -->
         <div class="school-list-item" id="smk">
             <div class="school-info">
-                <div class="list-title">
-                    <i class="fa-solid fa-school" style="color: #38bdf8;"></i> SMK IDN Boarding School Solo
-                </div>
-                <div class="list-desc">
-                    Sekolah Menengah Kejuruan berbasis <em>boarding school</em> dengan konsentrasi keahlian Teknik Komputer dan Jaringan (TKJ). Berfokus pada praktik arsitektur jaringan skala industri (MikroTik, PNETLab), simulasi sistem operasi (VirtualBox), Cloud Architecture, serta dasar-dasar pengembangan aplikasi berbasis web dan mobile.
-                </div>
+                <div class="list-title"><i class="fa-solid fa-school" style="color: #38bdf8;"></i> SMK IDN Boarding School Solo</div>
+                <div class="list-desc">Sekolah Menengah Kejuruan berbasis <em>boarding school</em> dengan konsentrasi keahlian Teknik Komputer dan Jaringan (TKJ). Berfokus pada praktik arsitektur jaringan skala industri (MikroTik, PNETLab), simulasi sistem operasi (VirtualBox), Cloud Architecture, serta dasar-dasar pengembangan aplikasi berbasis web dan mobile.</div>
                 <button type="button" class="detail-button" data-bs-toggle="modal" data-bs-target="#schoolIdnModal"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat detail</button>
             </div>
             <button type="button" class="school-img-wrapper" data-bs-toggle="modal" data-bs-target="#schoolIdnModal" aria-label="Buka detail SMK IDN Boarding School Solo">
                 <img src="https://i.ibb.co/JRqMtYpX/smk-idn.jpg" alt="SMK IDN Boarding School Solo">
-                <div class="school-img-overlay">
-                    <i class="fa-solid fa-school" style="color: #38bdf8;"></i> SMK IDN Solo
-                </div>
+                <div class="school-img-overlay"><i class="fa-solid fa-school" style="color: #38bdf8;"></i> SMK IDN Solo</div>
             </button>
         </div>
 
-        <!-- SMP ABBS -->
         <div class="school-list-item" id="smp">
             <div class="school-info">
-                <div class="list-title">
-                    <i class="fa-solid fa-building-columns" style="color: #818cf8;"></i> SMP ABBS Surakarta
-                </div>
-                <div class="list-desc">
-                    Pendidikan Sekolah Menengah Pertama (Al-Abidin Bilingual Boarding School) yang membentuk fondasi akademis yang kuat, melatih logika dasar matematika dan pemrosesan ICT (seperti JavaScript & pemrograman dasar), serta memperkuat pembentukan karakter kepemimpinan berbasis Islam.
-                </div>
+                <div class="list-title"><i class="fa-solid fa-building-columns" style="color: #818cf8;"></i> SMP ABBS Surakarta</div>
+                <div class="list-desc">Pendidikan Sekolah Menengah Pertama (Al-Abidin Bilingual Boarding School) yang membentuk fondasi akademis yang kuat, melatih logika dasar matematika dan pemrosesan ICT (seperti JavaScript & pemrograman dasar), serta memperkuat pembentukan karakter kepemimpinan berbasis Islam.</div>
                 <button type="button" class="detail-button" data-bs-toggle="modal" data-bs-target="#schoolAbbsModal"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat detail</button>
             </div>
             <button type="button" class="school-img-wrapper" data-bs-toggle="modal" data-bs-target="#schoolAbbsModal" aria-label="Buka detail SMP ABBS Surakarta">
                 <img src="https://i.ibb.co/vxgVsnb8/smp-abbs.jpg" alt="SMP ABBS Surakarta">
-                <div class="school-img-overlay">
-                    <i class="fa-solid fa-building-columns" style="color: #818cf8;"></i> SMP ABBS Surakarta
-                </div>
+                <div class="school-img-overlay"><i class="fa-solid fa-building-columns" style="color: #818cf8;"></i> SMP ABBS Surakarta</div>
             </button>
         </div>
 
-        <!-- SDIT AR-RISALAH -->
         <div class="school-list-item" id="sd">
             <div class="school-info">
-                <div class="list-title">
-                    <i class="fa-solid fa-book-bookmark" style="color: #34d399;"></i> SDIT Ar-Risalah
-                </div>
-                <div class="list-desc">
-                    Sekolah Dasar Islam Terpadu yang menanamkan fondasi awal pendidikan nilai-nilai keagamaan, kedisiplinan, serta membangun ketertarikan awal terhadap ilmu pengetahuan umum dan dasar-dasar teknologi informasi.
-                </div>
+                <div class="list-title"><i class="fa-solid fa-book-bookmark" style="color: #34d399;"></i> SDIT Ar-Risalah</div>
+                <div class="list-desc">Sekolah Dasar Islam Terpadu yang menanamkan fondasi awal pendidikan nilai-nilai keagamaan, kedisiplinan, serta membangun ketertarikan awal terhadap ilmu pengetahuan umum dan dasar-dasar teknologi informasi.</div>
                 <button type="button" class="detail-button" data-bs-toggle="modal" data-bs-target="#schoolRisalahModal"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat detail</button>
             </div>
             <button type="button" class="school-img-wrapper" data-bs-toggle="modal" data-bs-target="#schoolRisalahModal" aria-label="Buka detail SDIT Ar-Risalah">
                 <img src="https://i.ibb.co/hFQqXDqj/sdit-arisalah.jpg" alt="SDIT Ar-Risalah">
-                <div class="school-img-overlay">
-                    <i class="fa-solid fa-book-bookmark" style="color: #34d399;"></i> SDIT Ar-Risalah
-                </div>
+                <div class="school-img-overlay"><i class="fa-solid fa-book-bookmark" style="color: #34d399;"></i> SDIT Ar-Risalah</div>
             </button>
         </div>
     </div>
 
     <!-- SECTION 1: SKILLS & GEAR -->
     <div class="grid-2">
-        <div class="card">
+        <div class="card" style="--card-accent: #38bdf8;">
             <div class="card-header">
                 <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
                 <h2>Tech & Design Stack</h2>
@@ -840,12 +969,13 @@
             <h4 style="font-size: 0.9rem; color: var(--text-main); margin: 1.5rem 0 0.5rem;">Creative & Design</h4>
             <div class="tag-group">
                 <button class="tech-tag" type="button" data-tech="Figma (UI/UX)" data-detail="Digunakan untuk mengeksplorasi desain UI/UX dengan gaya modern, rapi, dan nyaman digunakan."><i class="fa-brands fa-figma" style="color: #ec4899;"></i> Figma (UI/UX)</button>
-                <button class="tech-tag" type="button" data-tech="Gamma App" data-detail="Digunakan untuk menyusun design digital, termasuk materi budaya dan edukasi."><i class="fa-solid fa-wand-magic-sparkles" style="color: #ac5ff4;"></i> Canva</button>
-                <button class="tech-tag" type="button" data-tech="Canva" data-detail="Menggunakan AI untuk membuat gambar untuk melengkapi kebutuhan desain dan presentasi."><i class="fa-solid fa-video" style="color: #ffffff;"></i> Capcut</button>
+                <button class="tech-tag" type="button" data-tech="Canva" data-detail="Bikin poster carousel & desain resolusi HD, termasuk materi budaya dan edukasi."><i class="fa-solid fa-wand-magic-sparkles" style="color: #ac5ff4;"></i> Canva</button>
+                <button class="tech-tag" type="button" data-tech="CapCut" data-detail="Editing video & modifikasi latar belakang untuk konten dan presentasi."><i class="fa-solid fa-video" style="color: #ffffff;"></i> CapCut</button>
+                <button class="tech-tag" type="button" data-tech="Gamma App" data-detail="Menyusun slide presentasi otomatis yang rapi, dipakai untuk materi budaya dan edukasi Islam."><i class="fa-solid fa-file-powerpoint" style="color: #f472b6;"></i> Gamma</button>
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" style="--card-accent: #fbbf24;">
             <div class="card-header">
                 <div class="icon-box" style="color: var(--warning); background: rgba(251, 191, 36, 0.1); border-color: rgba(251, 191, 36, 0.3);"><i class="fa-solid fa-laptop"></i></div>
                 <h2>Hardware & Gear Setup</h2>
@@ -866,12 +996,12 @@
     </div>
 
     <!-- SECTION 2: PROJECTS & ACADEMICS -->
-    <div class="card" style="margin-bottom: 1.5rem;">
+    <div class="card" style="margin-bottom: 1.5rem; --card-accent: #34d399;">
         <div class="card-header">
             <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
             <h2>Portofolio Proyek & Akademik</h2>
         </div>
-        <div class="grid-2">
+        <div class="grid-2" style="margin-bottom: 0;">
             <div class="list-item">
                 <div class="list-title"><i class="fa-solid fa-network-wired" style="color: #0ea5e9;"></i> Network Emulation & Routing</div>
                 <div class="list-desc">Mempraktikkan routing jaringan dengan <strong>MikroTik</strong>, virtualisasi OS via <strong>VirtualBox</strong>, dan simulasi topologi menggunakan <strong>PNETLab</strong>.</div>
@@ -882,7 +1012,7 @@
             </div>
             <div class="list-item">
                 <div class="list-title"><i class="fa-solid fa-laptop-code" style="color: #f59e0b;"></i> ICT & Logika Algoritma</div>
-                <div class="list-desc">Menyelesaikan simulasi logika pemrograman (Loops & Branching), kuis fundamental JS, dan Troubleshooting jaringan.</div>
+                <div class="list-desc">Menyelesaikan 25 soal evaluasi JavaScript (<em>variables, data types, looping, branching</em>) serta troubleshooting jaringan.</div>
             </div>
             <div class="list-item">
                 <div class="list-title"><i class="fa-solid fa-utensils" style="color: #10b981;"></i> Food Festival Website</div>
@@ -899,43 +1029,73 @@
         </div>
     </div>
 
-    <!-- SECTION 3: HOBBIES, LIFESTYLE & SOCIALS -->
-    <div class="grid-2">
-        <div class="card">
-            <div class="card-header">
-                <div class="icon-box" style="color: var(--accent); background: rgba(52, 211, 153, 0.1); border-color: rgba(52, 211, 153, 0.3);"><i class="fa-solid fa-fire text-warning"></i></div>
-                <h2>Lifestyle</h2>
-            </div>
-            
-            <div class="list-item">
+    <!-- SECTION 3: LIFESTYLE -->
+    <div class="card" style="margin-bottom: 1.5rem; --card-accent: #fb7185;">
+        <div class="card-header">
+            <div class="icon-box" style="color: var(--coral); background: rgba(251, 113, 133, 0.1); border-color: rgba(251, 113, 133, 0.3);"><i class="fa-solid fa-fire"></i></div>
+            <h2>Lifestyle</h2>
+        </div>
+        <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 0;">
+            <div class="list-item" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
                 <div class="list-title"><i class="fa-solid fa-dumbbell" style="color: #f97316;"></i> Bodybuilding</div>
-                <div class="list-desc">Rutin nge-gym (Heavy Back & Full Shoulder split). Membangun massa otot dengan dukungan alat gym dan suplemen Pro-Creatine.</div>
+                <div class="list-desc">Rutin nge-gym dengan split Heavy Back & Full Shoulder, dibantu suplemen Pro-Creatine.</div>
             </div>
-            <div class="list-item">
-                <div class="list-title"><i class="fa-solid fa-compass" style="color: #10b981;"></i> Traveling </div>
-                <div class="list-desc">Gemar mengeksplorasi destinasi lokal seperti pantai-pantai yang ada di Gunung Kidul dan beberapa gunung dan bukit seperti Merbabu, Mongkrang, Andong, dan Lawu.</div>
+            <div class="list-item" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+                <div class="list-title"><i class="fa-solid fa-compass" style="color: #10b981;"></i> Traveling</div>
+                <div class="list-desc">Suka jelajah pantai-pantai Gunung Kidul, gunung/bukit Merbabu, Mongkrang, Andong, Lawu, sampai Taman Dirgantara & Waduk Gajah Mungkur.</div>
             </div>
-            <div class="list-item">
-                <div class="list-title"><i class="fa-solid fa-book-open" style="color: #3b82f6;"></i> Entertainment </div>
-                <div class="list-desc">Pembaca komik digital dan juga beberapa buku seperti Parable, Rumah, dan Dompet ayah sepatu ibu. dan juga sering bermain game online seperti Mobile Legends dan Roblox.</div>
+            <div class="list-item" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+                <div class="list-title"><i class="fa-solid fa-book-open" style="color: #3b82f6;"></i> Entertainment</div>
+                <div class="list-desc">Pembaca komik/manhwa digital (sampai iseng ngoprek server biar loading-nya lebih lancar) dan buku seperti Parable, Rumah, dan Dompet Ayah Sepatu Ibu. Juga suka main game online seperti Mobile Legends dan Roblox.</div>
             </div>
         </div>
+    </div>
 
-        <div class="card">
-            <div class="card-header">
-                <div class="icon-box"><i class="fa-solid fa-gamepad"></i></div>
-                <h2>Online Presence</h2>
+    <!-- SECTION 4: ONLINE PRESENCE -->
+    <div class="card online-presence-card" style="margin-bottom: 1.5rem; --card-accent: #818cf8;">
+        <div class="card-header">
+            <div class="icon-box" style="color: var(--secondary); background: rgba(129, 140, 248, 0.1); border-color: rgba(129, 140, 248, 0.3);"><i class="fa-solid fa-globe"></i></div>
+            <h2>Online Presence</h2>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 0; gap: 1.5rem;">
+            <!-- Social Handles Section -->
+            <div class="presence-section">
+                <h4><i class="fa-solid fa-hashtag" style="color: var(--secondary);"></i> Social Handles</h4>
+                <a class="social-link" href="https://wa.me/628156563851" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> WhatsApp</span> 
+                    <span class="handle">08156563851</span>
+                </a>
+                <a class="social-link" href="https://www.instagram.com/kkay4na/" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fa-brands fa-instagram" style="color: #e1306c;"></i> Instagram</span> 
+                    <span class="handle">kkay4na</span>
+                </a>
+                <a class="social-link" href="https://www.tiktok.com/@4bcdefgh.00" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fa-brands fa-tiktok" style="color: #25f4ee;"></i> TikTok</span> 
+                    <span class="handle">4bcdefgh.00</span>
+                </a>
+                <a class="social-link" href="https://discord.com/channels/@me" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fa-brands fa-discord" style="color: #5865f2;"></i> Discord</span> 
+                    <span class="handle">acuuuuuuumalaka</span>
+                </a>
             </div>
             
-            <h4 style="font-size: 0.9rem; color: var(--text-main); margin-bottom: 0.8rem;">Social Handles</h4>
-            <a class="social-link" href="https://wa.me/628156563851" target="_blank" rel="noopener noreferrer"><span><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> WhatsApp</span> <span class="handle">08156563851</span></a>
-            <a class="social-link" href="https://www.instagram.com/kkay4na/" target="_blank" rel="noopener noreferrer"><span><i class="fa-brands fa-instagram" style="color: #e1306c;"></i> Instagram</span> <span class="handle">kkay4na</span></a>
-            <a class="social-link" href="https://www.tiktok.com/@4bcdefgh.00" target="_blank" rel="noopener noreferrer"><span><i class="fa-brands fa-tiktok" style="color: #25f4ee;"></i> TikTok</span> <span class="handle">4bcdefgh.00</span></a>
-            <a class="social-link" href="https://discord.com/channels/@me" target="_blank" rel="noopener noreferrer"><span><i class="fa-brands fa-discord" style="color: #5865f2;"></i> Discord</span> <span class="handle">acuuuuuuumalaka</span></a>
-
-            <h4 style="font-size: 0.9rem; color: var(--text-main); margin: 1.2rem 0 0.8rem;">Gaming Profiles</h4>
-            <a class="social-link" href="https://www.chess.com/member/splele" target="_blank" rel="noopener noreferrer"><span><i class="fa-solid fa-chess-knight" style="color: #739552;"></i> Chess.com</span> <span class="handle">Splele</span></a>
-            <a class="social-link" href="https://steamcommunity.com/search/users/#text=splesnot" target="_blank" rel="noopener noreferrer"><span><i class="fa-brands fa-steam" style="color: #66c0f4;"></i> Steam</span> <span class="handle">@splesnot</span></a>
+            <!-- Gaming Profiles Section -->
+            <div class="presence-section">
+                <h4><i class="fa-solid fa-gamepad" style="color: var(--secondary);"></i> Gaming Profiles</h4>
+                <a class="social-link" href="https://www.chess.com/member/splele" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fa-solid fa-chess-knight" style="color: #739552;"></i> Chess.com</span> 
+                    <span class="handle">Splele</span>
+                </a>
+                <a class="social-link" href="https://steamcommunity.com/search/users/#text=splesnot" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fa-brands fa-steam" style="color: #66c0f4;"></i> Steam</span> 
+                    <span class="handle">@splesnot</span>
+                </a>
+                <a class="social-link" href="https://www.roblox.com/search/users?keyword=santaiwoi" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fa-solid fa-cube" style="color: #ef4444;"></i> Roblox</span> 
+                    <span class="handle">santaiwoi</span>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -946,7 +1106,29 @@
 
 </div>
 
-<!-- MODAL DATA DIRI (DI-UPDATE DENGAN INFORMASI LENGKAP) -->
+<!-- OVERLAY POP-UP WAJIB FULLSCREEN -->
+<div id="fullscreen-overlay">
+    <div class="fs-popup-card">
+        <div class="fs-popup-header">
+            <img src="https://i.ibb.co.com/xKGd2xgk/20260526-073702.jpg" alt="Laksita Javas Kayana Arfiansah" class="fs-profile-img">
+            <h3 class="fs-popup-title">Laksita Javas Kayana<br>Arfiansah</h3>
+        </div>
+        <div class="fs-popup-body">
+            <p><strong>Selamat datang di Portofolioku! 🚀</strong></p>
+            <p>Untuk mendapatkan pengalaman terbaik dan melihat detail antarmuka <em>dark mode</em> ini secara maksimal tanpa gangguan navigasi browser, mohon buka website ini dalam mode layar penuh.</p>
+            
+            <div class="fs-code-explain">
+                <i class="fa-solid fa-code" style="color: var(--primary); margin-bottom: 5px;"></i> <strong>Tech Insight:</strong><br>
+                Fitur ini dikembangkan menggunakan <em>HTML/CSS</em> dengan properti <code>backdrop-filter</code> untuk efek kaca buram, serta <em>JavaScript Event Listener</em> yang terus memantau status <code>Fullscreen API</code> dari browser pengguna.
+            </div>
+        </div>
+        <button class="btn-fullscreen" id="fs-btn">
+            Masuk Full Screen <i class="fa-solid fa-expand"></i>
+        </button>
+    </div>
+</div>
+
+<!-- MODAL DATA DIRI -->
 <div class="modal fade" id="identityModal" tabindex="-1" aria-labelledby="identityModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
         <div class="modal-header school-modal-header"><h5 class="modal-title" id="identityModalTitle"><i class="fa-solid fa-id-card me-2 text-info"></i>Data Diri & Identitas</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
@@ -956,7 +1138,6 @@
                 <dl class="ktp-data">
                     <dt>Nama Lengkap</dt><dd>Laksita Javas Kayana Arfiansah</dd>
                     <dt>TTL</dt><dd>Surakarta, 16 Februari 2011</dd>
-                    <dt>NISN</dt><dd>0102115685</dd>
                     <dt>Status</dt><dd>Pelajar / Tech Enthusiast</dd>
                     <dt>Pendidikan</dt><dd>SMK IDN Boarding School Solo (TKJ)</dd>
                     <dt>Domisili</dt><dd>Surakarta, Jawa Tengah, Indonesia</dd>
@@ -974,7 +1155,7 @@
 <div class="modal fade" id="schoolIdnModal" tabindex="-1" aria-labelledby="schoolIdnTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
         <div class="modal-header school-modal-header"><h5 class="modal-title" id="schoolIdnTitle"><i class="fa-solid fa-school me-2 text-info"></i>SMK IDN Boarding School Solo</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
-        <div class="modal-body school-modal-body"><p>SMK IDN Boarding School Solo menjadi ruang pendalaman minat aku di bidang <strong>Teknik Komputer dan Jaringan (TKJ)</strong> dalam lingkungan boarding school. Di sini aku belajar untuk membangun kebiasaan belajar yang lebih mandiri, disiplin, dan terarah sambil terus mengembangkan rasa ingin tahu terhadap teknologi.</p><p>Selama dua bulan pertama, aku telah menikmati pembelajaran TKJ yang terasa seru dan menantang. Materi yang dipelajari mencakup praktik MikroTik, PNETLab, VirtualBox, konsep cloud architecture, serta fondasi pengembangan aplikasi web dan mobile. Setiap materi membuatku lebih memahami bagaimana perangkat, sistem operasi, dan layanan digital dapat saling terhubung dalam sebuah infrastruktur.</p><p>Dalam praktik jaringan, aku tertarik mempelajari cara merancang topologi, memahami alur koneksi, melakukan konfigurasi dasar, serta mencari penyebab ketika sebuah jaringan tidak berjalan seperti yang diharapkan. Simulasi menggunakan PNETLab dan VirtualBox juga membantuku mencoba berbagai skenario secara aman sebelum diterapkan pada lingkungan nyata.</p><p>Pembelajaran keamanan sistem turut memperkenalkan cara mengakses dan menguji sistem dalam lingkungan yang diizinkan, dengan penekanan pada penggunaan yang bertanggung jawab. Selain keterampilan teknis, pengalaman belajar di IDN membantuku melatih kerja sama, manajemen waktu, dan keberanian untuk terus mencoba saat menghadapi masalah baru.</p><p class="mb-0">Pengalaman awal ini semakin menguatkan arah karierku sebagai Network/Cloud Engineer. Ke depannya, aku ingin memperdalam networking dan cloud computing, membangun proyek yang bermanfaat, serta menyiapkan diri untuk berkontribusi di industri teknologi global.</p></div>
+        <div class="modal-body school-modal-body"><p>SMK IDN Boarding School Solo jadi ruang pendalaman minat aku di <strong>Teknik Komputer dan Jaringan (TKJ)</strong> dalam lingkungan boarding school — tempat belajar mandiri, disiplin, dan makin dalam soal teknologi.</p><p class="mb-0">Dua bulan pertama udah kebagian praktik <strong>MikroTik, PNETLab, VirtualBox</strong>, konsep cloud architecture, sampai fondasi pengembangan web & mobile. Paling seru waktu ngulik topologi jaringan dan nyari akar masalah saat koneksi ngadat — pengalaman ini makin memantapkan arah karierku sebagai Network/Cloud Engineer.</p></div>
         <div class="modal-footer school-modal-footer"><a class="location-button" href="https://www.google.com/maps/search/?api=1&amp;query=SMK+IDN+Boarding+School+Solo" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot"></i> Lihat lokasi</a><button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Tutup</button></div>
     </div></div>
 </div>
@@ -982,7 +1163,12 @@
 <div class="modal fade" id="schoolAbbsModal" tabindex="-1" aria-labelledby="schoolAbbsTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
         <div class="modal-header school-modal-header"><h5 class="modal-title" id="schoolAbbsTitle"><i class="fa-solid fa-building-columns me-2" style="color:#818cf8"></i>SMP ABBS Surakarta</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
-        <div class="modal-body school-modal-body"><p>SMP Al-Abidin Bilingual Boarding School membentuk fondasi akademis, karakter, dan ketertarikan aku pada teknologi. Lingkungan sekolah mengajarkan aku untuk menyeimbangkan tanggung jawab belajar, kebersamaan, dan keberanian mencoba hal-hal baru. Saat kelas 7, aku memiliki tiga teman dekat yang oleh guru dijuluki <strong>“Trio Wek Wek”</strong> karena kami sering berjalan sambil saling merangkul.</p><p>Di kelas 7, aku belajar <strong>Construct 3</strong> dan membuat beberapa game, seperti Flying Bird, game racing, serta Space Shooter. Dari proyek-proyek sederhana tersebut, aku mulai memahami bahwa sebuah ide dapat diubah menjadi pengalaman interaktif melalui logika, desain, dan proses mencoba berulang kali.</p><p>Di kelas 8, aku belajar <strong>MIT App Inventor</strong> dan <strong>Arduino</strong>; salah satu proyekku adalah aplikasi untuk menjalankan mobil Arduino yang aku rakit sendiri. Aku juga membuat proyek virtual pengukuran suhu, tong sampah otomatis, dan LED dance menggunakan <strong>Tinkercad</strong> serta <strong>Wokwi</strong>. Pengalaman ini menumbuhkan minatku pada perpaduan antara perangkat keras, pemrograman, dan pemecahan masalah.</p><p>Selain kegiatan teknologi, aku ikut lomba Soccer Car sekolah sebagai perwakilan tim dan meraih juara 2 setelah kalah adu penalti pada partai final. Pengalaman tersebut mengajarkan pentingnya komunikasi, sportivitas, dan tetap fokus bersama tim hingga akhir pertandingan.</p><p class="mb-0">Di kelas 9, aku mulai mendalami HTML, JavaScript, dan Bootstrap. Aku membuat proyek seperti website festival kuliner serta profil diri. Dari fase ini, minatku pada coding semakin tumbuh, tetapi aku memilih jurusan TKJ di SMK untuk mendalami jaringan komputer dan membuka jalan menuju tujuan karier di bidang cloud engineering.</p></div>
+        <div class="modal-body school-modal-body"><p class="mb-0">SMP Al-Abidin Bilingual Boarding School (ABBS) jadi fondasi akademis, karakter, dan ketertarikanku pada teknologi — sekaligus tempat lahirnya julukan <strong>"Trio Wek Wek"</strong> dari guru untukku dan dua teman dekat yang doyan jalan sambil rangkulan. 😄</p>
+        <div class="timeline">
+            <div class="timeline-item"><div class="timeline-year">Kelas 7</div>Kenalan sama <strong>Construct 3</strong>, bikin game 2D pertama: Flying Bird, racing, dan Space Shooter.</div>
+            <div class="timeline-item"><div class="timeline-year">Kelas 8</div>Eksplor <strong>MIT App Inventor & Arduino</strong> — rakit mobil Arduino sendiri, plus proyek suhu, tong sampah otomatis, dan LED dance via Tinkercad/Wokwi. Juga juara 2 Soccer Car sekolah.</div>
+            <div class="timeline-item"><div class="timeline-year">Kelas 9</div>Mulai serius belajar <strong>HTML, JavaScript, Bootstrap</strong> — bikin website festival kuliner & profil diri, sampai akhirnya mantap pilih jurusan TKJ di SMK.</div>
+        </div></div>
         <div class="modal-footer school-modal-footer"><a class="location-button" href="https://www.google.com/maps/search/?api=1&amp;query=SMP+ABBS+Surakarta" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot"></i> Lihat lokasi</a><button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Tutup</button></div>
     </div></div>
 </div>
@@ -990,22 +1176,15 @@
 <div class="modal fade" id="schoolRisalahModal" tabindex="-1" aria-labelledby="schoolRisalahTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
         <div class="modal-header school-modal-header"><h5 class="modal-title" id="schoolRisalahTitle"><i class="fa-solid fa-book-bookmark me-2 text-success"></i>SDIT Ar-Risalah</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
-        <div class="modal-body school-modal-body"><p>SDIT Ar-Risalah menjadi fondasi awal perjalanan pendidikan aku sebagai Sekolah Dasar Islam Terpadu. Di sini aku mempelajari mata pelajaran umum seperti Matematika, IPA, IPS, dan PPKn, sekaligus pelajaran keislaman seperti Akidah Akhlak, Sirah, dan hafalan Al-Qur'an.</p><p>Selain membangun pemahaman akademis dasar, masa sekolah dasar juga mengajarkanku kebiasaan penting seperti disiplin, tanggung jawab, kerja sama, dan menghargai guru maupun teman. Nilai-nilai tersebut masih menjadi bagian dari cara aku belajar dan menjalani kegiatan hingga sekarang.</p><p>Salah satu pengalaman yang paling aku ingat adalah masa pandemi <strong>COVID-19</strong>. Situasi ini membuat kegiatan belajar berubah dan mengharuskan aku beradaptasi dengan cara belajar yang tidak biasa. Dari pengalaman tersebut, aku belajar untuk tetap menjaga semangat, mengatur waktu, dan mencari cara agar proses belajar terus berjalan.</p><p class="mb-0">Pengalaman di SDIT Ar-Risalah menjadi awal yang penting dalam membentuk rasa ingin tahu, ketekunan, dan kesiapan untuk terus mempelajari hal-hal baru. Fondasi inilah yang kemudian membawaku semakin tertarik pada dunia teknologi dan pengembangan diri.</p></div>
+        <div class="modal-body school-modal-body"><p>SDIT Ar-Risalah jadi fondasi awal perjalanan pendidikanku sebagai Sekolah Dasar Islam Terpadu — belajar Matematika, IPA, IPS, dan PPKn, sekaligus Akidah Akhlak, Sirah, dan hafalan Al-Qur'an.</p><p class="mb-0">Momen paling berkesan adalah masa pandemi <strong>COVID-19</strong>, yang memaksaku beradaptasi dengan cara belajar yang serba baru. Dari situ aku belajar disiplin dan semangat menjaga proses belajar tetap jalan — fondasi yang masih kebawa sampai sekarang.</p></div>
         <div class="modal-footer school-modal-footer"><a class="location-button" href="https://www.google.com/maps/search/?api=1&amp;query=SDIT+Ar-Risalah" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot"></i> Lihat lokasi</a><button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Tutup</button></div>
     </div></div>
 </div>
-
-<!-- Modal detail tech/design -->
-<div class="modal fade" id="techModal" tabindex="-1" aria-labelledby="techModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header"><h5 class="modal-title" id="techModalTitle">Tech &amp; Design Stack</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
-        <div class="modal-body" id="techModalBody"></div>
-        <div class="modal-footer"><button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Tutup</button></div>
-    </div></div>
-</div>
+</body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    // Script bawaan untuk Tech Tags
     document.querySelectorAll('.tech-tag').forEach((tag) => {
         tag.addEventListener('click', () => {
             document.getElementById('techModalTitle').textContent = tag.dataset.tech;
@@ -1013,7 +1192,44 @@
             bootstrap.Modal.getOrCreateInstance(document.getElementById('techModal')).show();
         });
     });
-</script>
 
-</body>
+    // ============================================================
+    // TAMBAHAN: SCRIPT LOGIKA FULLSCREEN
+    // ============================================================
+    const overlay = document.getElementById('fullscreen-overlay');
+    const fsBtn = document.getElementById('fs-btn');
+
+    // Fungsi untuk meminta akses full screen ke browser
+    function enterFullScreen() {
+        const elem = document.documentElement; // Target seluruh layar html
+        
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen().catch((err) => console.log(err));
+        } else if (elem.webkitRequestFullscreen) { /* Dukungan browser Safari */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* Dukungan browser IE/Edge lama */
+            elem.msRequestFullscreen();
+        }
+    }
+
+    // Eksekusi fungsi ketika tombol diklik
+    fsBtn.addEventListener('click', () => {
+        enterFullScreen();
+    });
+
+    // Fungsi untuk memeriksa apakah layar masih fullscreen atau tidak
+    function checkFullScreenStatus() {
+        // Jika tidak ada elemen yang fullscreen, berarti user keluar dari mode tersebut
+        if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+            overlay.style.display = 'flex'; // Munculkan kembali pop-up paksaan
+        } else {
+            overlay.style.display = 'none'; // Sembunyikan pop-up jika berhasil masuk fullscreen
+        }
+    }
+
+    // Daftarkan event listener agar browser selalu mengecek perubahan status layar
+    document.addEventListener('fullscreenchange', checkFullScreenStatus);
+    document.addEventListener('webkitfullscreenchange', checkFullScreenStatus);
+    document.addEventListener('msfullscreenchange', checkFullScreenStatus);
+</script>
 </html>
