@@ -38,28 +38,31 @@
             background-image: 
                 radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
                 radial-gradient(circle at 85% 85%, rgba(129, 140, 248, 0.08) 0%, transparent 40%);
+            padding-top: 60px;
         }
 
         .container {
-            max-width: 1000px;
+            width: min(100% - 2rem, 1280px);
             margin: 0 auto;
             padding: 1.5rem 1.5rem 2rem 1.5rem;
         }
 
         /* Sticky Dashboard Navigation */
         .dashboard-nav {
-            position: sticky;
-            top: 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0;
             padding: .75rem 1.25rem;
             background: rgba(17, 24, 39, .82);
             border: 1px solid var(--card-border);
-            border-radius: 16px;
+            border-radius: 0;
             backdrop-filter: blur(16px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
@@ -195,8 +198,8 @@
         .hero-profile-box {
             position: relative;
             flex-shrink: 0;
-            width: 210px;
-            height: 210px;
+            width: 300px;
+            height: 300px;
             border-radius: 20px;
             overflow: hidden;
             border: 2px solid var(--primary);
@@ -305,21 +308,23 @@
         .card-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 1.2rem;
+            gap: 10px;
+            margin-bottom: 1rem;
         }
 
         .icon-box {
-            width: 42px;
-            height: 42px;
+            width: 50px;
+            height: 50px;
             border-radius: 12px;
-            background: var(--primary-glow);
+            background: transparent !important;
+            background-image: none !important;
             color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            border: none !important;
+            transform: translateY(-3px);
         }
 
         .card-header h2 {
@@ -354,11 +359,11 @@
         }
 
         .tech-tag:hover, .tech-tag:focus-visible {
-            background: rgba(56, 189, 248, 0.13);
+            background: rgba(246, 247, 247, 0.13);
             border-color: var(--primary);
             color: #fff;
             transform: translateY(-3px);
-            box-shadow: 0 8px 18px rgba(56, 189, 248, .14);
+            box-shadow: 0 8px 18px rgba(245, 246, 247, 0.14);
             outline: none;
         }
 
@@ -635,6 +640,27 @@
             margin-top: 2rem;
         }
 
+        @media (min-width: 1024px) {
+            .container {
+                width: min(100% - 3rem, 1280px);
+                padding-right: 0;
+                padding-left: 0;
+            }
+
+            .grid-2 {
+                gap: 1.75rem;
+            }
+
+            .card {
+                padding: 2rem;
+            }
+
+            .school-img-wrapper {
+                width: 270px;
+                height: 155px;
+            }
+        }
+
         /* Responsif untuk HP & Tablet */
         @media (max-width: 768px) {
             .hero-layout {
@@ -642,8 +668,8 @@
                 text-align: center;
             }
             .hero-profile-box {
-                width: 170px;
-                height: 170px;
+                width: 240px;
+                height: 240px;
             }
             .badge-group {
                 justify-content: center;
@@ -682,7 +708,7 @@
         <a class="dashboard-brand" href="#about-me">
             <span class="status-dot"></span>
             <i class="fa-solid fa-code" style="color: var(--primary);"></i>
-            <span class="brand-text">LAKSITA.DEV</span>
+            <span class="brand-text"> SERVER</span>
         </a>
         <ul class="dashboard-links">
             <li><a class="dashboard-link" href="#about-me"><i class="fa-solid fa-user"></i> About Me</a></li>
@@ -726,7 +752,7 @@
     <!-- SECTION: JEJAK PENDIDIKAN -->
     <div class="card" id="akademik" style="margin-bottom: 1.5rem;">
         <div class="card-header">
-            <div class="icon-box" style="color: var(--secondary); background: rgba(129, 140, 248, 0.1); border-color: rgba(129, 140, 248, 0.3);">
+            <div class="icon-box" style="color: #818cf8; background: rgba(129, 140, 248, 0.1); border-color: rgba(129, 140, 248, 0.3);">
                 <i class="fa-solid fa-graduation-cap"></i>
             </div>
             <h2>Jejak Pendidikan</h2>
@@ -806,16 +832,16 @@
                 <button class="tech-tag" type="button" data-tech="Python / Django" data-detail="Dasar pengembangan aplikasi dengan Python dan framework Django."><i class="fa-brands fa-python" style="color: #f59e0b;"></i> Python / Django</button>
                 <button class="tech-tag" type="button" data-tech="JavaScript" data-detail="Digunakan untuk logika pemrograman, interaksi halaman web, loop, branching, dan kuis fundamental."><i class="fa-brands fa-js" style="color: #facc15;"></i> JavaScript</button>
                 <button class="tech-tag" type="button" data-tech="HTML/CSS" data-detail="Fondasi untuk membuat halaman web responsif dengan tampilan modern dan dark mode aesthetic."><i class="fa-brands fa-html5" style="color: #f97316;"></i> HTML/CSS</button>
-                <button class="tech-tag" type="button" data-tech="Flutter & Dart" data-detail="Eksplorasi pembuatan aplikasi mobile, termasuk ide aplikasi mahasiswa dengan backend dan notifikasi."><i class="fa-solid fa-mobile-screen" style="color: #3b82f6;"></i> Flutter & Dart</button>
-                <button class="tech-tag" type="button" data-tech="Construct 3" data-detail="Membuat game 2D saat SMP, termasuk Flying Bird, game racing, dan Space Shooter."><i class="fa-solid fa-gamepad" style="color: #e879f9;"></i> Construct 3</button>
+                <button class="tech-tag" type="button" data-tech="Flutter & Dart" data-detail="Eksplorasi pembuatan aplikasi mobile, termasuk ide aplikasi mahasiswa dengan backend dan notifikasi."><i class="fa-solid fa-mobile-screen" style="color: #38bdf8;"></i> Flutter & Dart</button>
+                <button class="tech-tag" type="button" data-tech="Construct 3" data-detail="Membuat game 2D saat SMP, termasuk Flying Bird, game racing, dan Space Shooter."><i class="fa-solid fa-gamepad" style="color: #00c2cb;"></i> Construct 3</button>
                 <button class="tech-tag" type="button" data-tech="Arduino & IoT" data-detail="Membuat dan menguji proyek Arduino, seperti mobil Arduino, pengukur suhu, tong sampah otomatis, dan LED dance melalui Tinkercad serta Wokwi."><i class="fa-solid fa-microchip" style="color: #22c55e;"></i> Arduino & IoT</button>
             </div>
 
             <h4 style="font-size: 0.9rem; color: var(--text-main); margin: 1.5rem 0 0.5rem;">Creative & Design</h4>
             <div class="tag-group">
                 <button class="tech-tag" type="button" data-tech="Figma (UI/UX)" data-detail="Digunakan untuk mengeksplorasi desain UI/UX dengan gaya modern, rapi, dan nyaman digunakan."><i class="fa-brands fa-figma" style="color: #ec4899;"></i> Figma (UI/UX)</button>
-                <button class="tech-tag" type="button" data-tech="Gamma App" data-detail="Digunakan untuk menyusun design digital, termasuk materi budaya dan edukasi."><i class="fa-solid fa-wand-magic-sparkles" style="color: #a855f7;"></i> Canva</button>
-                <button class="tech-tag" type="button" data-tech="Photo Manipulation" data-detail="Menggunakan AI untuk membuat gambar untuk melengkapi kebutuhan desain dan presentasi."><i class="fa-solid fa-image" style="color: #14b8a6;"></i> Photo Manipulation</button>
+                <button class="tech-tag" type="button" data-tech="Gamma App" data-detail="Digunakan untuk menyusun design digital, termasuk materi budaya dan edukasi."><i class="fa-solid fa-wand-magic-sparkles" style="color: #ac5ff4;"></i> Canva</button>
+                <button class="tech-tag" type="button" data-tech="Canva" data-detail="Menggunakan AI untuk membuat gambar untuk melengkapi kebutuhan desain dan presentasi."><i class="fa-solid fa-video" style="color: #ffffff;"></i> Capcut</button>
             </div>
         </div>
 
@@ -877,28 +903,28 @@
     <div class="grid-2">
         <div class="card">
             <div class="card-header">
-                <div class="icon-box" style="color: var(--accent); background: rgba(52, 211, 153, 0.1); border-color: rgba(52, 211, 153, 0.3);"><i class="fa-solid fa-dumbbell"></i></div>
-                <h2>Lifestyle & Minat</h2>
+                <div class="icon-box" style="color: var(--accent); background: rgba(52, 211, 153, 0.1); border-color: rgba(52, 211, 153, 0.3);"><i class="fa-solid fa-fire text-warning"></i></div>
+                <h2>Lifestyle</h2>
             </div>
             
             <div class="list-item">
-                <div class="list-title"><i class="fa-solid fa-person-walking" style="color: #f97316;"></i> Bodybuilding & Fitness</div>
+                <div class="list-title"><i class="fa-solid fa-dumbbell" style="color: #f97316;"></i> Bodybuilding</div>
                 <div class="list-desc">Rutin nge-gym (Heavy Back & Full Shoulder split). Membangun massa otot dengan dukungan alat gym dan suplemen Pro-Creatine.</div>
             </div>
             <div class="list-item">
-                <div class="list-title"><i class="fa-solid fa-compass" style="color: #10b981;"></i> Traveling & Kuliner</div>
-                <div class="list-desc">Gemar mengeksplorasi destinasi lokal seperti pantai-pantai yang ada di Gunung Kidul dan beberapa gunung dan bukit seperti Merbabu, Mongkrang, Andong, dan Lawu. Penikmat kuliner khas Nusantara (Soto, Rawon, Gado-gado).</div>
+                <div class="list-title"><i class="fa-solid fa-compass" style="color: #10b981;"></i> Traveling </div>
+                <div class="list-desc">Gemar mengeksplorasi destinasi lokal seperti pantai-pantai yang ada di Gunung Kidul dan beberapa gunung dan bukit seperti Merbabu, Mongkrang, Andong, dan Lawu.</div>
             </div>
             <div class="list-item">
-                <div class="list-title"><i class="fa-solid fa-book-open" style="color: #3b82f6;"></i> Entertainment & Grooming</div>
-                <div class="list-desc">Pembaca komik digital dan juga beberapa buku seperti Parable, Rumah, dan Dompet ayah sepatu ibu. Peduli pada personal care pria (pengguna hair treatment oil, face wash, dan alat grooming).</div>
+                <div class="list-title"><i class="fa-solid fa-book-open" style="color: #3b82f6;"></i> Entertainment </div>
+                <div class="list-desc">Pembaca komik digital dan juga beberapa buku seperti Parable, Rumah, dan Dompet ayah sepatu ibu. dan juga sering bermain game online seperti Mobile Legends dan Roblox.</div>
             </div>
         </div>
 
         <div class="card">
             <div class="card-header">
                 <div class="icon-box"><i class="fa-solid fa-gamepad"></i></div>
-                <h2>Gaming & Online Presence</h2>
+                <h2>Online Presence</h2>
             </div>
             
             <h4 style="font-size: 0.9rem; color: var(--text-main); margin-bottom: 0.8rem;">Social Handles</h4>
