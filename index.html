@@ -11,19 +11,31 @@
     
     <style>
         :root {
-            --bg-color: #0a0e17;
-            --card-bg: #111827;
-            --card-bg-alt: #131b2e;
-            --card-border: #1f2937;
-            --primary: #38bdf8;
-            --primary-glow: rgba(56, 189, 248, 0.15);
-            --secondary: #818cf8;
-            --accent: #34d399;
-            --warning: #fbbf24;
-            --coral: #fb7185;
-            --violet: #c084fc;
-            --text-main: #f3f4f6;
-            --text-sub: #9ca3af;
+            --primary: #0284c7;
+            --secondary: #4f46e5;
+            --accent: #059669;
+            --warning: #d97706;
+            --coral: #e11d48;
+            --violet: #7c3aed;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+
+            /* Warna Accent Tambahan untuk Tag/Card */
+            --accent-purple: #9333ea;
+            --accent-red: #ef4444;
+            --accent-green: #10b981;
+            --accent-blue: #3b82f6;
+            --accent-yellow: #f59e0b;
+
+            /* Warna Background Per Section */
+            --bg-hero: #ffffff;
+            --bg-prestasi: #f8fafc;
+            --bg-akademik: #f1f5f9;
+            --bg-skills: #e0f2fe;
+            --bg-projects: #f0fdf4;
+            --bg-presence: #f3e8ff;
+            --bg-contact: #fff1f2;
+            --bg-footer: #0f172a;
         }
 
         * {
@@ -34,42 +46,89 @@
         }
 
         body {
-            background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 12% 8%, rgba(56, 189, 248, 0.10) 0%, transparent 38%),
-                radial-gradient(circle at 88% 18%, rgba(192, 132, 252, 0.08) 0%, transparent 36%),
-                radial-gradient(circle at 90% 90%, rgba(129, 140, 248, 0.08) 0%, transparent 42%),
-                radial-gradient(circle at 8% 85%, rgba(52, 211, 153, 0.06) 0%, transparent 40%);
-            padding-top: 60px;
+            padding-top: 72px;
         }
 
-        .container {
+        /* Container Pembatas Konten agar Tetap Rapi di Tengah */
+        .section-container {
             width: min(100% - 2rem, 1280px);
             margin: 0 auto;
-            padding: 1.5rem 1.5rem 2rem 1.5rem;
+            padding: 2rem 1rem;
         }
 
-        /* Sticky Dashboard Navigation */
+        /* ============================================================ */
+        /* STYLING SECTION FULLSCREEN / FULL BLEED                      */
+        /* ============================================================ */
+        .full-section {
+            width: 100vw;
+            min-height: calc(100vh - 72px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 0;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+
+        /* Variasi Background Tiap Section */
+        #about-me { background-color: var(--bg-hero); }
+        #prestasi { background-color: var(--bg-prestasi); }
+        #akademik { background-color: var(--bg-akademik); }
+        #skills { background-color: var(--bg-skills); }
+        #projects { background-color: var(--bg-projects); }
+        #presence { background-color: var(--bg-presence); }
+        #contact { background-color: var(--bg-contact); }
+
+        /* Header Section Utama */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 2.5rem;
+        }
+
+        .icon-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        /* ============================================================ */
+        /* TOP NAVBAR FIXED                                             */
+        /* ============================================================ */
         .dashboard-nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
+            height: 72px;
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 1rem;
-            margin-bottom: 0;
-            padding: .75rem 1.25rem;
-            background: rgba(17, 24, 39, .82);
-            border: 1px solid var(--card-border);
-            border-radius: 0;
+            padding: 0 2rem;
+            background: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid #e2e8f0;
             backdrop-filter: blur(16px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .dashboard-brand {
@@ -77,15 +136,14 @@
             align-items: center;
             gap: .65rem;
             color: var(--text-main);
-            font-size: .95rem;
+            font-size: 1rem;
             font-weight: 800;
-            letter-spacing: .03em;
             text-decoration: none;
         }
 
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 9px;
+            height: 9px;
             background-color: var(--accent);
             border-radius: 50%;
             box-shadow: 0 0 10px var(--accent);
@@ -108,7 +166,7 @@
         .dashboard-links {
             display: flex;
             align-items: center;
-            gap: .35rem;
+            gap: 1.25rem;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -117,103 +175,66 @@
         .dashboard-link {
             display: inline-flex;
             align-items: center;
-            gap: .4rem;
-            padding: .5rem .75rem;
+            gap: .5rem;
+            padding: .55rem 1rem;
             color: var(--text-sub);
             text-decoration: none;
-            font-size: .85rem;
+            font-size: .88rem;
             font-weight: 700;
-            border-radius: 9px;
-            transition: color .2s ease, background .2s ease;
+            border-radius: 10px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all .25s ease;
         }
 
-        .dashboard-link:hover, .dashboard-link:focus-visible {
-            color: #fff;
-            background: rgba(56, 189, 248, .13);
-            outline: none;
+        .dashboard-link:hover {
+            color: var(--primary);
+            background: rgba(2, 132, 199, 0.08);
         }
 
+        /* Submenu Akademik */
         .academic-menu { position: relative; }
-
         .academic-submenu {
             position: absolute;
-            top: calc(100% + .45rem);
+            top: calc(100% + 8px);
             right: 0;
-            min-width: 142px;
-            padding: .45rem;
-            margin: 0;
+            min-width: 180px;
+            padding: .5rem;
             list-style: none;
-            background: #111827;
-            border: 1px solid rgba(56, 189, 248, .35);
-            border-radius: 12px;
-            box-shadow: 0 16px 32px rgba(0, 0, 0, .32);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-6px);
-            transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
+            display: none;
+            z-index: 1010;
         }
-
-        .academic-menu:hover .academic-submenu,
-        .academic-menu:focus-within .academic-submenu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
+        .academic-submenu.show { display: block; }
         .academic-submenu a {
-            display: block;
-            padding: .5rem .65rem;
-            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .6rem 1rem;
+            color: var(--text-main);
             border-radius: 8px;
             text-decoration: none;
-            font-size: .82rem;
+            font-size: .84rem;
             font-weight: 700;
-            transition: background .2s ease, color .2s ease;
+        }
+        .academic-submenu a:hover {
+            color: var(--primary);
+            background: rgba(2, 132, 199, 0.08);
         }
 
-        .academic-submenu a:hover, .academic-submenu a:focus-visible {
-            color: #fff;
-            background: rgba(56, 189, 248, .14);
-            outline: none;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            background:
-                radial-gradient(circle at 100% 0%, rgba(192, 132, 252, 0.16) 0%, transparent 55%),
-                radial-gradient(circle at 0% 100%, rgba(56, 189, 248, 0.14) 0%, transparent 55%),
-                linear-gradient(135deg, rgba(17, 24, 39, 0.92), rgba(31, 41, 55, 0.55));
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 3rem 2.5rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(12px);
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: -40%;
-            right: -10%;
-            width: 60%;
-            height: 180%;
-            background: conic-gradient(from 0deg, transparent 0%, rgba(56, 189, 248, 0.10) 15%, transparent 30%, rgba(192, 132, 252, 0.10) 50%, transparent 65%, rgba(52, 211, 153, 0.08) 80%, transparent 100%);
-            animation: heroSpin 22s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes heroSpin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
+        /* ============================================================ */
+        /* HERO LAYOUT                                                  */
+        /* ============================================================ */
         .hero-layout {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 2rem;
+            gap: 2.5rem;
+            width: 100%;
         }
 
         .hero-text { flex: 1; }
@@ -221,33 +242,19 @@
         .hero-profile-box {
             position: relative;
             flex-shrink: 0;
-            width: 300px;
-            height: 300px;
-            border-radius: 20px;
-            padding: 3px;
-            background: linear-gradient(135deg, var(--primary), var(--violet), var(--accent));
-            background-size: 240% 240%;
-            animation: gradientShift 8s ease infinite;
-            box-shadow: 0 0 35px rgba(56, 189, 248, 0.22);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .hero-profile-box:hover {
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 12px 34px rgba(56, 189, 248, 0.38);
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            width: 290px;
+            height: 290px;
+            border-radius: 24px;
+            padding: 4px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 16px 36px rgba(2, 132, 199, 0.15);
         }
 
         .hero-profile-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
-            border-radius: 17px;
+            border-radius: 20px;
         }
 
         .badge-group {
@@ -261,449 +268,377 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--primary-glow);
-            border: 1px solid rgba(56, 189, 248, 0.3);
+            background: rgba(2, 132, 199, 0.08);
+            border: 1px solid rgba(2, 132, 199, 0.2);
             color: var(--primary);
             padding: 6px 16px;
             border-radius: 100px;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
             margin-bottom: 0.4rem;
-            background: linear-gradient(90deg, #ffffff 40%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .hero .subtitle {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             color: var(--primary);
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 1rem;
         }
 
         .hero .bio-quote {
             color: var(--text-sub);
-            font-size: 1rem;
-            max-width: 750px;
+            font-size: 1.05rem;
             border-left: 3px solid var(--primary);
-            padding-left: 1rem;
+            padding-left: 1.2rem;
             margin-top: 1.2rem;
+            line-height: 1.7;
         }
 
-        .identity-button {
+        .primary-action {
             display: inline-flex;
             align-items: center;
             gap: .55rem;
-            margin-top: 1.25rem;
-            padding: .6rem .9rem;
-            border: 1px solid rgba(56, 189, 248, .5);
-            border-radius: 10px;
-            background: rgba(56, 189, 248, .1);
-            color: var(--primary);
-            font: 700 .84rem 'Plus Jakarta Sans', sans-serif;
-            cursor: pointer;
-            transition: transform .2s ease, background .2s ease, color .2s ease;
-        }
-
-        .identity-button:hover, .identity-button:focus-visible {
-            color: #06111d;
+            margin-top: 1.5rem;
+            padding: .75rem 1.3rem;
+            border: 1px solid rgba(2, 132, 199, .3);
+            border-radius: 12px;
             background: var(--primary);
-            transform: translateY(-2px);
-            outline: none;
+            color: #ffffff;
+            font: 700 .9rem 'Plus Jakarta Sans', sans-serif;
+            cursor: pointer;
+            transition: all .2s ease;
         }
 
-        /* Layout Grids & Cards */
+        .primary-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.25);
+        }
+
+        /* ============================================================ */
+        /* LAYOUT GRIDS                                                 */
+        /* ============================================================ */
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .card {
-            position: relative;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-top: 3px solid var(--card-accent, var(--card-border));
-            border-radius: 20px;
-            padding: 1.8rem;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(56, 189, 248, 0.4);
-            border-top-color: var(--card-accent, rgba(56, 189, 248, 0.6));
-            box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
-        }
-
-        .card:has(.tech-tag:hover) {
-            transform: none;
-            box-shadow: none;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 1rem;
-        }
-
-        .icon-box {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: transparent !important;
-            background-image: none !important;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            border: none !important;
-            transform: translateY(-3px);
-        }
-
-        .card-header h2 {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #ffffff;
+            gap: 2rem;
+            width: 100%;
         }
 
         /* Tags */
         .tag-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 10px;
             margin-top: 0.5rem;
         }
 
         .tech-tag {
-            background: #1f2937;
+            background: #ffffff;
             color: var(--text-main);
-            border: 1px solid #374151;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 500;
+            border: 1px solid #cbd5e1;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             cursor: pointer;
-            font-family: inherit;
-            text-align: left;
-            transition: transform .3s cubic-bezier(0.22, 1, 0.36, 1), border-color .3s ease, background-color .3s ease, color .3s ease, box-shadow .3s ease;
+            transition: all .2s ease;
         }
 
-        .tech-tag:hover, .tech-tag:focus-visible {
-            background: #1f2937;
-            border-color: #ffffff;
-            color: var(--text-main);
-            transform: translateY(-3px);
-            box-shadow: 0 0 0 1px #ffffff, 0 8px 16px rgba(255, 255, 255, 0.14);
-            outline: none;
+        .tech-tag:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
         }
 
-        /* List Items Umum */
+        /* List Items */
         .list-item {
-            margin-bottom: 1.2rem;
-            padding-bottom: 1.2rem;
-            border-bottom: 1px solid var(--card-border);
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
         }
-        .list-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .list-item:last-child { border-bottom: none; }
         
         .list-title {
             font-weight: 800;
-            font-size: 1rem;
-            color: #ffffff;
-            margin-bottom: 0.3rem;
+            font-size: 1.05rem;
+            color: var(--text-main);
+            margin-bottom: 0.4rem;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .list-desc { font-size: 0.9rem; color: var(--text-sub); }
+        .list-desc { font-size: 0.95rem; color: var(--text-sub); }
 
-        /* Styling Khusus Jejak Pendidikan */
+        /* Sekolah List Item */
         .school-list-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--card-border);
+            gap: 2rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.25);
         }
-        .school-list-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .school-list-item:last-child { border-bottom: none; }
 
         .school-info { flex: 1; }
 
         .school-img-wrapper {
             position: relative;
             flex-shrink: 0;
-            width: 230px;
-            height: 135px;
-            border-radius: 14px;
+            width: 250px;
+            height: 145px;
+            border-radius: 16px;
             overflow: hidden;
-            border: 1px solid var(--card-border);
-            text-decoration: none;
+            border: none;
             background: transparent;
             padding: 0;
             cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
         }
 
         .school-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease, filter 0.4s ease;
+            transition: transform 0.4s ease;
         }
 
-        .school-img-wrapper:hover {
-            transform: translateY(-8px) scale(1.05);
-            border-color: var(--primary);
-            box-shadow: 0 12px 25px rgba(56, 189, 248, 0.3);
+        .school-img-wrapper:hover img { transform: scale(1.08); }
+
+        .detail-button {
+            margin-top: 1rem;
+            border: 1px solid rgba(2, 132, 199, .3);
+            background: rgba(2, 132, 199, .1);
+            color: var(--primary);
+            border-radius: 8px;
+            padding: .5rem 1rem;
+            font: 700 .85rem 'Plus Jakarta Sans', sans-serif;
+            cursor: pointer;
+            transition: all .2s ease;
         }
 
-        .school-img-wrapper:hover img { transform: scale(1.1); filter: brightness(0.85); }
-
-        .school-img-overlay {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            background: linear-gradient(to top, rgba(11, 15, 25, 0.95), rgba(11, 15, 25, 0.3));
-            padding: 8px 10px;
-            text-align: center;
-            font-size: 0.8rem;
-            font-weight: 700;
+        .detail-button:hover {
+            background: var(--primary);
             color: #ffffff;
-            opacity: 0;
-            transform: translateY(100%);
-            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        /* Prestasi Item */
+        .achievement-card {
+            display: flex;
+            gap: 1.25rem;
+            padding: 1.5rem;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            transition: transform 0.2s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .achievement-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: rgba(217, 119, 6, 0.1);
+            color: var(--warning);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            backdrop-filter: blur(4px);
+            font-size: 1.3rem;
+            flex-shrink: 0;
         }
 
-        .school-img-wrapper:hover .school-img-overlay { opacity: 1; transform: translateY(0); }
+        /* Project Card Styling (Tambahan) */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+        }
 
-        .detail-button {
-            margin-top: .9rem;
-            border: 1px solid rgba(56, 189, 248, .5);
-            background: rgba(56, 189, 248, .1);
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .tag-mit { background: rgba(124, 58, 237, 0.1); color: var(--violet); }
+        .tag-arduino { background: rgba(5, 150, 105, 0.1); color: var(--accent); }
+        .tag-ict { background: rgba(2, 132, 199, 0.1); color: var(--primary); }
+
+        .card-list {
+            padding-left: 1.2rem;
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            margin-top: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-list li { margin-bottom: 0.4rem; }
+
+        .project-img-box {
+            margin-top: auto;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            gap: 10px;
+        }
+
+        .project-img-box a { flex: 1; display: block; }
+        
+        .project-img-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .project-img-box img:hover { transform: scale(1.03); }
+
+        .code-box {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+            border: 1px solid #334155;
+        }
+
+        .keyword { color: #c678dd; }
+        .string { color: #98c379; }
+        .comment { color: #5c6370; font-style: italic; }
+        .function { color: #61afef; }
+
+        /* Social Network & Contact Styles */
+        .social-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: #ffffff;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            transition: all .2s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateX(4px);
             color: var(--primary);
-            border-radius: 9px;
-            padding: .48rem .8rem;
-            font: 600 .82rem 'Plus Jakarta Sans', sans-serif;
-            cursor: pointer;
-            transition: .2s ease;
+        }
+        .social-link .handle { color: var(--primary); font-family: 'Fira Code', monospace; font-weight: 600; }
+
+        .presence-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
         }
 
-        .detail-button:hover, .detail-button:focus-visible {
-            background: var(--primary);
-            color: #07111f;
-            transform: translateY(-2px);
+        .presence-section h4 {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        /* Form Input Contact */
+        .form-control-custom {
+            width: 100%;
+            padding: .85rem 1.2rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            background: #ffffff;
+            color: var(--text-main);
+            font-size: .95rem;
+        }
+
+        .form-control-custom:focus {
             outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
         }
 
         /* Modal Styles */
         .modal-dialog { max-width: 820px; margin: 1.5rem auto; }
         .modal-content {
-            background: #111827;
+            background: #ffffff;
             color: var(--text-main);
-            border: 1px solid rgba(56, 189, 248, .35);
-            border-radius: 18px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 24px 65px rgba(0, 0, 0, .42);
-        }
-        .modal-header, .modal-footer { border-color: var(--card-border); }
-        .modal .btn-close { filter: invert(1); }
-        .modal-body { color: var(--text-sub); }
-        .modal-body strong { color: var(--text-main); }
-
-        .ktp-card {
-            position: relative;
-            overflow: hidden;
-            padding: 1.5rem;
-            border: 1px solid rgba(56, 189, 248, .42);
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(14, 116, 144, .44), rgba(17, 24, 39, .96) 58%);
+            border: none;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.15);
         }
 
-        .ktp-title {
-            position: relative;
-            z-index: 1;
-            margin-bottom: 1.2rem;
-            color: #e0f2fe;
-            font-size: .85rem;
-            font-weight: 800;
-            letter-spacing: .12em;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.3);
-            padding-bottom: 8px;
-        }
-
-        .ktp-data {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: .75rem 1rem;
-            margin: 0;
-        }
-
-        .ktp-data dt { color: #bae6fd; font-size: .82rem; font-weight: 700; }
-        .ktp-data dd { margin: 0; color: #fff; font-size: .88rem; font-weight: 600; }
-
-        .school-modal-header {
-            padding: 1.1rem 1.35rem;
-            background: linear-gradient(115deg, rgba(56, 189, 248, .2), rgba(129, 140, 248, .12), transparent);
-        }
-
-        .school-modal-header .modal-title { font-weight: 800; letter-spacing: -.02em; }
-        .school-modal-body { padding: 1.35rem; }
-        .school-modal-body p {
-            margin: 0 0 .85rem;
-            padding: .85rem 1rem;
-            border-left: 3px solid rgba(56, 189, 248, .7);
-            border-radius: 0 12px 12px 0;
-            background: linear-gradient(90deg, rgba(56, 189, 248, .08), rgba(17, 24, 39, .16));
-            line-height: 1.75;
-            transition: background .2s ease, transform .2s ease;
-        }
-        .school-modal-body p:hover {
-            background: linear-gradient(90deg, rgba(56, 189, 248, .15), rgba(17, 24, 39, .2));
-            transform: translateX(4px);
-        }
-        .school-modal-body p:last-child { margin-bottom: 0; }
-
-        .timeline { position: relative; padding-left: 1.75rem; margin-top: 1.1rem; }
-        .timeline::before {
-            content: "";
-            position: absolute; left: 5px; top: 4px; bottom: 4px; width: 2px;
-            background: linear-gradient(to bottom, var(--secondary), var(--primary), var(--accent));
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 1.1rem;
-            font-size: .92rem;
-            color: var(--text-sub);
-            line-height: 1.6;
-        }
-        .timeline-item:last-child { margin-bottom: 0; }
-        .timeline-item::before {
-            content: "";
-            position: absolute; left: -1.75rem; top: .35rem; width: 11px; height: 11px;
-            border-radius: 50%; background: var(--secondary);
-            box-shadow: 0 0 0 4px rgba(129, 140, 248, .18);
-        }
-        .timeline-year { font-size: .78rem; font-weight: 800; letter-spacing: .03em; color: var(--secondary); margin-bottom: .25rem; }
-
-        .school-modal-footer {
-            display: flex; justify-content: space-between; align-items: center; gap: .75rem; padding: 1rem 1.35rem;
-        }
-
-        .location-button {
-            display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .9rem;
-            border: 1px solid #ef4444; border-radius: 10px; color: #fca5a5;
-            background: rgba(239, 68, 68, .08); font: 700 .82rem 'Plus Jakarta Sans', sans-serif;
-            text-decoration: none; transition: transform .22s ease, background .22s ease, color .22s ease, box-shadow .22s ease;
-        }
-
-        .location-button:hover, .location-button:focus-visible {
-            color: #fff; background: #dc2626; border-color: #f87171;
-            box-shadow: 0 0 12px rgba(239, 68, 68, .7), 0 0 28px rgba(220, 38, 38, .45);
-            transform: translateY(-2px); outline: none;
-        }
-
-        .card h4 { color: #ffffff !important; font-weight: 800; }
-        
-        .social-link > span:first-child { color: #ffffff; font-weight: 800; }
-
-        /* Social Network Styles */
-        .social-link {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 12px;
-            background: rgba(31, 41, 55, 0.5);
-            border-radius: 8px;
-            font-size: 0.9rem;
-            color: var(--text-main);
-            text-decoration: none;
-            border: 1px solid transparent;
-            transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
-        }
-        
-        .social-link:hover, .social-link:focus-visible {
-            transform: translateX(4px);
-            background: rgba(56, 189, 248, .1);
-            border-color: rgba(56, 189, 248, .45);
-            outline: none;
-        }
-        .social-link .handle { color: var(--primary); font-family: monospace; }
-
-        /* Online Presence Layout Khusus */
-        .presence-section {
-            background: rgba(17, 24, 39, 0.5);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .presence-section:hover {
-            border-color: rgba(129, 140, 248, 0.4);
-            transform: translateY(-3px);
-        }
-
-        .presence-section h4 {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1rem;
-            color: #ffffff;
-        }
-        
-        /* Overrides Hover Untuk Online Presence Supaya Selaras dengan Garis Kartu (#818cf8) */
-        .online-presence-card .social-link:hover, 
-        .online-presence-card .social-link:focus-visible {
-            background: rgba(129, 140, 248, 0.15);
-            border-color: rgba(129, 140, 248, 0.6);
-            transform: translateX(6px);
-            box-shadow: 0 4px 15px rgba(129, 140, 248, 0.15);
-        }
-
-        .online-presence-card .social-link .handle {
-            color: var(--secondary);
-        }
-
+        /* Footer */
         footer {
+            width: 100vw;
+            background: var(--bg-footer);
+            color: #94a3b8;
             text-align: center;
-            padding: 2rem 0;
-            color: var(--text-sub);
+            padding: 2.5rem 0;
             font-size: 0.9rem;
-            border-top: 1px solid var(--card-border);
-            margin-top: 2rem;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
         }
 
         /* Pop-up Fullscreen */
         #fullscreen-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(11, 15, 25, 0.75); 
+            background: rgba(15, 23, 42, 0.65); 
             backdrop-filter: blur(12px); 
             display: flex;
             justify-content: center;
@@ -712,197 +647,169 @@
         }
 
         .fs-popup-card {
-            background: var(--card-bg);
-            border: 1px solid var(--primary);
-            border-radius: 20px;
+            background: #ffffff;
+            border-radius: 24px;
             padding: 2.5rem 2rem;
-            max-width: 480px;
+            max-width: 440px;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 25px var(--primary-glow);
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.25);
             margin: 1rem;
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0.8) translateY(20px); opacity: 0; }
-            100% { transform: scale(1) translateY(0); opacity: 1; }
         }
 
         .fs-popup-header {
             display: flex; align-items: center; justify-content: center; gap: 15px;
-            margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--card-border);
+            margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid #e2e8f0;
         }
 
         .fs-profile-img {
-            width: 65px; height: 65px; border-radius: 50%; object-fit: cover;
-            border: 2px solid var(--primary); box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+            width: 60px; height: 60px; border-radius: 50%; object-fit: cover;
+            border: 2px solid var(--primary);
         }
 
         .fs-popup-title {
-            color: #ffffff; font-size: 1.15rem; font-weight: 800; margin: 0; text-align: left; line-height: 1.3;
+            color: var(--text-main); font-size: 1.1rem; font-weight: 800; margin: 0; text-align: left;
         }
 
         .fs-popup-body {
-            color: var(--text-sub); font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.7;
-        }
-        .fs-popup-body strong { color: var(--text-main); }
-
-        .fs-code-explain {
-            margin-top: 1rem; padding: 1rem; background: rgba(56, 189, 248, 0.08);
-            border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px;
-            font-size: 0.85rem; color: #bae6fd; text-align: left;
+            color: var(--text-sub); font-size: 0.95rem; margin-bottom: 1.8rem; line-height: 1.6;
         }
 
         .btn-fullscreen {
-            padding: 14px 30px; font-size: 1rem; font-weight: 800; color: #0b0f19;
+            padding: 12px 24px; font-size: 0.95rem; font-weight: 800; color: #ffffff;
             background: var(--primary); border: none; border-radius: 12px; cursor: pointer;
             width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px;
-            transition: all 0.2s ease; box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
-        }
-
-        .btn-fullscreen:hover {
-            background: #0ea5e9; transform: translateY(-3px); box-shadow: 0 12px 25px rgba(56, 189, 248, 0.4);
-        }
-
-        @media (min-width: 1024px) {
-            .container { width: min(100% - 3rem, 1280px); padding-right: 0; padding-left: 0; }
-            .grid-2 { gap: 1.75rem; }
-            .card { padding: 2rem; }
-            .school-img-wrapper { width: 270px; height: 155px; }
         }
 
         @media (max-width: 768px) {
+            body { padding-top: 65px; }
+            .dashboard-nav { padding: 0 1rem; }
+            .dashboard-links { gap: .5rem; }
+            .dashboard-link { padding: .4rem .6rem; font-size: .8rem; }
+            .full-section { padding: 3rem 0; min-height: auto; }
             .hero-layout { flex-direction: column-reverse; text-align: center; }
-            .hero-profile-box { width: 240px; height: 240px; }
+            .hero-profile-box { width: 220px; height: 220px; }
             .badge-group { justify-content: center; }
             .hero .bio-quote { border-left: none; border-top: 2px solid var(--primary); padding-left: 0; padding-top: 0.8rem; }
-            .dashboard-nav { flex-direction: column; align-items: flex-start; }
-            .dashboard-links { width: 100%; justify-content: space-between; }
             .school-list-item { flex-direction: column; align-items: flex-start; }
             .school-img-wrapper { width: 100%; height: 160px; }
         }
-
-        /* 1. Transisi dasar untuk pergerakan kartu yang lebih mulus */
-.school-list-item {
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    overflow: hidden; /* Memastikan efek glow tidak bocor */
-}
-
-/* 2. Efek Hover Dinamis untuk SMK IDN (Tema Biru) */
-#smk:hover {
-    background: rgba(56, 189, 248, 0.08);
-    border-color: rgba(56, 189, 248, 0.6);
-    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15), inset 0 0 20px rgba(56, 189, 248, 0.05);
-    transform: translateX(10px) translateY(-3px); /* Mengambang ke atas dan kanan */
-}
-#smk:hover .timeline-dot {
-    background: #38bdf8;
-    box-shadow: 0 0 20px #38bdf8;
-    transform: scale(1.4);
-}
-#smk:hover .list-title {
-    text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
-}
-
-/* 3. Efek Hover Dinamis untuk SMP ABBS (Tema Ungu) */
-#smp:hover {
-    background: rgba(129, 140, 248, 0.08);
-    border-color: rgba(129, 140, 248, 0.6);
-    box-shadow: 0 15px 35px rgba(129, 140, 248, 0.15), inset 0 0 20px rgba(129, 140, 248, 0.05);
-    transform: translateX(10px) translateY(-3px);
-}
-#smp:hover .timeline-dot {
-    background: #818cf8;
-    box-shadow: 0 0 20px #818cf8;
-    transform: scale(1.4);
-}
-#smp:hover .list-title {
-    text-shadow: 0 0 15px rgba(129, 140, 248, 0.5);
-}
-
-/* 4. Efek Hover Dinamis untuk SDIT Ar-Risalah (Tema Hijau) */
-#sd:hover {
-    background: rgba(52, 211, 153, 0.08);
-    border-color: rgba(52, 211, 153, 0.6);
-    box-shadow: 0 15px 35px rgba(52, 211, 153, 0.15), inset 0 0 20px rgba(52, 211, 153, 0.05);
-    transform: translateX(10px) translateY(-3px);
-}
-#sd:hover .timeline-dot {
-    background: #34d399;
-    box-shadow: 0 0 20px #34d399;
-    transform: scale(1.4);
-}
-#sd:hover .list-title {
-    text-shadow: 0 0 15px rgba(52, 211, 153, 0.5);
-}
-
-/* 5. Gambar ikut merespons saat KARTU di-hover (bukan hanya saat gambar di-hover) */
-.school-list-item:hover .school-img-wrapper img {
-    transform: scale(1.03);
-    filter: brightness(0.85) contrast(1.1);
-}
-
-/* 6. Memunculkan overlay teks pada gambar secara otomatis saat kartu di-hover */
-.school-list-item:hover .school-img-overlay {
-    opacity: 1;
-    transform: translateY(0);
-}
     </style>
 </head>
 <body>
 
-<div class="container">
+<!-- FIXED TOP NAVBAR -->
+<nav class="dashboard-nav" aria-label="Navigasi utama">
+    <a class="dashboard-brand" href="#about-me">
+        <span class="status-dot"></span>
+        <i class="fa-solid fa-code" style="color: var(--primary);"></i>
+        <span class="brand-text">SERVER</span>
+    </a>
+    <ul class="dashboard-links">
+        <li><a class="dashboard-link" href="#about-me"><i class="fa-solid fa-user"></i> About Me</a></li>
+        
+        <!-- MENU AKADEMIK DENGAN CLICK TOGGLE -->
+        <li class="academic-menu">
+            <button class="dashboard-link" id="academicToggleBtn" type="button" aria-expanded="false">
+                <i class="fa-solid fa-graduation-cap"></i> Akademik <i class="fa-solid fa-chevron-down" style="font-size:.65rem; margin-left: 2px;"></i>
+            </button>
+            <ul class="academic-submenu" id="academicSubmenu" aria-label="Pilihan akademik">
+                <li><a href="#akademik"><i class="fa-solid fa-layer-group"></i> Semua Jejak</a></li>
+                <li><a href="sd.html"><i class="fa-solid fa-book-bookmark"></i> SDIT Ar-Risalah</a></li>
+                <li><a href="smp.html"><i class="fa-solid fa-building-columns"></i> SMP ABBS</a></li>
+                <li><a href="smk.html"><i class="fa-solid fa-school"></i> SMK IDN Solo</a></li>
+            </ul>
+        </li>
 
-    <!-- STICKY NAVBAR -->
-    <nav class="dashboard-nav" aria-label="Navigasi utama">
-        <a class="dashboard-brand" href="#about-me">
-            <span class="status-dot"></span>
-            <i class="fa-solid fa-code" style="color: var(--primary);"></i>
-            <span class="brand-text"> SERVER</span>
-        </a>
-        <ul class="dashboard-links">
-            <li><a class="dashboard-link" href="#about-me"><i class="fa-solid fa-user"></i> About Me</a></li>
-            <li class="academic-menu">
-                <a class="dashboard-link" href="#akademik" aria-haspopup="true"><i class="fa-solid fa-graduation-cap"></i> Akademik <i class="fa-solid fa-chevron-down" style="font-size:.65rem"></i></a>
-                <ul class="academic-submenu" aria-label="Pilihan akademik">
-                    <!-- Tautan sudah disesuaikan langsung ke .html masing-masing -->
-                    <li><a href="sd.html">SD</a></li>
-                    <li><a href="smp.html">SMP</a></li>
-                    <li><a href="smk.html">SMK</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+        <li><a class="dashboard-link" href="#prestasi"><i class="fa-solid fa-trophy"></i> Prestasi</a></li>
+        <li><a class="dashboard-link" href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a></li>
+    </ul>
+</nav>
 
-    <!-- HERO SECTION -->
-    <header class="hero" id="about-me">
+<!-- SECTION 1: HERO SECTION -->
+<section class="full-section" id="about-me">
+    <div class="section-container">
         <div class="hero-layout">
             <div class="hero-text">
                 <div class="badge-group">
-                    <div class="badge"><i class="fa-solid fa-location-dot" style="color: #ef4444;"></i> Surakarta, ID</div>
-                    <div class="badge" style="color: var(--accent); border-color: rgba(52, 211, 153, 0.3); background: rgba(52, 211, 153, 0.1);">
-                        <i class="fa-solid fa-graduation-cap" style="color: #10b981;"></i> SMP ABBS & SMK IDN (TKJ)
+                    <div class="badge"><i class="fa-solid fa-location-dot" style="color: var(--coral);"></i> Surakarta, ID</div>
+                    <div class="badge" style="color: var(--accent); border-color: rgba(5, 150, 105, 0.2); background: rgba(5, 150, 105, 0.08);">
+                        <i class="fa-solid fa-graduation-cap" style="color: var(--accent);"></i> SMP ABBS & SMK IDN (TKJ)
                     </div>
                 </div>
-                <h1>Laksita Javas Kayana Arfiansah</h1>
+                <h1><strong>Laksita Javas Kayana Arfiansah</strong></h1>
                 <div class="subtitle">Future Network/Cloud Engineer & Tech Enthusiast</div>
                 
                 <p class="bio-quote">
-                    Aku siswa IT di SMK IDN yang fokus mendalami Networking, Cloud, dan logika pemrograman. Berawal dari hobi bikin <em>game</em> visual waktu SMP, sekarang aku makin terbiasa ngulik arsitektur jaringan (pakai MikroTik/PNETLab) sekaligus ngode <em>frontend</em> dan Flutter. Aku demen banget sama tampilan UI/UX berpola <em>dark mode</em> yang estetik. Punya target jelas: membangun karir di Google Singapore dan kelak jadi Tech Founder.
+                    Aku siswa IT di SMK IDN yang fokus mendalami Networking, Cloud, dan logika pemrograman. Berawal dari hobi bikin <em>game</em> visual waktu SMP, sekarang aku makin terbiasa ngulik arsitektur jaringan (pakai MikroTik/PNETLab) sekaligus ngode <em>frontend</em> dan Flutter. Punya target jelas: membangun karir di Google Singapore dan kelak jadi Tech Founder.
                 </p>
-                <button type="button" class="identity-button" data-bs-toggle="modal" data-bs-target="#identityModal"><i class="fa-solid fa-id-card"></i> Lihat Data Diri</button>
             </div>
             
             <div class="hero-profile-box">
                 <img src="https://i.ibb.co.com/xKGd2xgk/20260526-073702.jpg" alt="Laksita Javas Kayana Arfiansah" class="hero-profile-img">
             </div>
         </div>
-    </header>
+    </div>
+</section>
 
-    <!-- SECTION: JEJAK PENDIDIKAN -->
-    <div class="card" id="akademik" style="margin-bottom: 1.5rem; --card-accent: #818cf8;">
-        <div class="card-header">
-            <div class="icon-box" style="color: #818cf8; background: rgba(129, 140, 248, 0.1); border-color: rgba(129, 140, 248, 0.3);">
+<!-- SECTION 2: PRESTASI & HIGHLIGHTS -->
+<section class="full-section" id="prestasi">
+    <div class="section-container">
+        <div class="section-header">
+            <div class="icon-box" style="color: var(--warning);">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2>Prestasi & Highlights</h2>
+        </div>
+
+        <div class="grid-2">
+            <div class="achievement-card">
+                <div class="achievement-icon">
+                    <i class="fa-solid fa-medal"></i>
+                </div>
+                <div>
+                    <div class="list-title">Juara 2 Soccer Car Competition</div>
+                    <div class="list-desc">Merancang dan mengendalikan mobil robotik berbasis Arduino dalam kompetisi Soccer Car antarsiswa di SMP ABBS Surakarta.</div>
+                </div>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon" style="color: var(--primary); background: rgba(2, 132, 199, 0.1);">
+                    <i class="fa-solid fa-network-wired"></i>
+                </div>
+                <div>
+                    <div class="list-title">Praktik Simulasi MikroTik & PNETLab</div>
+                    <div class="list-desc">Berhasil mengonfigurasi routing dasar jaringan industri, manajemen bandwidth, serta topologi virtual di SMK IDN Solo.</div>
+                </div>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon" style="color: var(--accent); background: rgba(5, 150, 105, 0.1);">
+                    <i class="fa-solid fa-gamepad"></i>
+                </div>
+                <div>
+                    <div class="list-title">Pengembangan Game 2D Independent</div>
+                    <div class="list-desc">Membuat dan merilis 3 proyek game 2D interaktif (Flying Bird, Game Racing, & Space Shooter) menggunakan Construct 3.</div>
+                </div>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon" style="color: var(--violet); background: rgba(124, 58, 237, 0.1);">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <div>
+                    <div class="list-title">Evaluasi Logika JS & ICT Master</div>
+                    <div class="list-desc">Menyelesaikan kompilasi 25 kuis logika pemrograman JavaScript dan penulisan algoritma tanpa error dasar.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3: JEJAK PENDIDIKAN -->
+<section class="full-section" id="akademik">
+    <div class="section-container">
+        <div class="section-header">
+            <div class="icon-box" style="color: var(--secondary);">
                 <i class="fa-solid fa-graduation-cap"></i>
             </div>
             <h2>Jejak Pendidikan</h2>
@@ -910,98 +817,99 @@
         
         <div class="school-list-item" id="smk">
             <div class="school-info">
-                <div class="list-title"><i class="fa-solid fa-school" style="color: #38bdf8;"></i> SMK IDN Boarding School Solo</div>
+                <div class="list-title"><i class="fa-solid fa-school" style="color: var(--primary);"></i> SMK IDN Boarding School Solo</div>
                 <div class="list-desc">Sekolah Menengah Kejuruan berbasis <em>boarding school</em> dengan konsentrasi keahlian Teknik Komputer dan Jaringan (TKJ). Berfokus pada praktik arsitektur jaringan skala industri (MikroTik, PNETLab), simulasi sistem operasi (VirtualBox), Cloud Architecture, serta dasar-dasar pengembangan aplikasi berbasis web dan mobile.</div>
                 <button type="button" class="detail-button" data-bs-toggle="modal" data-bs-target="#schoolIdnModal"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat detail</button>
             </div>
             <button type="button" class="school-img-wrapper" data-bs-toggle="modal" data-bs-target="#schoolIdnModal" aria-label="Buka detail SMK IDN Boarding School Solo">
                 <img src="https://i.ibb.co/JRqMtYpX/smk-idn.jpg" alt="SMK IDN Boarding School Solo">
-                <div class="school-img-overlay"><i class="fa-solid fa-school" style="color: #38bdf8;"></i> SMK IDN Solo</div>
             </button>
         </div>
 
         <div class="school-list-item" id="smp">
             <div class="school-info">
-                <div class="list-title"><i class="fa-solid fa-building-columns" style="color: #818cf8;"></i> SMP ABBS Surakarta</div>
+                <div class="list-title"><i class="fa-solid fa-building-columns" style="color: var(--secondary);"></i> SMP ABBS Surakarta</div>
                 <div class="list-desc">Pendidikan Sekolah Menengah Pertama (Al-Abidin Bilingual Boarding School) yang membentuk fondasi akademis yang kuat, melatih logika dasar matematika dan pemrosesan ICT (seperti JavaScript & pemrograman dasar), serta memperkuat pembentukan karakter kepemimpinan berbasis Islam.</div>
                 <button type="button" class="detail-button" data-bs-toggle="modal" data-bs-target="#schoolAbbsModal"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat detail</button>
             </div>
             <button type="button" class="school-img-wrapper" data-bs-toggle="modal" data-bs-target="#schoolAbbsModal" aria-label="Buka detail SMP ABBS Surakarta">
                 <img src="https://i.ibb.co/vxgVsnb8/smp-abbs.jpg" alt="SMP ABBS Surakarta">
-                <div class="school-img-overlay"><i class="fa-solid fa-building-columns" style="color: #818cf8;"></i> SMP ABBS Surakarta</div>
             </button>
         </div>
 
         <div class="school-list-item" id="sd">
             <div class="school-info">
-                <div class="list-title"><i class="fa-solid fa-book-bookmark" style="color: #34d399;"></i> SDIT Ar-Risalah</div>
+                <div class="list-title"><i class="fa-solid fa-book-bookmark" style="color: var(--accent);"></i> SDIT Ar-Risalah</div>
                 <div class="list-desc">Sekolah Dasar Islam Terpadu yang menanamkan fondasi awal pendidikan nilai-nilai keagamaan, kedisiplinan, serta membangun ketertarikan awal terhadap ilmu pengetahuan umum dan dasar-dasar teknologi informasi.</div>
                 <button type="button" class="detail-button" data-bs-toggle="modal" data-bs-target="#schoolRisalahModal"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat detail</button>
             </div>
             <button type="button" class="school-img-wrapper" data-bs-toggle="modal" data-bs-target="#schoolRisalahModal" aria-label="Buka detail SDIT Ar-Risalah">
                 <img src="https://i.ibb.co/hFQqXDqj/sdit-arisalah.jpg" alt="SDIT Ar-Risalah">
-                <div class="school-img-overlay"><i class="fa-solid fa-book-bookmark" style="color: #34d399;"></i> SDIT Ar-Risalah</div>
             </button>
         </div>
     </div>
+</section>
 
-    <!-- SECTION 1: SKILLS & GEAR -->
-    <div class="grid-2">
-        <div class="card" style="--card-accent: #38bdf8;">
-            <div class="card-header">
-                <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
-                <h2>Tech & Design Stack</h2>
-            </div>
-            <h4 style="font-size: 0.9rem; color: var(--text-main); margin: 1rem 0 0.5rem;">Network & Development</h4>
-            <div class="tag-group">
-                <button class="tech-tag" type="button" data-tech="MikroTik & Networking" data-detail="Praktik konfigurasi dan pemahaman arsitektur jaringan untuk simulasi routing dan troubleshooting."><i class="fa-solid fa-server" style="color: #0ea5e9;"></i> MikroTik & Networking</button>
-                <button class="tech-tag" type="button" data-tech="PNETLab" data-detail="Digunakan untuk membangun dan menguji topologi jaringan virtual secara lebih mendekati skenario industri."><i class="fa-solid fa-network-wired" style="color: #8b5cf6;"></i> PNETLab</button>
-                <button class="tech-tag" type="button" data-tech="VirtualBox" data-detail="Lingkungan virtualisasi untuk menjalankan serta mengeksplorasi sistem operasi dan lab teknis."><i class="fa-solid fa-box" style="color: #10b981;"></i> VirtualBox</button>
-                <button class="tech-tag" type="button" data-tech="Cloud Architecture" data-detail="Fokus belajar pada konsep layanan cloud dan rancangan arsitektur sistem yang modern."><i class="fa-solid fa-cloud" style="color: #38bdf8;"></i> Cloud Architecture</button>
-                <button class="tech-tag" type="button" data-tech="Python / Django" data-detail="Dasar pengembangan aplikasi dengan Python dan framework Django."><i class="fa-brands fa-python" style="color: #f59e0b;"></i> Python / Django</button>
-                <button class="tech-tag" type="button" data-tech="JavaScript" data-detail="Digunakan untuk logika pemrograman, interaksi halaman web, loop, branching, dan kuis fundamental."><i class="fa-brands fa-js" style="color: #facc15;"></i> JavaScript</button>
-                <button class="tech-tag" type="button" data-tech="HTML/CSS" data-detail="Fondasi untuk membuat halaman web responsif dengan tampilan modern dan dark mode aesthetic."><i class="fa-brands fa-html5" style="color: #f97316;"></i> HTML/CSS</button>
-                <button class="tech-tag" type="button" data-tech="Flutter & Dart" data-detail="Eksplorasi pembuatan aplikasi mobile, termasuk ide aplikasi mahasiswa dengan backend dan notifikasi."><i class="fa-solid fa-mobile-screen" style="color: #38bdf8;"></i> Flutter & Dart</button>
-                <button class="tech-tag" type="button" data-tech="Construct 3" data-detail="Membuat game 2D saat SMP, termasuk Flying Bird, game racing, dan Space Shooter."><i class="fa-solid fa-gamepad" style="color: #00c2cb;"></i> Construct 3</button>
-                <button class="tech-tag" type="button" data-tech="Arduino & IoT" data-detail="Membuat dan menguji proyek Arduino, seperti mobil Arduino, pengukur suhu, tong sampah otomatis, dan LED dance melalui Tinkercad serta Wokwi."><i class="fa-solid fa-microchip" style="color: #22c55e;"></i> Arduino & IoT</button>
+<!-- SECTION 4: SKILLS & GEAR -->
+<section class="full-section" id="skills">
+    <div class="section-container">
+        <div class="grid-2">
+            <div>
+                <div class="section-header">
+                    <div class="icon-box" style="color: var(--primary);"><i class="fa-solid fa-layer-group"></i></div>
+                    <h2>Tech & Design Stack</h2>
+                </div>
+                <h4 style="font-size: 1rem; color: var(--text-main); margin: 1rem 0 0.5rem; font-weight:800;">Network & Development</h4>
+                <div class="tag-group">
+                    <button class="tech-tag" type="button"><i class="fa-solid fa-server" style="color: #0ea5e9;"></i> MikroTik & Networking</button>
+                    <button class="tech-tag" type="button"><i class="fa-solid fa-network-wired" style="color: #8b5cf6;"></i> PNETLab</button>
+                    <button class="tech-tag" type="button"><i class="fa-solid fa-box" style="color: #10b981;"></i> VirtualBox</button>
+                    <button class="tech-tag" type="button"><i class="fa-solid fa-cloud" style="color: #38bdf8;"></i> Cloud Architecture</button>
+                    <button class="tech-tag" type="button"><i class="fa-brands fa-python" style="color: #f59e0b;"></i> Python / Django</button>
+                    <button class="tech-tag" type="button"><i class="fa-brands fa-js" style="color: #eab308;"></i> JavaScript</button>
+                    <button class="tech-tag" type="button"><i class="fa-brands fa-html5" style="color: #f97316;"></i> HTML/CSS</button>
+                    <button class="tech-tag" type="button"><i class="fa-solid fa-mobile-screen" style="color: #38bdf8;"></i> Flutter & Dart</button>
+                </div>
+
+                <h4 style="font-size: 1rem; color: var(--text-main); margin: 1.5rem 0 0.5rem; font-weight:800;">Creative & Design</h4>
+                <div class="tag-group">
+                    <button class="tech-tag" type="button"><i class="fa-brands fa-figma" style="color: #ec4899;"></i> Figma (UI/UX)</button>
+                    <button class="tech-tag" type="button"><i class="fa-solid fa-wand-magic-sparkles" style="color: #ac5ff4;"></i> Canva</button>
+                    <button class="tech-tag" type="button"><i class="fa-solid fa-video" style="color: #64748b;"></i> CapCut</button>
+                    <button class="tech-tag" type="button"><i class="fa-solid fa-file-powerpoint" style="color: #f472b6;"></i> Gamma App</button>
+                </div>
             </div>
 
-            <h4 style="font-size: 0.9rem; color: var(--text-main); margin: 1.5rem 0 0.5rem;">Creative & Design</h4>
-            <div class="tag-group">
-                <button class="tech-tag" type="button" data-tech="Figma (UI/UX)" data-detail="Digunakan untuk mengeksplorasi desain UI/UX dengan gaya modern, rapi, dan nyaman digunakan."><i class="fa-brands fa-figma" style="color: #ec4899;"></i> Figma (UI/UX)</button>
-                <button class="tech-tag" type="button" data-tech="Canva" data-detail="Bikin poster carousel & desain resolusi HD, termasuk materi budaya dan edukasi."><i class="fa-solid fa-wand-magic-sparkles" style="color: #ac5ff4;"></i> Canva</button>
-                <button class="tech-tag" type="button" data-tech="CapCut" data-detail="Editing video & modifikasi latar belakang untuk konten dan presentasi."><i class="fa-solid fa-video" style="color: #ffffff;"></i> CapCut</button>
-                <button class="tech-tag" type="button" data-tech="Gamma App" data-detail="Menyusun slide presentasi otomatis yang rapi, dipakai untuk materi budaya dan edukasi Islam."><i class="fa-solid fa-file-powerpoint" style="color: #f472b6;"></i> Gamma</button>
-            </div>
-        </div>
-
-        <div class="card" style="--card-accent: #fbbf24;">
-            <div class="card-header">
-                <div class="icon-box" style="color: var(--warning); background: rgba(251, 191, 36, 0.1); border-color: rgba(251, 191, 36, 0.3);"><i class="fa-solid fa-laptop"></i></div>
-                <h2>Hardware & Gear Setup</h2>
-            </div>
-            <div class="list-item">
-                <div class="list-title"><i class="fa-brands fa-apple" style="color: #94a3b8;"></i> Workstation</div>
-                <div class="list-desc">MacBook Pro 14" M1 Pro (16GB RAM / 512GB SSD). Mesin utama untuk komputasi berat, simulasi jaringan, dan desain.</div>
-            </div>
-            <div class="list-item">
-                <div class="list-title"><i class="fa-solid fa-mobile-screen-button" style="color: #3b82f6;"></i> Mobile Ecosystem</div>
-                <div class="list-desc">Samsung A35 & A36 Series (dilengkapi dengan aksesoris MagSafe Clear TPU Case).</div>
-            </div>
-            <div class="list-item">
-                <div class="list-title"><i class="fa-solid fa-car" style="color: #10b981;"></i> Mobility</div>
-                <div class="list-desc">Daily commute menggunakan layanan Ride-hailing (Gojek, GrabCar, GrabBike).</div>
+            <div>
+                <div class="section-header">
+                    <div class="icon-box" style="color: var(--warning);"><i class="fa-solid fa-laptop"></i></div>
+                    <h2>Hardware Setup</h2>
+                </div>
+                <div class="list-item">
+                    <div class="list-title"><i class="fa-brands fa-apple" style="color: #64748b;"></i> Workstation</div>
+                    <div class="list-desc">MacBook Pro 14" M1 Pro (16GB RAM / 512GB SSD). Mesin utama komputasi berat dan simulasi.</div>
+                </div>
+                <div class="list-item">
+                    <div class="list-title"><i class="fa-solid fa-mobile-screen-button" style="color: #3b82f6;"></i> Mobile Ecosystem</div>
+                    <div class="list-desc">Samsung A35 & A36 Series (dilengkapi dengan aksesoris MagSafe Clear TPU Case).</div>
+                </div>
+                <div class="list-item">
+                    <div class="list-title"><i class="fa-solid fa-car" style="color: #10b981;"></i> Mobility</div>
+                    <div class="list-desc">Daily commute menggunakan layanan Ride-hailing (Gojek, GrabCar, GrabBike).</div>
+                </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- SECTION 2: PROJECTS & ACADEMICS -->
-    <div class="card" style="margin-bottom: 1.5rem; --card-accent: #34d399;">
-        <div class="card-header">
-            <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+<!-- SECTION 5: PROJECTS & ACADEMICS -->
+<section class="full-section" id="projects">
+    <div class="section-container">
+        <div class="section-header">
+            <div class="icon-box" style="color: var(--accent);"><i class="fa-solid fa-briefcase"></i></div>
             <h2>Portofolio Proyek & Akademik</h2>
         </div>
-        <div class="grid-2" style="margin-bottom: 0;">
+        <div class="grid-2">
             <div class="list-item">
                 <div class="list-title"><i class="fa-solid fa-network-wired" style="color: #0ea5e9;"></i> Network Emulation & Routing</div>
                 <div class="list-desc">Mempraktikkan routing jaringan dengan <strong>MikroTik</strong>, virtualisasi OS via <strong>VirtualBox</strong>, dan simulasi topologi menggunakan <strong>PNETLab</strong>.</div>
@@ -1012,54 +920,158 @@
             </div>
             <div class="list-item">
                 <div class="list-title"><i class="fa-solid fa-laptop-code" style="color: #f59e0b;"></i> ICT & Logika Algoritma</div>
-                <div class="list-desc">Menyelesaikan 25 soal evaluasi JavaScript (<em>variables, data types, looping, branching</em>) serta troubleshooting jaringan.</div>
+                <div class="list-desc">Menyelesaikan evaluasi JavaScript (<em>variables, data types, looping, branching</em>) serta troubleshooting jaringan.</div>
             </div>
             <div class="list-item">
                 <div class="list-title"><i class="fa-solid fa-utensils" style="color: #10b981;"></i> Food Festival Website</div>
                 <div class="list-desc">Web interaktif mempromosikan kuliner lokal (Rendang, Gado-Gado, Rawon, Papeda) berbasis Bootstrap 5 & JS.</div>
             </div>
-            <div class="list-item">
-                <div class="list-title"><i class="fa-solid fa-book-quran" style="color: #3b82f6;"></i> Desain Edukasi Islam</div>
-                <div class="list-desc">Merancang slide presentasi modern (Monochrome Aesthetic) mengenai 3 Pilar Tauhid dan konsep akidah.</div>
+        </div>
+
+        <!-- NEW CLASS 8 PROJECTS -->
+        <div class="section-header" style="margin-top: 4rem;">
+            <div class="icon-box" style="color: var(--text-sub);"><i class="fa-solid fa-robot"></i></div>
+            <h2>Kelas 8 — Mobile App Dev, IoT & Simulasi Arduino (Tinkercad & Wokwi)</h2>
+        </div>
+
+        <div class="card-grid">
+
+            <div class="card">
+                <div>
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-mobile-screen-button" style="color:var(--accent-purple);"></i> Mobile App: RC Controller</span>
+                        <span class="tag tag-mit">MIT App Inventor</span>
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                        Pengembangan aplikasi Android <strong>App_RCcontroller_Javas_8A</strong> untuk mengontrol mobil/robot berbasis Bluetooth secara <em>realtime</em>:
+                    </p>
+                    <ul class="card-list">
+                        <li><strong>UI/UX Layout:</strong> Kontrol navigasi (Maju, Mundur, Kiri, Kanan), Tombol Sein Kiri/Kanan, Hazard, dan Lampu Utama.</li>
+                        <li><strong>Bluetooth Client Logic:</strong> Blok pemrograman komunikasi serial (`ListPicker1` & `BluetoothClient1`).</li>
+                        <li><strong>Event Handling:</strong> Mengirimkan sinyal perintah karakter saat tombol ditekan (`TouchDown`) dan dilepas (`TouchUp`).</li>
+                    </ul>
+                </div>
+                <div class="project-img-box project-img-dual">
+                    <a href="https://ibb.co.com/mVNJHdpS" target="_blank" rel="noopener noreferrer" aria-label="Lihat tampilan RC Controller"><img src="https://i.ibb.co.com/zT6sSCdN/codex-clipboard-83161bda-6a50-4e56-bee4-d19bbde5c245.png" alt="Tampilan aplikasi RC Controller di MIT App Inventor" loading="lazy"></a>
+                    <a href="https://ibb.co.com/PZZRWRnX" target="_blank" rel="noopener noreferrer" aria-label="Lihat blok kode RC Controller"><img src="https://i.ibb.co.com/tMMS2Stj/codex-clipboard-74a99522-c9da-4a0c-9703-756ee6c27851.png" alt="Blok kode RC Controller di MIT App Inventor" loading="lazy"></a>
+                </div>
             </div>
-            <div class="list-item">
-                <div class="list-title"><i class="fa-solid fa-masks-theater" style="color: #ef4444;"></i> Presentasi Budaya</div>
-                <div class="list-desc">Menyusun slide digital tentang Suku Baduy menggunakan Gamma, serta membuat desain infografis sastra Pantun.</div>
+
+            <div class="card">
+                <div>
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-car" style="color:var(--accent-red);"></i> Robot Obstacle Avoider</span>
+                        <span class="tag tag-arduino">Tinkercad / Wokwi</span>
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                        Simulasi mobil robotik otonom berbasis Arduino Uno yang mampu menghindari rintangan secara otomatis:
+                    </p>
+                    <ul class="card-list">
+                        <li><strong>Sensor & Actuator:</strong> Sensor Ultrasonik HC-SR04 & IC Motor Driver L293D untuk menggerakkan DC Motor.</li>
+                        <li><strong>Logika Navigasi:</strong> Mengukur jarak objek; jika jarak &lt; 20 cm, robot akan belok/mundur otomatis.</li>
+                    </ul>
+                    <div class="code-box">
+                        <span class="keyword">if</span> (distance < <span class="string">20</span>) {<br>
+                        &nbsp;&nbsp;<span class="comment">// Hindari halangan</span><br>
+                        &nbsp;&nbsp;<span class="function">digitalWrite</span>(motor1Pin1, LOW);<br>
+                        &nbsp;&nbsp;<span class="function">digitalWrite</span>(motor1Pin2, HIGH);<br>
+                        }
+                    </div>
+                </div>
+                <div class="project-img-box">
+                    <a href="https://ibb.co.com/v6pHR8jp" target="_blank" rel="noopener noreferrer" aria-label="Lihat Robot Obstacle Avoider"><img src="https://i.ibb.co.com/xtWDdQ7W/codex-clipboard-ef5e0545-4da2-4939-87a2-71f9b863c713.png" alt="Robot Obstacle Avoider di Tinkercad" loading="lazy"></a>
+                </div>
             </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-dumpster" style="color:var(--accent-green);"></i> Tong Sampah Otomatis</span>
+                        <span class="tag tag-arduino">Tinkercad / Wokwi</span>
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                        Sistem tempat sampah pintar (Smart Dustbin) berbasis pencetus jarak ultrasonik:
+                    </p>
+                    <ul class="card-list">
+                        <li><strong>Komponen:</strong> Arduino Uno, Sensor HC-SR04, Servo Motor (Pembuka tutup), LCD 16x2 I2C, dan LED Indikator.</li>
+                        <li><strong>Mekanisme:</strong> Deteksi tangan/objek &lt; 50 cm mendatangkan aksi pembukaan servo 180° serta menampilkan pesan <em>"Silahkan Buang / Terimakasih"</em> pada layar LCD.</li>
+                    </ul>
+                </div>
+                <div class="project-img-box">
+                    <a href="https://ibb.co.com/FLRhH1zv" target="_blank" rel="noopener noreferrer" aria-label="Lihat Automatic Dustbin"><img src="https://i.ibb.co.com/G4zdHDRw/codex-clipboard-a9b08ab0-940b-4de8-9b88-f4501b267625.png" alt="Automatic Dustbin di Tinkercad" loading="lazy"></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-warehouse" style="color:var(--accent-blue);"></i> Pintu Garasi Otomatis</span>
+                        <span class="tag tag-arduino">Tinkercad / Wokwi</span>
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                        Sistem otomasi palang garasi kendaraan otomatis:
+                    </p>
+                    <ul class="card-list">
+                        <li><strong>Pengoperasian:</strong> Sensor mengukur keberadaan mobil (&lt; 100 cm) untuk memicu Motor Servo membuka pintu garasi.</li>
+                        <li><strong>Umpan Balik Visual:</strong> Layar LCD menampilkan status secara dinamis: <em>"Membuka Garasi"</em> atau <em>"Pintu Garasi Tertutup"</em>.</li>
+                    </ul>
+                </div>
+                <div class="project-img-box">
+                    <a href="https://ibb.co.com/WpzGKRwT" target="_blank" rel="noopener noreferrer" aria-label="Lihat Pintu Garasi Otomatis"><img src="https://i.ibb.co.com/fGNq0T5c/codex-clipboard-2ae59bdb-32fe-43a0-b6ef-fe87416fd74a.png" alt="Pintu Garasi Otomatis di Tinkercad" loading="lazy"></a>
+                </div>
+            </div>
+
+            <div class="card" style="grid-column: span 1;">
+                <div>
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-lightbulb" style="color:var(--accent-yellow);"></i> LED Dance & Pengukuran Suhu</span>
+                        <span class="tag tag-arduino">Mikrokontroler</span>
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                        Eksperimen kontrol output digital sekuensial dan pembacaan sensor analog:
+                    </p>
+                    <ul class="card-list">
+                        <li><strong>LED Dance (Pertemuan 6):</strong> Pemrograman animasi ritmis menggunakan 10 LED warna-warni yang dikontrol melalui pin digital Arduino dengan pewaktuan `delay(200)`.</li>
+                        <li><strong>Pengukuran Suhu:</strong> Integrasi sensor suhu (TMP36/DHT11) untuk memproses kalkulasi temperatur dalam derajat Celsius.</li>
+                    </ul>
+                </div>
+                <div class="project-img-box">
+                    <a href="https://ibb.co.com/Zzy22mS7" target="_blank" rel="noopener noreferrer" aria-label="Lihat LED Dance"><img src="https://i.ibb.co.com/zVK66JFD/codex-clipboard-023185c0-cb8c-465c-8116-17f40a7eace0.png" alt="Rangkaian LED Dance di Tinkercad" loading="lazy"></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-title">
+                        <span><i class="fa-solid fa-bell" style="color:var(--accent-blue);"></i> Smart Distance Alarm</span>
+                        <span class="tag tag-ict">Wokwi</span>
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary);">
+                        Simulasi sistem alarm jarak berbasis Arduino Uno yang memberikan respons visual dan suara saat objek terdeteksi.
+                    </p>
+                    <ul class="card-list">
+                        <li><strong>Input Sensor:</strong> HC-SR04 mengukur jarak objek secara berkala.</li>
+                        <li><strong>Output Otomatis:</strong> Buzzer, LED, dan servo bekerja sebagai indikator serta respons alarm.</li>
+                    </ul>
+                </div>
+                <div class="project-img-box">
+                    <a href="https://ibb.co.com/C36GXRk1" target="_blank" rel="noopener noreferrer" aria-label="Lihat Smart Distance Alarm di Wokwi"><img src="https://i.ibb.co.com/PvMHbq7m/Screenshot-2026-09-02-at-09-17-02.png" alt="Simulasi Smart Distance Alarm di Wokwi" loading="lazy"></a>
+                </div>
+            </div>
+
         </div>
     </div>
+</section>
 
-    <!-- SECTION 3: LIFESTYLE -->
-    <div class="card" style="margin-bottom: 1.5rem; --card-accent: #fb7185;">
-        <div class="card-header">
-            <div class="icon-box" style="color: var(--coral); background: rgba(251, 113, 133, 0.1); border-color: rgba(251, 113, 133, 0.3);"><i class="fa-solid fa-fire"></i></div>
-            <h2>Lifestyle</h2>
-        </div>
-        <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 0;">
-            <div class="list-item" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
-                <div class="list-title"><i class="fa-solid fa-dumbbell" style="color: #f97316;"></i> Bodybuilding</div>
-                <div class="list-desc">Rutin nge-gym dengan split Heavy Back & Full Shoulder, dibantu suplemen Pro-Creatine.</div>
-            </div>
-            <div class="list-item" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
-                <div class="list-title"><i class="fa-solid fa-compass" style="color: #10b981;"></i> Traveling</div>
-                <div class="list-desc">Suka jelajah pantai-pantai Gunung Kidul, gunung/bukit Merbabu, Mongkrang, Andong, Lawu, sampai Taman Dirgantara & Waduk Gajah Mungkur.</div>
-            </div>
-            <div class="list-item" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
-                <div class="list-title"><i class="fa-solid fa-book-open" style="color: #3b82f6;"></i> Entertainment</div>
-                <div class="list-desc">Pembaca komik/manhwa digital (sampai iseng ngoprek server biar loading-nya lebih lancar) dan buku seperti Parable, Rumah, dan Dompet Ayah Sepatu Ibu. Juga suka main game online seperti Mobile Legends dan Roblox.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SECTION 4: ONLINE PRESENCE -->
-    <div class="card online-presence-card" style="margin-bottom: 1.5rem; --card-accent: #818cf8;">
-        <div class="card-header">
-            <div class="icon-box" style="color: var(--secondary); background: rgba(129, 140, 248, 0.1); border-color: rgba(129, 140, 248, 0.3);"><i class="fa-solid fa-globe"></i></div>
+<!-- SECTION 6: ONLINE PRESENCE -->
+<section class="full-section" id="presence">
+    <div class="section-container">
+        <div class="section-header">
+            <div class="icon-box" style="color: var(--secondary);"><i class="fa-solid fa-globe"></i></div>
             <h2>Online Presence</h2>
         </div>
 
-        <div class="grid-2" style="margin-bottom: 0; gap: 1.5rem;">
-            <!-- Social Handles Section -->
+        <div class="grid-2">
             <div class="presence-section">
                 <h4><i class="fa-solid fa-hashtag" style="color: var(--secondary);"></i> Social Handles</h4>
                 <a class="social-link" href="https://wa.me/628156563851" target="_blank" rel="noopener noreferrer">
@@ -1071,16 +1083,11 @@
                     <span class="handle">kkay4na</span>
                 </a>
                 <a class="social-link" href="https://www.tiktok.com/@4bcdefgh.00" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-brands fa-tiktok" style="color: #25f4ee;"></i> TikTok</span> 
+                    <span><i class="fa-brands fa-tiktok" style="color: #000000;"></i> TikTok</span> 
                     <span class="handle">4bcdefgh.00</span>
-                </a>
-                <a class="social-link" href="https://discord.com/channels/@me" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-brands fa-discord" style="color: #5865f2;"></i> Discord</span> 
-                    <span class="handle">acuuuuuuumalaka</span>
                 </a>
             </div>
             
-            <!-- Gaming Profiles Section -->
             <div class="presence-section">
                 <h4><i class="fa-solid fa-gamepad" style="color: var(--secondary);"></i> Gaming Profiles</h4>
                 <a class="social-link" href="https://www.chess.com/member/splele" target="_blank" rel="noopener noreferrer">
@@ -1088,7 +1095,7 @@
                     <span class="handle">Splele</span>
                 </a>
                 <a class="social-link" href="https://steamcommunity.com/search/users/#text=splesnot" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-brands fa-steam" style="color: #66c0f4;"></i> Steam</span> 
+                    <span><i class="fa-brands fa-steam" style="color: #000000;"></i> Steam</span> 
                     <span class="handle">@splesnot</span>
                 </a>
                 <a class="social-link" href="https://www.roblox.com/search/users?keyword=santaiwoi" target="_blank" rel="noopener noreferrer">
@@ -1098,15 +1105,66 @@
             </div>
         </div>
     </div>
+</section>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 Laksita Javas Kayana Arfiansah. Built with HTML, CSS, & JavaScript.</p>
-    </footer>
+<!-- SECTION 7: CONTACT ME -->
+<section class="full-section" id="contact">
+    <div class="section-container">
+        <div class="section-header">
+            <div class="icon-box" style="color: var(--coral);">
+                <i class="fa-solid fa-paper-plane"></i>
+            </div>
+            <h2>Contact</h2>
+        </div>
 
-</div>
+        <div class="grid-2" style="align-items: start;">
+            <div>
+                <p style="color: var(--text-sub); margin-bottom: 1.5rem; font-size: 1.05rem;">
+                    Kalau ada yang ingin kamu tanyakan atau diskusikan, jangan ragu untuk menghubungiku melalui email atau media sosial. Aku akan berusaha membalas dengan cepat.
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div class="social-link">
+                        <span><i class="fa-solid fa-envelope" style="color: var(--primary);"></i> Email Direct</span>
+                        <span class="handle">laksitajavas@gmail.com</span>
+                    </div>
+                    <div class="social-link">
+                        <span><i class="fa-solid fa-location-dot" style="color: var(--coral);"></i> Lokasi</span>
+                        <span class="handle">Surakarta, Jawa Tengah</span>
+                    </div>
+                </div>
+            </div>
 
-<!-- OVERLAY POP-UP WAJIB FULLSCREEN -->
+            <!-- FORM DENGAN WEB3FORMS (LANGSUNG MASUK EMAIL) -->
+            <form action="https://api.web3forms.com/submit" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Access Key Web3Forms Kamu -->
+                <input type="hidden" name="access_key" value="1a2d86b5-caf4-4512-9feb-c955a7571dc1">
+                
+                <!-- Subject Email yang Masuk ke Inbox -->
+                <input type="hidden" name="subject" value="Pesan Baru dari Portofolio Website">
+
+                <!-- Nama Pengirim -->
+                <input type="text" name="Nama Pengirim" class="form-control-custom" placeholder="Nama Lengkap" required>
+                
+                <!-- Email Pengirim (harus format email valid) -->
+                <input type="email" name="Email Pengirim" class="form-control-custom" placeholder="Alamat Email" required>
+                
+                <!-- Isi Pesan -->
+                <textarea name="Pesan" class="form-control-custom" rows="4" placeholder="Pesan Anda..." required></textarea>
+                
+                <button type="submit" class="primary-action" style="justify-content: center; margin-top: 0;">
+                    <i class="fa-solid fa-paper-plane"></i> Kirim Pesan
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2026 Laksita Javas Kayana Arfiansah. Built with HTML, CSS, & JavaScript.</p>
+</footer>
+
+<!-- OVERLAY POP-UP FULLSCREEN -->
 <div id="fullscreen-overlay">
     <div class="fs-popup-card">
         <div class="fs-popup-header">
@@ -1115,12 +1173,7 @@
         </div>
         <div class="fs-popup-body">
             <p><strong>Selamat datang di Portofolioku! 🚀</strong></p>
-            <p>Untuk mendapatkan pengalaman terbaik dan melihat detail antarmuka <em>dark mode</em> ini secara maksimal tanpa gangguan navigasi browser, mohon buka website ini dalam mode layar penuh.</p>
-            
-            <div class="fs-code-explain">
-                <i class="fa-solid fa-code" style="color: var(--primary); margin-bottom: 5px;"></i> <strong>Tech Insight:</strong><br>
-                Fitur ini dikembangkan menggunakan <em>HTML/CSS</em> dengan properti <code>backdrop-filter</code> untuk efek kaca buram, serta <em>JavaScript Event Listener</em> yang terus memantau status <code>Fullscreen API</code> dari browser pengguna.
-            </div>
+            <p>Untuk mendapatkan pengalaman terbaik dan melihat detail antarmuka ini secara maksimal, mohon buka website ini dalam mode layar penuh.</p>
         </div>
         <button class="btn-fullscreen" id="fs-btn">
             Masuk Full Screen <i class="fa-solid fa-expand"></i>
@@ -1128,108 +1181,81 @@
     </div>
 </div>
 
-<!-- MODAL DATA DIRI -->
-<div class="modal fade" id="identityModal" tabindex="-1" aria-labelledby="identityModalTitle" aria-hidden="true">
+<!-- MODAL DETAIL PENDIDIKAN -->
+<div class="modal fade" id="schoolIdnModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header school-modal-header"><h5 class="modal-title" id="identityModalTitle"><i class="fa-solid fa-id-card me-2 text-info"></i>Data Diri & Identitas</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
-        <div class="modal-body">
-            <div class="ktp-card">
-                <div class="ktp-title"><i class="fa-solid fa-fingerprint me-2"></i>KARTU IDENTITAS PELAJAR TECH</div>
-                <dl class="ktp-data">
-                    <dt>Nama Lengkap</dt><dd>Laksita Javas Kayana Arfiansah</dd>
-                    <dt>TTL</dt><dd>Surakarta, 16 Februari 2011</dd>
-                    <dt>Status</dt><dd>Pelajar / Tech Enthusiast</dd>
-                    <dt>Pendidikan</dt><dd>SMK IDN Boarding School Solo (TKJ)</dd>
-                    <dt>Domisili</dt><dd>Surakarta, Jawa Tengah, Indonesia</dd>
-                    <dt>Fokus Keahlian</dt><dd>Network Engineering (MikroTik/Cisco), Cloud, Web & Mobile Dev</dd>
-                    <dt>Minat Personal</dt><dd>Bodybuilding / Fitness, UI/UX Design, Photo Manipulation</dd>
-                    <dt>Impian Karier</dt><dd>Network/Cloud Engineer di Google Singapore & Tech Founder</dd>
-                </dl>
-            </div>
-        </div>
-        <div class="modal-footer"><button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Tutup</button></div>
+        <div class="modal-header"><h5 class="modal-title"><i class="fa-solid fa-school me-2 text-primary"></i>SMK IDN Boarding School Solo</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
+        <div class="modal-body"><p>SMK IDN Boarding School Solo jadi ruang pendalaman minat aku di <strong>Teknik Komputer dan Jaringan (TKJ)</strong> dalam lingkungan boarding school — tempat belajar mandiri, disiplin, dan makin dalam soal teknologi.</p><p class="mb-0">Dua bulan pertama udah kebagian praktik <strong>MikroTik, PNETLab, VirtualBox</strong>, konsep cloud architecture, sampai fondasi pengembangan web & mobile.</p></div>
+        <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button></div>
     </div></div>
 </div>
 
-<!-- Modal detail pendidikan -->
-<div class="modal fade" id="schoolIdnModal" tabindex="-1" aria-labelledby="schoolIdnTitle" aria-hidden="true">
+<div class="modal fade" id="schoolAbbsModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header school-modal-header"><h5 class="modal-title" id="schoolIdnTitle"><i class="fa-solid fa-school me-2 text-info"></i>SMK IDN Boarding School Solo</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
-        <div class="modal-body school-modal-body"><p>SMK IDN Boarding School Solo jadi ruang pendalaman minat aku di <strong>Teknik Komputer dan Jaringan (TKJ)</strong> dalam lingkungan boarding school — tempat belajar mandiri, disiplin, dan makin dalam soal teknologi.</p><p class="mb-0">Dua bulan pertama udah kebagian praktik <strong>MikroTik, PNETLab, VirtualBox</strong>, konsep cloud architecture, sampai fondasi pengembangan web & mobile. Paling seru waktu ngulik topologi jaringan dan nyari akar masalah saat koneksi ngadat — pengalaman ini makin memantapkan arah karierku sebagai Network/Cloud Engineer.</p></div>
-        <div class="modal-footer school-modal-footer"><a class="location-button" href="https://www.google.com/maps/search/?api=1&amp;query=SMK+IDN+Boarding+School+Solo" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot"></i> Lihat lokasi</a><button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Tutup</button></div>
+        <div class="modal-header"><h5 class="modal-title"><i class="fa-solid fa-building-columns me-2 text-primary"></i>SMP ABBS Surakarta</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
+        <div class="modal-body"><p class="mb-0">SMP Al-Abidin Bilingual Boarding School (ABBS) jadi fondasi akademis, karakter, dan ketertarikanku pada teknologi.</p></div>
+        <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button></div>
     </div></div>
 </div>
 
-<div class="modal fade" id="schoolAbbsModal" tabindex="-1" aria-labelledby="schoolAbbsTitle" aria-hidden="true">
+<div class="modal fade" id="schoolRisalahModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header school-modal-header"><h5 class="modal-title" id="schoolAbbsTitle"><i class="fa-solid fa-building-columns me-2" style="color:#818cf8"></i>SMP ABBS Surakarta</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
-        <div class="modal-body school-modal-body"><p class="mb-0">SMP Al-Abidin Bilingual Boarding School (ABBS) jadi fondasi akademis, karakter, dan ketertarikanku pada teknologi — sekaligus tempat lahirnya julukan <strong>"Trio Wek Wek"</strong> dari guru untukku dan dua teman dekat yang doyan jalan sambil rangkulan. 😄</p>
-        <div class="timeline">
-            <div class="timeline-item"><div class="timeline-year">Kelas 7</div>Kenalan sama <strong>Construct 3</strong>, bikin game 2D pertama: Flying Bird, racing, dan Space Shooter.</div>
-            <div class="timeline-item"><div class="timeline-year">Kelas 8</div>Eksplor <strong>MIT App Inventor & Arduino</strong> — rakit mobil Arduino sendiri, plus proyek suhu, tong sampah otomatis, dan LED dance via Tinkercad/Wokwi. Juga juara 2 Soccer Car sekolah.</div>
-            <div class="timeline-item"><div class="timeline-year">Kelas 9</div>Mulai serius belajar <strong>HTML, JavaScript, Bootstrap</strong> — bikin website festival kuliner & profil diri, sampai akhirnya mantap pilih jurusan TKJ di SMK.</div>
-        </div></div>
-        <div class="modal-footer school-modal-footer"><a class="location-button" href="https://www.google.com/maps/search/?api=1&amp;query=SMP+ABBS+Surakarta" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot"></i> Lihat lokasi</a><button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Tutup</button></div>
+        <div class="modal-header"><h5 class="modal-title"><i class="fa-solid fa-book-bookmark me-2 text-success"></i>SDIT Ar-Risalah</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
+        <div class="modal-body"><p class="mb-0">SDIT Ar-Risalah jadi fondasi awal perjalanan pendidikanku sebagai Sekolah Dasar Islam Terpadu.</p></div>
+        <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button></div>
     </div></div>
 </div>
-
-<div class="modal fade" id="schoolRisalahModal" tabindex="-1" aria-labelledby="schoolRisalahTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header school-modal-header"><h5 class="modal-title" id="schoolRisalahTitle"><i class="fa-solid fa-book-bookmark me-2 text-success"></i>SDIT Ar-Risalah</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
-        <div class="modal-body school-modal-body"><p>SDIT Ar-Risalah jadi fondasi awal perjalanan pendidikanku sebagai Sekolah Dasar Islam Terpadu — belajar Matematika, IPA, IPS, dan PPKn, sekaligus Akidah Akhlak, Sirah, dan hafalan Al-Qur'an.</p><p class="mb-0">Momen paling berkesan adalah masa pandemi <strong>COVID-19</strong>, yang memaksaku beradaptasi dengan cara belajar yang serba baru. Dari situ aku belajar disiplin dan semangat menjaga proses belajar tetap jalan — fondasi yang masih kebawa sampai sekarang.</p></div>
-        <div class="modal-footer school-modal-footer"><a class="location-button" href="https://www.google.com/maps/search/?api=1&amp;query=SDIT+Ar-Risalah" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot"></i> Lihat lokasi</a><button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Tutup</button></div>
-    </div></div>
-</div>
-</body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Script bawaan untuk Tech Tags
-    document.querySelectorAll('.tech-tag').forEach((tag) => {
-        tag.addEventListener('click', () => {
-            document.getElementById('techModalTitle').textContent = tag.dataset.tech;
-            document.getElementById('techModalBody').innerHTML = `<p class="mb-0">${tag.dataset.detail}</p>`;
-            bootstrap.Modal.getOrCreateInstance(document.getElementById('techModal')).show();
-        });
+    // LOGIKA TOGGLE MENU AKADEMIK
+    const academicToggleBtn = document.getElementById('academicToggleBtn');
+    const academicSubmenu = document.getElementById('academicSubmenu');
+
+    academicToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isExpanded = academicToggleBtn.getAttribute('aria-expanded') === 'true';
+        academicToggleBtn.setAttribute('aria-expanded', !isExpanded);
+        academicSubmenu.classList.toggle('show');
     });
 
-    // ============================================================
-    // TAMBAHAN: SCRIPT LOGIKA FULLSCREEN
-    // ============================================================
+    document.addEventListener('click', () => {
+        if (academicSubmenu.classList.contains('show')) {
+            academicSubmenu.classList.remove('show');
+            academicToggleBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // LOGIKA FULLSCREEN OVERLAY
     const overlay = document.getElementById('fullscreen-overlay');
     const fsBtn = document.getElementById('fs-btn');
 
-    // Fungsi untuk meminta akses full screen ke browser
     function enterFullScreen() {
-        const elem = document.documentElement; // Target seluruh layar html
-        
+        const elem = document.documentElement;
         if (elem.requestFullscreen) {
             elem.requestFullscreen().catch((err) => console.log(err));
-        } else if (elem.webkitRequestFullscreen) { /* Dukungan browser Safari */
+        } else if (elem.webkitRequestFullscreen) {
             elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) { /* Dukungan browser IE/Edge lama */
+        } else if (elem.msRequestFullscreen) {
             elem.msRequestFullscreen();
         }
     }
 
-    // Eksekusi fungsi ketika tombol diklik
     fsBtn.addEventListener('click', () => {
         enterFullScreen();
     });
 
-    // Fungsi untuk memeriksa apakah layar masih fullscreen atau tidak
     function checkFullScreenStatus() {
-        // Jika tidak ada elemen yang fullscreen, berarti user keluar dari mode tersebut
         if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
-            overlay.style.display = 'flex'; // Munculkan kembali pop-up paksaan
+            overlay.style.display = 'flex';
         } else {
-            overlay.style.display = 'none'; // Sembunyikan pop-up jika berhasil masuk fullscreen
+            overlay.style.display = 'none';
         }
     }
 
-    // Daftarkan event listener agar browser selalu mengecek perubahan status layar
     document.addEventListener('fullscreenchange', checkFullScreenStatus);
     document.addEventListener('webkitfullscreenchange', checkFullScreenStatus);
     document.addEventListener('msfullscreenchange', checkFullScreenStatus);
 </script>
+</body>
 </html>
