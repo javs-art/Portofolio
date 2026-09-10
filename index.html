@@ -10,690 +10,987 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
-        :root {
-            --primary: #0284c7;
-            --secondary: #4f46e5;
-            --accent: #059669;
-            --warning: #d97706;
-            --coral: #e11d48;
-            --violet: #7c3aed;
-            --text-main: #0f172a;
-            --text-sub: #475569;
-
-            /* Warna Accent Tambahan untuk Tag/Card */
-            --accent-purple: #9333ea;
-            --accent-red: #ef4444;
-            --accent-green: #10b981;
-            --accent-blue: #3b82f6;
-            --accent-yellow: #f59e0b;
-
-            /* Warna Background Per Section */
-            --bg-hero: #ffffff;
-            --bg-prestasi: #f8fafc;
-            --bg-akademik: #f1f5f9;
-            --bg-skills: #e0f2fe;
-            --bg-projects: #f0fdf4;
-            --bg-presence: #f3e8ff;
-            --bg-contact: #fff1f2;
-            --bg-footer: #0f172a;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        body {
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            padding-top: 72px;
-        }
-
-        /* Container Pembatas Konten agar Tetap Rapi di Tengah */
-        .section-container {
-            width: min(100% - 2rem, 1280px);
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        /* ============================================================ */
-        /* STYLING SECTION FULLSCREEN / FULL BLEED                      */
-        /* ============================================================ */
-        .full-section {
-            width: 100vw;
-            min-height: calc(100vh - 72px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem 0;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-        }
-
-        /* Variasi Background Tiap Section */
-        #about-me { background-color: var(--bg-hero); }
-        #prestasi { background-color: var(--bg-prestasi); }
-        #akademik { background-color: var(--bg-akademik); }
-        #skills { background-color: var(--bg-skills); }
-        #projects { background-color: var(--bg-projects); }
-        #presence { background-color: var(--bg-presence); }
-        #contact { background-color: var(--bg-contact); }
-
-        /* Header Section Utama */
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 2.5rem;
-        }
-
-        .icon-box {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--text-main);
-            margin: 0;
-        }
-
-        /* ============================================================ */
-        /* TOP NAVBAR FIXED                                             */
-        /* ============================================================ */
-        .dashboard-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 72px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2rem;
-            background: rgba(255, 255, 255, 0.92);
-            border-bottom: 1px solid #e2e8f0;
-            backdrop-filter: blur(16px);
-        }
-
-        .dashboard-brand {
-            display: inline-flex;
-            align-items: center;
-            gap: .65rem;
-            color: var(--text-main);
-            font-size: 1rem;
-            font-weight: 800;
-            text-decoration: none;
-        }
-
-        .status-dot {
-            width: 9px;
-            height: 9px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(1.2); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        .brand-text {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-        }
-
-        .dashboard-links {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .dashboard-link {
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-            padding: .55rem 1rem;
-            color: var(--text-sub);
-            text-decoration: none;
-            font-size: .88rem;
-            font-weight: 700;
-            border-radius: 10px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            transition: all .25s ease;
-        }
-
-        .dashboard-link:hover {
-            color: var(--primary);
-            background: rgba(2, 132, 199, 0.08);
-        }
-
-        /* Submenu Akademik */
-        .academic-menu { position: relative; }
-        .academic-submenu {
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
-            min-width: 180px;
-            padding: .5rem;
-            list-style: none;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
-            display: none;
-            z-index: 1010;
-        }
-        .academic-submenu.show { display: block; }
-        .academic-submenu a {
-            display: flex;
-            align-items: center;
-            gap: .6rem;
-            padding: .6rem 1rem;
-            color: var(--text-main);
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: .84rem;
-            font-weight: 700;
-        }
-        .academic-submenu a:hover {
-            color: var(--primary);
-            background: rgba(2, 132, 199, 0.08);
-        }
-
-        /* ============================================================ */
-        /* HERO LAYOUT                                                  */
-        /* ============================================================ */
-        .hero-layout {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2.5rem;
-            width: 100%;
-        }
-
-        .hero-text { flex: 1; }
-
-        .hero-profile-box {
-            position: relative;
-            flex-shrink: 0;
-            width: 290px;
-            height: 290px;
-            border-radius: 24px;
-            padding: 4px;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 16px 36px rgba(2, 132, 199, 0.15);
-        }
-
-        .hero-profile-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-        }
-
-        .badge-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 1.2rem;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(2, 132, 199, 0.08);
-            border: 1px solid rgba(2, 132, 199, 0.2);
-            color: var(--primary);
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 0.4rem;
-        }
-
-        .hero .subtitle {
-            font-size: 1.2rem;
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .hero .bio-quote {
-            color: var(--text-sub);
-            font-size: 1.05rem;
-            border-left: 3px solid var(--primary);
-            padding-left: 1.2rem;
-            margin-top: 1.2rem;
-            line-height: 1.7;
-        }
-
-        .primary-action {
-            display: inline-flex;
-            align-items: center;
-            gap: .55rem;
-            margin-top: 1.5rem;
-            padding: .75rem 1.3rem;
-            border: 1px solid rgba(2, 132, 199, .3);
-            border-radius: 12px;
-            background: var(--primary);
-            color: #ffffff;
-            font: 700 .9rem 'Plus Jakarta Sans', sans-serif;
-            cursor: pointer;
-            transition: all .2s ease;
-        }
-
-        .primary-action:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.25);
-        }
-
-        /* ============================================================ */
-        /* LAYOUT GRIDS                                                 */
-        /* ============================================================ */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            width: 100%;
-        }
-
-        /* Tags */
-        .tag-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 0.5rem;
-        }
-
-        .tech-tag {
-            background: #ffffff;
-            color: var(--text-main);
-            border: 1px solid #cbd5e1;
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: all .2s ease;
-        }
-
-        .tech-tag:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        /* List Items */
-        .list-item {
-            padding: 1.2rem 0;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-        }
-        .list-item:last-child { border-bottom: none; }
-        
-        .list-title {
-            font-weight: 800;
-            font-size: 1.05rem;
-            color: var(--text-main);
-            margin-bottom: 0.4rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .list-desc { font-size: 0.95rem; color: var(--text-sub); }
-
-        /* Sekolah List Item */
-        .school-list-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-        }
-        .school-list-item:last-child { border-bottom: none; }
-
-        .school-info { flex: 1; }
-
-        .school-img-wrapper {
-            position: relative;
-            flex-shrink: 0;
-            width: 250px;
-            height: 145px;
-            border-radius: 16px;
-            overflow: hidden;
-            border: none;
-            background: transparent;
-            padding: 0;
-            cursor: pointer;
-        }
-
-        .school-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .school-img-wrapper:hover img { transform: scale(1.08); }
-
-        .detail-button {
-            margin-top: 1rem;
-            border: 1px solid rgba(2, 132, 199, .3);
-            background: rgba(2, 132, 199, .1);
-            color: var(--primary);
-            border-radius: 8px;
-            padding: .5rem 1rem;
-            font: 700 .85rem 'Plus Jakarta Sans', sans-serif;
-            cursor: pointer;
-            transition: all .2s ease;
-        }
-
-        .detail-button:hover {
-            background: var(--primary);
-            color: #ffffff;
-        }
-
-        /* Prestasi Item */
-        .achievement-card {
-            display: flex;
-            gap: 1.25rem;
-            padding: 1.5rem;
-            background: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            transition: transform 0.2s ease;
-        }
-
-        .achievement-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .achievement-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            background: rgba(217, 119, 6, 0.1);
-            color: var(--warning);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        /* Project Card Styling (Tambahan) */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .card {
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s ease;
-            border: 1px solid rgba(148, 163, 184, 0.15);
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-        }
-
-        .card-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 800;
-            font-size: 1.05rem;
-            color: var(--text-main);
-            margin-bottom: 0.75rem;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .tag-mit { background: rgba(124, 58, 237, 0.1); color: var(--violet); }
-        .tag-arduino { background: rgba(5, 150, 105, 0.1); color: var(--accent); }
-        .tag-ict { background: rgba(2, 132, 199, 0.1); color: var(--primary); }
-
-        .card-list {
-            padding-left: 1.2rem;
-            font-size: 0.88rem;
-            color: var(--text-sub);
-            margin-top: 0.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .card-list li { margin-bottom: 0.4rem; }
-
-        .project-img-box {
-            margin-top: auto;
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            gap: 10px;
-        }
-
-        .project-img-box a { flex: 1; display: block; }
-        
-        .project-img-box img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            transition: transform 0.3s ease;
-            display: block;
-        }
-
-        .project-img-box img:hover { transform: scale(1.03); }
-
-        .code-box {
-            background: #0f172a;
-            color: #e2e8f0;
-            padding: 1rem;
-            border-radius: 12px;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            overflow-x: auto;
-            border: 1px solid #334155;
-        }
-
-        .keyword { color: #c678dd; }
-        .string { color: #98c379; }
-        .comment { color: #5c6370; font-style: italic; }
-        .function { color: #61afef; }
-
-        /* Social Network & Contact Styles */
-        .social-link {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 16px;
-            background: #ffffff;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            color: var(--text-main);
-            text-decoration: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-            transition: all .2s ease;
-        }
-        
-        .social-link:hover {
-            transform: translateX(4px);
-            color: var(--primary);
-        }
-        .social-link .handle { color: var(--primary); font-family: 'Fira Code', monospace; font-weight: 600; }
-
-        .presence-section {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .presence-section h4 {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1.1rem;
-            font-weight: 800;
-        }
-
-        /* Form Input Contact */
-        .form-control-custom {
-            width: 100%;
-            padding: .85rem 1.2rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 12px;
-            background: #ffffff;
-            color: var(--text-main);
-            font-size: .95rem;
-        }
-
-        .form-control-custom:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
-        }
-
-        /* Modal Styles */
-        .modal-dialog { max-width: 820px; margin: 1.5rem auto; }
-        .modal-content {
-            background: #ffffff;
-            color: var(--text-main);
-            border-radius: 20px;
-            overflow: hidden;
-            border: none;
-            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.15);
-        }
-
-        /* Footer */
-        footer {
-            width: 100vw;
-            background: var(--bg-footer);
-            color: #94a3b8;
-            text-align: center;
-            padding: 2.5rem 0;
-            font-size: 0.9rem;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-        }
-
-        /* Pop-up Fullscreen */
-        #fullscreen-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.65); 
-            backdrop-filter: blur(12px); 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999; 
-        }
-
-        .fs-popup-card {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 2.5rem 2rem;
-            max-width: 440px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.25);
-            margin: 1rem;
-        }
-
-        .fs-popup-header {
-            display: flex; align-items: center; justify-content: center; gap: 15px;
-            margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid #e2e8f0;
-        }
-
-        .fs-profile-img {
-            width: 60px; height: 60px; border-radius: 50%; object-fit: cover;
-            border: 2px solid var(--primary);
-        }
-
-        .fs-popup-title {
-            color: var(--text-main); font-size: 1.1rem; font-weight: 800; margin: 0; text-align: left;
-        }
-
-        .fs-popup-body {
-            color: var(--text-sub); font-size: 0.95rem; margin-bottom: 1.8rem; line-height: 1.6;
-        }
-
-        .btn-fullscreen {
-            padding: 12px 24px; font-size: 0.95rem; font-weight: 800; color: #ffffff;
-            background: var(--primary); border: none; border-radius: 12px; cursor: pointer;
-            width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px;
-        }
-
-        @media (max-width: 768px) {
-            body { padding-top: 65px; }
-            .dashboard-nav { padding: 0 1rem; }
-            .dashboard-links { gap: .5rem; }
-            .dashboard-link { padding: .4rem .6rem; font-size: .8rem; }
-            .full-section { padding: 3rem 0; min-height: auto; }
-            .hero-layout { flex-direction: column-reverse; text-align: center; }
-            .hero-profile-box { width: 220px; height: 220px; }
-            .badge-group { justify-content: center; }
-            .hero .bio-quote { border-left: none; border-top: 2px solid var(--primary); padding-left: 0; padding-top: 0.8rem; }
-            .school-list-item { flex-direction: column; align-items: flex-start; }
-            .school-img-wrapper { width: 100%; height: 160px; }
-        }
-    </style>
+    :root {
+        /* Design System Palette Modern */
+        --primary: #6366f1;
+        --primary-dark: #4f46e5;
+        --secondary: #0ea5e9;
+        --accent: #10b981;
+        --warning: #f59e0b;
+        --coral: #f43f5e;
+        --violet: #8b5cf6;
+        --text-main: #0f172a;
+        --text-sub: #475569;
+        --bg-glass: rgba(255, 255, 255, 0.85);
+
+        --bg-hero: #ffffff;
+        --bg-prestasi: #f8fafc;
+        --bg-akademik: #ffffff;
+        --bg-skills: #f8fafc;
+        --bg-projects: #ffffff;
+        --bg-presence: #f8fafc;
+        --bg-contact: #ffffff;
+        --bg-footer: #0f172a;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        color: var(--text-main);
+        background-color: #ffffff;
+        line-height: 1.6;
+        overflow-x: hidden;
+        padding-top: 72px;
+    }
+
+    .section-container {
+        width: min(100% - 2rem, 1280px);
+        margin: 0 auto;
+        padding: 3rem 1rem;
+    }
+
+    .full-section {
+        width: 100vw;
+        min-height: calc(100vh - 72px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 0;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    #about-me { background-color: var(--bg-hero); }
+    #prestasi { background-color: var(--bg-prestasi); }
+    #akademik { background-color: var(--bg-akademik); }
+    #skills { background-color: var(--bg-skills); }
+    #projects { background-color: var(--bg-projects); }
+    #presence { background-color: var(--bg-presence); }
+    #contact { background-color: var(--bg-contact); }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 2.5rem;
+    }
+
+    .icon-box {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-header h2 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: var(--text-main);
+        margin: 0;
+        letter-spacing: -0.02em;
+    }
+
+    /* TOP NAVBAR DENGAN EFFECT GLASSMORPHISM */
+    .dashboard-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 72px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+        background: var(--bg-glass);
+        border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+
+    .dashboard-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: .65rem;
+        color: var(--text-main);
+        font-size: 1.05rem;
+        font-weight: 800;
+        text-decoration: none;
+    }
+
+    .status-dot {
+        width: 10px;
+        height: 10px;
+        background-color: var(--accent);
+        border-radius: 50%;
+        box-shadow: 0 0 12px var(--accent);
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.4; transform: scale(1.2); }
+        100% { opacity: 1; transform: scale(1); }
+    }
+
+    .brand-text {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    .dashboard-links {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .dashboard-link {
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        padding: .55rem 1rem;
+        color: var(--text-sub);
+        text-decoration: none;
+        font-size: .88rem;
+        font-weight: 700;
+        border-radius: 12px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: all .25s ease;
+    }
+
+    .dashboard-link:hover {
+        color: var(--primary);
+        background: rgba(99, 102, 241, 0.08);
+    }
+
+    .academic-menu { position: relative; }
+    .academic-submenu {
+        position: absolute;
+        top: calc(100% + 12px);
+        right: 0;
+        min-width: 200px;
+        padding: .6rem;
+        list-style: none;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.12);
+        display: none;
+        z-index: 1010;
+        animation: fadeIn 0.2s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .academic-submenu.show { display: block; }
+    .academic-submenu a {
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        padding: .65rem 1rem;
+        color: var(--text-main);
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: .85rem;
+        font-weight: 700;
+        transition: all 0.2s ease;
+    }
+    
+    .academic-submenu a:hover {
+        color: var(--primary);
+        background: rgba(99, 102, 241, 0.08);
+    }
+
+    /* HERO SECTION ENHANCEMENTS */
+    .hero-layout {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3.5rem;
+        width: 100%;
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-profile-box {
+        position: relative;
+        flex-shrink: 0;
+        width: 300px;
+        height: 300px;
+        border-radius: 30px;
+        padding: 6px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.3);
+        transition: transform 0.4s ease;
+    }
+
+    .hero-profile-box:hover {
+        transform: translateY(-6px);
+    }
+
+    .hero-profile-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 24px;
+        background: #ffffff;
+    }
+
+    .badge-group {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #e0e7ff;
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        color: var(--primary-dark);
+        padding: 8px 18px;
+        border-radius: 100px;
+        font-size: 0.85rem;
+        font-weight: 700;
+    }
+
+    .hero h1 {
+        font-size: 3.2rem;
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero .subtitle {
+        font-size: 1.25rem;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        margin-bottom: 1.2rem;
+    }
+
+    .hero .bio-quote {
+        color: var(--text-sub);
+        font-size: 1.05rem;
+        border-left: 4px solid var(--primary);
+        padding-left: 1.2rem;
+        margin-top: 1.2rem;
+        line-height: 1.8;
+    }
+
+    .primary-action {
+        display: inline-flex;
+        align-items: center;
+        gap: .6rem;
+        margin-top: 1.8rem;
+        padding: .85rem 1.6rem;
+        border: none;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: #ffffff;
+        font: 700 .92rem 'Plus Jakarta Sans', sans-serif;
+        cursor: pointer;
+        transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+    }
+
+    .primary-action:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.5);
+        color: #ffffff;
+    }
+
+    /* CARDS & HOVER EFFECTS DENGAN PEWARNAAN JUDUL DYNAMIS */
+    .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        width: 100%;
+    }
+
+    .list-title {
+        font-weight: 800;
+        font-size: 1.05rem;
+        color: var(--text-main);
+        margin-bottom: 0.4rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.3s ease;
+    }
+
+    /* JEJAK PENDIDIKAN CARD HOVER */
+    .school-list-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        padding: 1.75rem;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 22px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .school-list-item:hover {
+        transform: translateY(-4px);
+        border-color: var(--primary);
+        box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.12);
+    }
+
+    .school-list-item:hover .list-title {
+        color: var(--hover-color, var(--primary));
+    }
+
+    .school-info { flex: 1; }
+
+    .school-img-wrapper {
+        position: relative;
+        flex-shrink: 0;
+        width: 260px;
+        height: 155px;
+        border-radius: 16px;
+        overflow: hidden;
+        border: none;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .school-img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .school-img-wrapper:hover img { transform: scale(1.08); }
+
+    .detail-button {
+        margin-top: 1rem;
+        border: 1px solid #e2e8f0;
+        background: #f8fafc;
+        color: var(--text-main);
+        border-radius: 12px;
+        padding: .55rem 1.1rem;
+        font: 700 .85rem 'Plus Jakarta Sans', sans-serif;
+        cursor: pointer;
+        transition: all .25s ease;
+    }
+
+    .detail-button:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #ffffff;
+        box-shadow: 0 8px 15px -3px rgba(99, 102, 241, 0.3);
+    }
+
+    /* PRESTASI CARD HOVER */
+    .achievement-card {
+        display: flex;
+        gap: 1.25rem;
+        padding: 1.5rem;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px -10px rgba(15, 23, 42, 0.05);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .achievement-card:hover {
+        transform: translateY(-4px);
+        border-color: #cbd5e1;
+        box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.1);
+    }
+
+    .achievement-card:hover .list-title {
+        color: var(--hover-color, var(--warning));
+    }
+
+    .achievement-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: rgba(245, 158, 11, 0.12);
+        color: var(--warning);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+    }
+
+    /* POSI-STYLE PROJECT CARDS HOVER */
+    .posi-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+        gap: 2rem;
+        margin-top: 1.5rem;
+    }
+
+    .posi-card {
+        background: #ffffff;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .posi-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 45px -12px rgba(15, 23, 42, 0.12);
+        border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    .posi-card-banner {
+        position: relative;
+        height: 200px;
+        width: 100%;
+        overflow: hidden;
+        background: #0f172a;
+    }
+
+    .posi-card-banner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .posi-card:hover .posi-card-banner img {
+        transform: scale(1.08);
+    }
+
+    .posi-banner-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.8) 100%);
+    }
+
+    .posi-floating-badge {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        padding: 6px 14px;
+        border-radius: 100px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    .badge-purple { background: rgba(139, 92, 246, 0.9); color: #ffffff; }
+    .badge-red { background: rgba(244, 63, 94, 0.9); color: #ffffff; }
+    .badge-green { background: rgba(16, 185, 129, 0.9); color: #ffffff; }
+    .badge-blue { background: rgba(14, 165, 233, 0.9); color: #ffffff; }
+    .badge-yellow { background: rgba(245, 158, 11, 0.9); color: #ffffff; }
+
+    .posi-banner-title {
+        position: absolute;
+        bottom: 14px;
+        left: 18px;
+        right: 18px;
+        color: #ffffff;
+        font-size: 1.2rem;
+        font-weight: 800;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.3s ease;
+    }
+
+    .posi-card:hover .posi-banner-title {
+        color: var(--hover-color, #ffffff);
+    }
+
+    .posi-card-body {
+        padding: 1.4rem 1.4rem 1rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .posi-tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 1rem;
+    }
+
+    .posi-mini-tag {
+        background: #f1f5f9;
+        color: var(--text-sub);
+        padding: 4px 12px;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .posi-card-desc {
+        font-size: 0.9rem;
+        color: var(--text-sub);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+
+    .posi-card-list {
+        padding-left: 1.2rem;
+        font-size: 0.85rem;
+        color: var(--text-sub);
+        margin-bottom: 1.2rem;
+    }
+
+    .posi-card-list li { margin-bottom: 0.4rem; }
+
+    .posi-card-footer {
+        padding: 0 1.4rem 1.4rem;
+        display: flex;
+        gap: 8px;
+    }
+
+    .posi-btn-primary {
+        width: 100%;
+        padding: 0.75rem 1.2rem;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: #ffffff;
+        font-size: 0.88rem;
+        font-weight: 800;
+        text-decoration: none;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.25s ease;
+        border: none;
+        box-shadow: 0 8px 15px -3px rgba(99, 102, 241, 0.3);
+    }
+
+    .posi-btn-primary:hover {
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 20px -3px rgba(99, 102, 241, 0.4);
+    }
+
+    .code-box {
+        background: #0f172a;
+        color: #e2e8f0;
+        padding: 0.85rem;
+        border-radius: 12px;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.78rem;
+        margin-bottom: 1rem;
+        overflow-x: auto;
+        border: 1px solid #334155;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .keyword { color: #c678dd; }
+    .string { color: #98c379; }
+    .comment { color: #5c6370; font-style: italic; }
+    .function { color: #61afef; }
+
+    /* MODERNIZED TECH STACK & HARDWARE SETUP STYLES */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 2.5rem;
+        width: 100%;
+    }
+
+    .skill-group-title {
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-sub);
+        font-weight: 800;
+        margin: 1.5rem 0 1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .skill-cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 0.85rem;
+    }
+
+    .skill-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        padding: 0.85rem 1rem;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .skill-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 100%;
+        background: var(--accent-color, var(--primary));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .skill-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(99, 102, 241, 0.3);
+        box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08);
+    }
+
+    .skill-card:hover::before {
+        opacity: 1;
+    }
+
+    .skill-card:hover .skill-name {
+        color: var(--accent-color, var(--primary));
+    }
+
+    .skill-icon-wrap {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: #f8fafc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+    }
+
+    .skill-card:hover .skill-icon-wrap {
+        transform: scale(1.1);
+    }
+
+    .skill-info {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .skill-name {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--text-main);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color 0.3s ease;
+    }
+
+    .skill-cat {
+        font-size: 0.72rem;
+        color: var(--text-sub);
+        font-weight: 600;
+    }
+
+    /* ENHANCED HARDWARE SETUP CARD */
+    .hardware-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 1.25rem;
+        margin-bottom: 1.2rem;
+        display: flex;
+        gap: 1.2rem;
+        align-items: flex-start;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(15, 23, 42, 0.02);
+        position: relative;
+    }
+
+    .hardware-card:hover {
+        transform: translateY(-4px);
+        border-color: #cbd5e1;
+        box-shadow: 0 16px 30px -8px rgba(15, 23, 42, 0.08);
+    }
+
+    .hardware-card:hover .hardware-title {
+        color: var(--hover-color, var(--primary));
+    }
+
+    .hardware-icon-box {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        flex-shrink: 0;
+    }
+
+    .hardware-content {
+        flex: 1;
+    }
+
+    .hardware-title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.3rem;
+    }
+
+    .hardware-title {
+        font-weight: 800;
+        font-size: 1.05rem;
+        color: var(--text-main);
+        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .hardware-badge {
+        font-size: 0.7rem;
+        font-weight: 800;
+        padding: 3px 10px;
+        border-radius: 100px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .hardware-desc {
+        font-size: 0.9rem;
+        color: var(--text-sub);
+        line-height: 1.5;
+    }
+
+    .hardware-specs {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 0.75rem;
+    }
+
+    .spec-chip {
+        background: #f1f5f9;
+        color: var(--text-sub);
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 6px;
+        font-family: 'Fira Code', monospace;
+    }
+
+    /* SOCIAL NETWORK & CONTACT */
+    .social-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 18px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        font-size: 0.95rem;
+        color: var(--text-main);
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+        transition: all .25s ease;
+    }
+    
+    .social-link:hover {
+        transform: translateX(6px);
+        border-color: var(--primary);
+        color: var(--primary);
+        box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.12);
+    }
+
+    .social-link .handle { color: var(--primary); font-family: 'Fira Code', monospace; font-weight: 600; }
+
+    .presence-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .presence-section h4 {
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1.1rem;
+        font-weight: 800;
+    }
+
+    .form-control-custom {
+        width: 100%;
+        padding: .9rem 1.25rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 14px;
+        background: #ffffff;
+        color: var(--text-main);
+        font-size: .95rem;
+        transition: all 0.25s ease;
+    }
+
+    .form-control-custom:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+    }
+
+    /* MODAL DESIGN */
+    .modal-dialog { max-width: 820px; margin: 1.5rem auto; }
+    .modal-content {
+        background: #ffffff;
+        color: var(--text-main);
+        border-radius: 24px;
+        overflow: hidden;
+        border: none;
+        box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+    }
+
+    /* FOOTER */
+    footer {
+        width: 100vw;
+        background: var(--bg-footer);
+        color: #94a3b8;
+        text-align: center;
+        padding: 3rem 0;
+        font-size: 0.95rem;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+    }
+
+    /* OVERLAY POP-UP FULLSCREEN */
+    #fullscreen-overlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(15, 23, 42, 0.75); 
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; 
+    }
+
+    .fs-popup-card {
+        background: #ffffff;
+        border-radius: 28px;
+        padding: 2.8rem 2.2rem;
+        max-width: 460px;
+        text-align: center;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+        margin: 1rem;
+        animation: scaleUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes scaleUp {
+        from { transform: scale(0.9); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    .fs-popup-header {
+        display: flex; align-items: center; justify-content: center; gap: 15px;
+        margin-bottom: 1.4rem; padding-bottom: 1.4rem; border-bottom: 1px solid #e2e8f0;
+    }
+
+    .fs-profile-img {
+        width: 64px; height: 64px; border-radius: 50%; object-fit: cover;
+        border: 3px solid var(--primary);
+    }
+
+    .fs-popup-title {
+        color: var(--text-main); font-size: 1.15rem; font-weight: 800; margin: 0; text-align: left;
+    }
+
+    .fs-popup-body {
+        color: var(--text-sub); font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.6;
+    }
+
+    .btn-fullscreen {
+        padding: 14px 28px; font-size: 0.95rem; font-weight: 800; color: #ffffff;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        border: none; border-radius: 14px; cursor: pointer;
+        width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px;
+        transition: all 0.25s ease;
+        box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-fullscreen:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.5);
+    }
+
+    @media (max-width: 768px) {
+        body { padding-top: 65px; }
+        .dashboard-nav { padding: 0 1rem; }
+        .dashboard-links { gap: .3rem; }
+        .dashboard-link { padding: .4rem .6rem; font-size: .8rem; }
+        .full-section { padding: 2.5rem 0; min-height: auto; }
+        .hero-layout { flex-direction: column-reverse; text-align: center; gap: 2rem; }
+        .hero-profile-box { width: 220px; height: 220px; }
+        .badge-group { justify-content: center; }
+        .hero .bio-quote { border-left: none; border-top: 3px solid var(--primary); padding-left: 0; padding-top: 1rem; }
+        .school-list-item { flex-direction: column; align-items: flex-start; }
+        .school-img-wrapper { width: 100%; height: 180px; }
+    }
+</style>
 </head>
 <body>
 
@@ -732,7 +1029,7 @@
             <div class="hero-text">
                 <div class="badge-group">
                     <div class="badge"><i class="fa-solid fa-location-dot" style="color: var(--coral);"></i> Surakarta, ID</div>
-                    <div class="badge" style="color: var(--accent); border-color: rgba(5, 150, 105, 0.2); background: rgba(5, 150, 105, 0.08);">
+                    <div class="badge" style="color: var(--accent); border-color: rgba(16, 185, 129, 0.2); background: rgba(16, 185, 129, 0.08);">
                         <i class="fa-solid fa-graduation-cap" style="color: var(--accent);"></i> SMP ABBS & SMK IDN (TKJ)
                     </div>
                 </div>
@@ -742,6 +1039,9 @@
                 <p class="bio-quote">
                     Aku siswa IT di SMK IDN yang fokus mendalami Networking, Cloud, dan logika pemrograman. Berawal dari hobi bikin <em>game</em> visual waktu SMP, sekarang aku makin terbiasa ngulik arsitektur jaringan (pakai MikroTik/PNETLab) sekaligus ngode <em>frontend</em> dan Flutter. Punya target jelas: membangun karir di Google Singapore dan kelak jadi Tech Founder.
                 </p>
+                <a href="#projects" class="primary-action">
+                    <i class="fa-solid fa-rocket"></i> Lihat Portofolio Proyek
+                </a>
             </div>
             
             <div class="hero-profile-box">
@@ -763,7 +1063,7 @@
 
         <div class="grid-2">
             <div class="achievement-card">
-                <div class="achievement-icon">
+                <div class="achievement-icon" style="color: var(--warning);">
                     <i class="fa-solid fa-medal"></i>
                 </div>
                 <div>
@@ -773,7 +1073,7 @@
             </div>
 
             <div class="achievement-card">
-                <div class="achievement-icon" style="color: var(--primary); background: rgba(2, 132, 199, 0.1);">
+                <div class="achievement-icon" style="color: var(--primary); background: rgba(99, 102, 241, 0.12);">
                     <i class="fa-solid fa-network-wired"></i>
                 </div>
                 <div>
@@ -783,7 +1083,7 @@
             </div>
 
             <div class="achievement-card">
-                <div class="achievement-icon" style="color: var(--accent); background: rgba(5, 150, 105, 0.1);">
+                <div class="achievement-icon" style="color: var(--accent); background: rgba(16, 185, 129, 0.12);">
                     <i class="fa-solid fa-gamepad"></i>
                 </div>
                 <div>
@@ -793,7 +1093,7 @@
             </div>
 
             <div class="achievement-card">
-                <div class="achievement-icon" style="color: var(--violet); background: rgba(124, 58, 237, 0.1);">
+                <div class="achievement-icon" style="color: var(--violet); background: rgba(139, 92, 246, 0.12);">
                     <i class="fa-solid fa-code"></i>
                 </div>
                 <div>
@@ -850,212 +1150,422 @@
     </div>
 </section>
 
-<!-- SECTION 4: SKILLS & GEAR -->
+<!-- SECTION 4: SKILLS & GEAR (ENHANCED DESIGN) -->
 <section class="full-section" id="skills">
     <div class="section-container">
-        <div class="grid-2">
+        <div class="skills-grid">
+            
+            <!-- TECH & DESIGN STACK -->
             <div>
                 <div class="section-header">
-                    <div class="icon-box" style="color: var(--primary);"><i class="fa-solid fa-layer-group"></i></div>
-                    <h2>Tech & Design Stack</h2>
-                </div>
-                <h4 style="font-size: 1rem; color: var(--text-main); margin: 1rem 0 0.5rem; font-weight:800;">Network & Development</h4>
-                <div class="tag-group">
-                    <button class="tech-tag" type="button"><i class="fa-solid fa-server" style="color: #0ea5e9;"></i> MikroTik & Networking</button>
-                    <button class="tech-tag" type="button"><i class="fa-solid fa-network-wired" style="color: #8b5cf6;"></i> PNETLab</button>
-                    <button class="tech-tag" type="button"><i class="fa-solid fa-box" style="color: #10b981;"></i> VirtualBox</button>
-                    <button class="tech-tag" type="button"><i class="fa-solid fa-cloud" style="color: #38bdf8;"></i> Cloud Architecture</button>
-                    <button class="tech-tag" type="button"><i class="fa-brands fa-python" style="color: #f59e0b;"></i> Python / Django</button>
-                    <button class="tech-tag" type="button"><i class="fa-brands fa-js" style="color: #eab308;"></i> JavaScript</button>
-                    <button class="tech-tag" type="button"><i class="fa-brands fa-html5" style="color: #f97316;"></i> HTML/CSS</button>
-                    <button class="tech-tag" type="button"><i class="fa-solid fa-mobile-screen" style="color: #38bdf8;"></i> Flutter & Dart</button>
+                    <div class="icon-box" style="color: var(--primary);">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h2>Tech Stack</h2>
                 </div>
 
-                <h4 style="font-size: 1rem; color: var(--text-main); margin: 1.5rem 0 0.5rem; font-weight:800;">Creative & Design</h4>
-                <div class="tag-group">
-                    <button class="tech-tag" type="button"><i class="fa-brands fa-figma" style="color: #ec4899;"></i> Figma (UI/UX)</button>
-                    <button class="tech-tag" type="button"><i class="fa-solid fa-wand-magic-sparkles" style="color: #ac5ff4;"></i> Canva</button>
-                    <button class="tech-tag" type="button"><i class="fa-solid fa-video" style="color: #64748b;"></i> CapCut</button>
-                    <button class="tech-tag" type="button"><i class="fa-solid fa-file-powerpoint" style="color: #f472b6;"></i> Gamma App</button>
+                <div class="skill-group-title">
+                    <i class="fa-solid fa-server" style="color: var(--secondary);"></i> Network & Cloud
+                </div>
+                <div class="skill-cards-container">
+                    <div class="skill-card" style="--accent-color: #0ea5e9;">
+                        <div class="skill-icon-wrap" style="color: #0ea5e9; background: rgba(14, 165, 233, 0.1);">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <div class="skill-info">
+                            <span class="skill-name">MikroTik</span>
+                            <span class="skill-cat">Networking</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card" style="--accent-color: #8b5cf6;">
+                        <div class="skill-icon-wrap" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);">
+                            <i class="fa-solid fa-diagram-project"></i>
+                        </div>
+                        <div class="skill-info">
+                            <span class="skill-name">PNETLab</span>
+                            <span class="skill-cat">Simulation</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card" style="--accent-color: #10b981;">
+                        <div class="skill-icon-wrap" style="color: #10b981; background: rgba(16, 185, 129, 0.1);">
+                            <i class="fa-solid fa-box-archive"></i>
+                        </div>
+                        <div class="skill-info">
+                            <span class="skill-name">VirtualBox</span>
+                            <span class="skill-cat">Virtualization</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card" style="--accent-color: #38bdf8;">
+                        <div class="skill-icon-wrap" style="color: #38bdf8; background: rgba(56, 189, 248, 0.1);">
+                            <i class="fa-solid fa-cloud"></i>
+                        </div>
+                        <div class="skill-info">
+                            <span class="skill-name">Cloud Arch</span>
+                            <span class="skill-cat">Infrastructure</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-group-title">
+                    <i class="fa-solid fa-code" style="color: var(--primary);"></i> Programming & Dev
+                </div>
+                <div class="skill-cards-container">
+                    <div class="skill-card" style="--accent-color: #f59e0b;">
+                        <div class="skill-icon-wrap" style="color: #f59e0b; background: rgba(245, 158, 11, 0.1);">
+                            <i class="fa-brands fa-python"></i>
+                        </div>
+                        <div class="skill-info">
+                            <span class="skill-name">Python</span>
+                            <span class="skill-cat">Backend / Script</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card" style="--accent-color: #eab308;">
+                        <div class="skill-icon-wrap" style="color: #eab308; background: rgba(234, 179, 8, 0.1);">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                        <div class="skill-info">
+                            <span class="skill-name">JavaScript</span>
+                            <span class="skill-cat">Frontend Logic</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card" style="--accent-color: #38bdf8;">
+                        <div class="skill-icon-wrap" style="color: #38bdf8; background: rgba(56, 189, 248, 0.1);">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                        </div>
+                        <div class="skill-info">
+                            <span class="skill-name">Flutter</span>
+                            <span class="skill-cat">Mobile Dev</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card" style="--accent-color: #f97316;">
+                        <div class="skill-icon-wrap" style="color: #f97316; background: rgba(249, 115, 22, 0.1);">
+                            <i class="fa-brands fa-html5"></i>
+                        </div>
+                        <div class="skill-info">
+                            <span class="skill-name">HTML5 / CSS3</span>
+                            <span class="skill-cat">Web Markup</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-group-title">
+                    <i class="fa-solid fa-palette" style="color: var(--coral);"></i> Creative Tools
+                </div>
+                <div class="skill-cards-container">
+                    <div class="skill-card" style="--accent-color: #ec4899;">
+                        <div class="skill-icon-wrap" style="color: #ec4899; background: rgba(236, 72, 153, 0.1);">
+                            <i class="fa-brands fa-figma"></i>
+                        </div>
+                        <div class="skill-info">
+                            <span class="skill-name">Figma</span>
+                            <span class="skill-cat">UI/UX Design</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card" style="--accent-color: #ac5ff4;">
+                        <div class="skill-icon-wrap" style="color: #ac5ff4; background: rgba(172, 95, 244, 0.1);">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <div class="skill-info">
+                            <span class="skill-name">Canva</span>
+                            <span class="skill-cat">Visual Graphic</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- HARDWARE SETUP -->
             <div>
                 <div class="section-header">
-                    <div class="icon-box" style="color: var(--warning);"><i class="fa-solid fa-laptop"></i></div>
+                    <div class="icon-box" style="color: var(--warning);">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
                     <h2>Hardware Setup</h2>
                 </div>
-                <div class="list-item">
-                    <div class="list-title"><i class="fa-brands fa-apple" style="color: #64748b;"></i> Workstation</div>
-                    <div class="list-desc">MacBook Pro 14" M1 Pro (16GB RAM / 512GB SSD). Mesin utama komputasi berat dan simulasi.</div>
+
+                <div class="hardware-card">
+                    <div class="hardware-icon-box" style="color: #64748b; background: rgba(100, 116, 139, 0.1);">
+                        <i class="fa-brands fa-apple"></i>
+                    </div>
+                    <div class="hardware-content">
+                        <div class="hardware-title-row">
+                            <div class="hardware-title">
+                                MacBook Pro 14"
+                            </div>
+                            <span class="hardware-badge" style="background: rgba(99, 102, 241, 0.1); color: var(--primary);">Primary</span>
+                        </div>
+                        <div class="hardware-desc">
+                            Mesin utama untuk komputasi berat, simulasi jaringan, dan pengembangan aplikasi mobile.
+                        </div>
+                        <div class="hardware-specs">
+                            <span class="spec-chip">Apple M1 Pro</span>
+                            <span class="spec-chip">16GB RAM</span>
+                            <span class="spec-chip">512GB SSD</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="list-item">
-                    <div class="list-title"><i class="fa-solid fa-mobile-screen-button" style="color: #3b82f6;"></i> Mobile Ecosystem</div>
-                    <div class="list-desc">Samsung A35 & A36 Series (dilengkapi dengan aksesoris MagSafe Clear TPU Case).</div>
+
+                <div class="hardware-card">
+                    <div class="hardware-icon-box" style="color: #3b82f6; background: rgba(59, 130, 246, 0.1);">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <div class="hardware-content">
+                        <div class="hardware-title-row">
+                            <div class="hardware-title">
+                                Mobile Devices
+                            </div>
+                            <span class="hardware-badge" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">Ecosystem</span>
+                        </div>
+                        <div class="hardware-desc">
+                            Perangkat uji coba aplikasi Android dan produktivitas harian.
+                        </div>
+                        <div class="hardware-specs">
+                            <span class="spec-chip">Samsung A35</span>
+                            <span class="spec-chip">Samsung A36</span>
+                            <span class="spec-chip">MagSafe TPU Case</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="list-item">
-                    <div class="list-title"><i class="fa-solid fa-car" style="color: #10b981;"></i> Mobility</div>
-                    <div class="list-desc">Daily commute menggunakan layanan Ride-hailing (Gojek, GrabCar, GrabBike).</div>
+
+                <div class="hardware-card">
+                    <div class="hardware-icon-box" style="color: #10b981; background: rgba(16, 185, 129, 0.1);">
+                        <i class="fa-solid fa-route"></i>
+                    </div>
+                    <div class="hardware-content">
+                        <div class="hardware-title-row">
+                            <div class="hardware-title">
+                                Mobility & Daily
+                            </div>
+                            <span class="hardware-badge" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">Commute</span>
+                        </div>
+                        <div class="hardware-desc">
+                            Dukungan mobilitas fleksibel menggunakan konektivitas online ride-hailing.
+                        </div>
+                        <div class="hardware-specs">
+                            <span class="spec-chip">Gojek</span>
+                            <span class="spec-chip">GrabCar</span>
+                            <span class="spec-chip">GrabBike</span>
+                        </div>
+                    </div>
                 </div>
+
             </div>
+
         </div>
     </div>
 </section>
 
-<!-- SECTION 5: PROJECTS & ACADEMICS -->
+<!-- SECTION 5: PROJECTS & ACADEMICS (POSI-STYLE DISPLAY) -->
 <section class="full-section" id="projects">
     <div class="section-container">
-        <div class="section-header">
-            <div class="icon-box" style="color: var(--accent);"><i class="fa-solid fa-briefcase"></i></div>
-            <h2>Portofolio Proyek & Akademik</h2>
-        </div>
-        <div class="grid-2">
-            <div class="list-item">
-                <div class="list-title"><i class="fa-solid fa-network-wired" style="color: #0ea5e9;"></i> Network Emulation & Routing</div>
-                <div class="list-desc">Mempraktikkan routing jaringan dengan <strong>MikroTik</strong>, virtualisasi OS via <strong>VirtualBox</strong>, dan simulasi topologi menggunakan <strong>PNETLab</strong>.</div>
+        
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 3rem;">
+            <div class="badge" style="margin-bottom: 0.8rem; background: #e0e7ff; color: #4338ca; border: none;">
+                <i class="fa-solid fa-rocket"></i> Karya & Eksperimen
             </div>
-            <div class="list-item">
-                <div class="list-title"><i class="fa-solid fa-diagram-project" style="color: #8b5cf6;"></i> Mobile Student App</div>
-                <div class="list-desc">Eksplorasi aplikasi mahasiswa (Flutter/Dart) dengan backend MySQL, HTTPS, Push Notification, dan Dark Mode.</div>
-            </div>
-            <div class="list-item">
-                <div class="list-title"><i class="fa-solid fa-laptop-code" style="color: #f59e0b;"></i> ICT & Logika Algoritma</div>
-                <div class="list-desc">Menyelesaikan evaluasi JavaScript (<em>variables, data types, looping, branching</em>) serta troubleshooting jaringan.</div>
-            </div>
-            <div class="list-item">
-                <div class="list-title"><i class="fa-solid fa-utensils" style="color: #10b981;"></i> Food Festival Website</div>
-                <div class="list-desc">Web interaktif mempromosikan kuliner lokal (Rendang, Gado-Gado, Rawon, Papeda) berbasis Bootstrap 5 & JS.</div>
-            </div>
+            <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">Portofolio Proyek & Akademik</h2>
+            <p style="color: var(--text-sub); font-size: 0.98rem;">Proyek jaringan, IoT, serta eksplorasi mobile app development yang telah diselesaikan.</p>
         </div>
 
-        <!-- NEW CLASS 8 PROJECTS -->
-        <div class="section-header" style="margin-top: 4rem;">
-            <div class="icon-box" style="color: var(--text-sub);"><i class="fa-solid fa-robot"></i></div>
-            <h2>Kelas 8 — Mobile App Dev, IoT & Simulasi Arduino (Tinkercad & Wokwi)</h2>
-        </div>
+        <div class="posi-card-grid">
 
-        <div class="card-grid">
-
-            <div class="card">
+            <!-- Card 1: RC Controller -->
+            <div class="posi-card">
                 <div>
-                    <div class="card-title">
-                        <span><i class="fa-solid fa-mobile-screen-button" style="color:var(--accent-purple);"></i> Mobile App: RC Controller</span>
-                        <span class="tag tag-mit">MIT App Inventor</span>
+                    <div class="posi-card-banner">
+                        <img src="https://i.ibb.co/zT6sSCdN/codex-clipboard-83161bda-6a50-4e56-bee4-d19bbde5c245.png" alt="RC Controller">
+                        <div class="posi-banner-overlay"></div>
+                        <span class="posi-floating-badge badge-purple">MIT App Inventor</span>
+                        <div class="posi-banner-title">
+                            <i class="fa-solid fa-mobile-screen-button" style="color: #a78bfa;"></i> RC Controller App
+                        </div>
                     </div>
-                    <p style="font-size: 0.88rem; color: var(--text-secondary);">
-                        Pengembangan aplikasi Android <strong>App_RCcontroller_Javas_8A</strong> untuk mengontrol mobil/robot berbasis Bluetooth secara <em>realtime</em>:
-                    </p>
-                    <ul class="card-list">
-                        <li><strong>UI/UX Layout:</strong> Kontrol navigasi (Maju, Mundur, Kiri, Kanan), Tombol Sein Kiri/Kanan, Hazard, dan Lampu Utama.</li>
-                        <li><strong>Bluetooth Client Logic:</strong> Blok pemrograman komunikasi serial (`ListPicker1` & `BluetoothClient1`).</li>
-                        <li><strong>Event Handling:</strong> Mengirimkan sinyal perintah karakter saat tombol ditekan (`TouchDown`) dan dilepas (`TouchUp`).</li>
-                    </ul>
+                    <div class="posi-card-body">
+                        <div class="posi-tag-row">
+                            <span class="posi-mini-tag"><i class="fa-solid fa-wifi"></i> Bluetooth</span>
+                            <span class="posi-mini-tag"><i class="fa-solid fa-robot"></i> Android</span>
+                        </div>
+                        <p class="posi-card-desc">
+                            Aplikasi Android <strong>App_RCcontroller_Javas_8A</strong> untuk mengontrol robot berbasis Bluetooth secara <em>realtime</em>.
+                        </p>
+                        <ul class="posi-card-list">
+                            <li>Kontrol navigasi (Maju, Mundur, Kiri, Kanan) & Lampu Utama.</li>
+                            <li>Blok pemrograman serial (`ListPicker1` & `BluetoothClient1`).</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="project-img-box project-img-dual">
-                    <a href="https://ibb.co.com/mVNJHdpS" target="_blank" rel="noopener noreferrer" aria-label="Lihat tampilan RC Controller"><img src="https://i.ibb.co.com/zT6sSCdN/codex-clipboard-83161bda-6a50-4e56-bee4-d19bbde5c245.png" alt="Tampilan aplikasi RC Controller di MIT App Inventor" loading="lazy"></a>
-                    <a href="https://ibb.co.com/PZZRWRnX" target="_blank" rel="noopener noreferrer" aria-label="Lihat blok kode RC Controller"><img src="https://i.ibb.co.com/tMMS2Stj/codex-clipboard-74a99522-c9da-4a0c-9703-756ee6c27851.png" alt="Blok kode RC Controller di MIT App Inventor" loading="lazy"></a>
+                <div class="posi-card-footer">
+                    <a href="https://ibb.co.com/mVNJHdpS" target="_blank" rel="noopener noreferrer" class="posi-btn-primary">
+                        Lihat Detail Proyek <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="card">
+            <!-- Card 2: Obstacle Avoider -->
+            <div class="posi-card">
                 <div>
-                    <div class="card-title">
-                        <span><i class="fa-solid fa-car" style="color:var(--accent-red);"></i> Robot Obstacle Avoider</span>
-                        <span class="tag tag-arduino">Tinkercad / Wokwi</span>
+                    <div class="posi-card-banner">
+                        <img src="https://i.ibb.co/xtWDdQ7W/codex-clipboard-ef5e0545-4da2-4939-87a2-71f9b863c713.png" alt="Robot Obstacle Avoider">
+                        <div class="posi-banner-overlay"></div>
+                        <span class="posi-floating-badge badge-red">Tinkercad / Wokwi</span>
+                        <div class="posi-banner-title">
+                            <i class="fa-solid fa-car" style="color: #fb7185;"></i> Obstacle Avoider
+                        </div>
                     </div>
-                    <p style="font-size: 0.88rem; color: var(--text-secondary);">
-                        Simulasi mobil robotik otonom berbasis Arduino Uno yang mampu menghindari rintangan secara otomatis:
-                    </p>
-                    <ul class="card-list">
-                        <li><strong>Sensor & Actuator:</strong> Sensor Ultrasonik HC-SR04 & IC Motor Driver L293D untuk menggerakkan DC Motor.</li>
-                        <li><strong>Logika Navigasi:</strong> Mengukur jarak objek; jika jarak &lt; 20 cm, robot akan belok/mundur otomatis.</li>
-                    </ul>
-                    <div class="code-box">
-                        <span class="keyword">if</span> (distance < <span class="string">20</span>) {<br>
-                        &nbsp;&nbsp;<span class="comment">// Hindari halangan</span><br>
-                        &nbsp;&nbsp;<span class="function">digitalWrite</span>(motor1Pin1, LOW);<br>
-                        &nbsp;&nbsp;<span class="function">digitalWrite</span>(motor1Pin2, HIGH);<br>
-                        }
+                    <div class="posi-card-body">
+                        <div class="posi-tag-row">
+                            <span class="posi-mini-tag"><i class="fa-solid fa-microchip"></i> Arduino Uno</span>
+                            <span class="posi-mini-tag"><i class="fa-solid fa-wave-square"></i> Ultrasonik</span>
+                        </div>
+                        <p class="posi-card-desc">
+                            Simulasi mobil robotik otonom yang mampu menghindar dari rintangan secara otomatis.
+                        </p>
+                        <div class="code-box">
+                            <span class="keyword">if</span> (distance &lt; <span class="string">20</span>) {<br>
+                            &nbsp;&nbsp;<span class="comment">// Hindari halangan</span><br>
+                            &nbsp;&nbsp;<span class="function">digitalWrite</span>(motor1Pin1, LOW);<br>
+                            }
+                        </div>
                     </div>
                 </div>
-                <div class="project-img-box">
-                    <a href="https://ibb.co.com/v6pHR8jp" target="_blank" rel="noopener noreferrer" aria-label="Lihat Robot Obstacle Avoider"><img src="https://i.ibb.co.com/xtWDdQ7W/codex-clipboard-ef5e0545-4da2-4939-87a2-71f9b863c713.png" alt="Robot Obstacle Avoider di Tinkercad" loading="lazy"></a>
+                <div class="posi-card-footer">
+                    <a href="https://ibb.co.com/v6pHR8jp" target="_blank" rel="noopener noreferrer" class="posi-btn-primary">
+                        Lihat Detail Proyek <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="card">
+            <!-- Card 3: Tong Sampah Otomatis -->
+            <div class="posi-card">
                 <div>
-                    <div class="card-title">
-                        <span><i class="fa-solid fa-dumpster" style="color:var(--accent-green);"></i> Tong Sampah Otomatis</span>
-                        <span class="tag tag-arduino">Tinkercad / Wokwi</span>
+                    <div class="posi-card-banner">
+                        <img src="https://i.ibb.co/G4zdHDRw/codex-clipboard-a9b08ab0-940b-4de8-9b88-f4501b267625.png" alt="Tong Sampah Otomatis">
+                        <div class="posi-banner-overlay"></div>
+                        <span class="posi-floating-badge badge-green">Smart IoT</span>
+                        <div class="posi-banner-title">
+                            <i class="fa-solid fa-dumpster" style="color: #34d399;"></i> Tong Sampah Otomatis
+                        </div>
                     </div>
-                    <p style="font-size: 0.88rem; color: var(--text-secondary);">
-                        Sistem tempat sampah pintar (Smart Dustbin) berbasis pencetus jarak ultrasonik:
-                    </p>
-                    <ul class="card-list">
-                        <li><strong>Komponen:</strong> Arduino Uno, Sensor HC-SR04, Servo Motor (Pembuka tutup), LCD 16x2 I2C, dan LED Indikator.</li>
-                        <li><strong>Mekanisme:</strong> Deteksi tangan/objek &lt; 50 cm mendatangkan aksi pembukaan servo 180° serta menampilkan pesan <em>"Silahkan Buang / Terimakasih"</em> pada layar LCD.</li>
-                    </ul>
+                    <div class="posi-card-body">
+                        <div class="posi-tag-row">
+                            <span class="posi-mini-tag"><i class="fa-solid fa-gear"></i> Servo Motor</span>
+                            <span class="posi-mini-tag"><i class="fa-solid fa-tv"></i> LCD 16x2</span>
+                        </div>
+                        <p class="posi-card-desc">
+                            Sistem tempat sampah pintar (Smart Dustbin) berbasis pencetus jarak ultrasonik.
+                        </p>
+                        <ul class="posi-card-list">
+                            <li>Deteksi objek &lt; 50 cm otomatis membuka servo 180°.</li>
+                            <li>Pesan ucapan dinamis pada layar LCD.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="project-img-box">
-                    <a href="https://ibb.co.com/FLRhH1zv" target="_blank" rel="noopener noreferrer" aria-label="Lihat Automatic Dustbin"><img src="https://i.ibb.co.com/G4zdHDRw/codex-clipboard-a9b08ab0-940b-4de8-9b88-f4501b267625.png" alt="Automatic Dustbin di Tinkercad" loading="lazy"></a>
+                <div class="posi-card-footer">
+                    <a href="https://ibb.co.com/FLRhH1zv" target="_blank" rel="noopener noreferrer" class="posi-btn-primary">
+                        Lihat Detail Proyek <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="card">
+            <!-- Card 4: Pintu Garasi Otomatis -->
+            <div class="posi-card">
                 <div>
-                    <div class="card-title">
-                        <span><i class="fa-solid fa-warehouse" style="color:var(--accent-blue);"></i> Pintu Garasi Otomatis</span>
-                        <span class="tag tag-arduino">Tinkercad / Wokwi</span>
+                    <div class="posi-card-banner">
+                        <img src="https://i.ibb.co/fGNq0T5c/codex-clipboard-2ae59bdb-32fe-43a0-b6ef-fe87416fd74a.png" alt="Pintu Garasi Otomatis">
+                        <div class="posi-banner-overlay"></div>
+                        <span class="posi-floating-badge badge-blue">Otomasi</span>
+                        <div class="posi-banner-title">
+                            <i class="fa-solid fa-warehouse" style="color: #38bdf8;"></i> Garasi Otomatis
+                        </div>
                     </div>
-                    <p style="font-size: 0.88rem; color: var(--text-secondary);">
-                        Sistem otomasi palang garasi kendaraan otomatis:
-                    </p>
-                    <ul class="card-list">
-                        <li><strong>Pengoperasian:</strong> Sensor mengukur keberadaan mobil (&lt; 100 cm) untuk memicu Motor Servo membuka pintu garasi.</li>
-                        <li><strong>Umpan Balik Visual:</strong> Layar LCD menampilkan status secara dinamis: <em>"Membuka Garasi"</em> atau <em>"Pintu Garasi Tertutup"</em>.</li>
-                    </ul>
+                    <div class="posi-card-body">
+                        <div class="posi-tag-row">
+                            <span class="posi-mini-tag"><i class="fa-solid fa-car-side"></i> Sensor Mobil</span>
+                            <span class="posi-mini-tag"><i class="fa-solid fa-microchip"></i> Wokwi</span>
+                        </div>
+                        <p class="posi-card-desc">
+                            Sistem otomasi palang garasi kendaraan otomatis saat mobil mendekat.
+                        </p>
+                        <ul class="posi-card-list">
+                            <li>Jarak &lt; 100 cm memicu servo membuka pintu garasi.</li>
+                            <li>Layar LCD menampilkan status pintu secara dinamis.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="project-img-box">
-                    <a href="https://ibb.co.com/WpzGKRwT" target="_blank" rel="noopener noreferrer" aria-label="Lihat Pintu Garasi Otomatis"><img src="https://i.ibb.co.com/fGNq0T5c/codex-clipboard-2ae59bdb-32fe-43a0-b6ef-fe87416fd74a.png" alt="Pintu Garasi Otomatis di Tinkercad" loading="lazy"></a>
+                <div class="posi-card-footer">
+                    <a href="https://ibb.co.com/WpzGKRwT" target="_blank" rel="noopener noreferrer" class="posi-btn-primary">
+                        Lihat Detail Proyek <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="card" style="grid-column: span 1;">
+            <!-- Card 5: LED Dance & Suhu -->
+            <div class="posi-card">
                 <div>
-                    <div class="card-title">
-                        <span><i class="fa-solid fa-lightbulb" style="color:var(--accent-yellow);"></i> LED Dance & Pengukuran Suhu</span>
-                        <span class="tag tag-arduino">Mikrokontroler</span>
+                    <div class="posi-card-banner">
+                        <img src="https://i.ibb.co/zVK66JFD/codex-clipboard-023185c0-cb8c-465c-8116-17f40a7eace0.png" alt="LED Dance & Pengukuran Suhu">
+                        <div class="posi-banner-overlay"></div>
+                        <span class="posi-floating-badge badge-yellow">Mikrokontroler</span>
+                        <div class="posi-banner-title">
+                            <i class="fa-solid fa-lightbulb" style="color: #fbbf24;"></i> LED Dance & Suhu
+                        </div>
                     </div>
-                    <p style="font-size: 0.88rem; color: var(--text-secondary);">
-                        Eksperimen kontrol output digital sekuensial dan pembacaan sensor analog:
-                    </p>
-                    <ul class="card-list">
-                        <li><strong>LED Dance (Pertemuan 6):</strong> Pemrograman animasi ritmis menggunakan 10 LED warna-warni yang dikontrol melalui pin digital Arduino dengan pewaktuan `delay(200)`.</li>
-                        <li><strong>Pengukuran Suhu:</strong> Integrasi sensor suhu (TMP36/DHT11) untuk memproses kalkulasi temperatur dalam derajat Celsius.</li>
-                    </ul>
+                    <div class="posi-card-body">
+                        <div class="posi-tag-row">
+                            <span class="posi-mini-tag"><i class="fa-solid fa-temperature-high"></i> Sensor TMP36</span>
+                            <span class="posi-mini-tag"><i class="fa-solid fa-bolt"></i> Output Digital</span>
+                        </div>
+                        <p class="posi-card-desc">
+                            Kontrol output digital sekuensial dan pembacaan sensor temperatur.
+                        </p>
+                        <ul class="posi-card-list">
+                            <li>Animasi ritmis 10 LED warna-warni `delay(200)`.</li>
+                            <li>Kalkulasi temperatur otomatis dalam °C.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="project-img-box">
-                    <a href="https://ibb.co.com/Zzy22mS7" target="_blank" rel="noopener noreferrer" aria-label="Lihat LED Dance"><img src="https://i.ibb.co.com/zVK66JFD/codex-clipboard-023185c0-cb8c-465c-8116-17f40a7eace0.png" alt="Rangkaian LED Dance di Tinkercad" loading="lazy"></a>
+                <div class="posi-card-footer">
+                    <a href="https://ibb.co.com/Zzy22mS7" target="_blank" rel="noopener noreferrer" class="posi-btn-primary">
+                        Lihat Detail Proyek <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="card">
+            <!-- Card 6: Smart Distance Alarm -->
+            <div class="posi-card">
                 <div>
-                    <div class="card-title">
-                        <span><i class="fa-solid fa-bell" style="color:var(--accent-blue);"></i> Smart Distance Alarm</span>
-                        <span class="tag tag-ict">Wokwi</span>
+                    <div class="posi-card-banner">
+                        <img src="https://i.ibb.co/PvMHbq7m/Screenshot-2026-09-02-at-09-17-02.png" alt="Smart Distance Alarm">
+                        <div class="posi-banner-overlay"></div>
+                        <span class="posi-floating-badge badge-blue">Wokwi Simulation</span>
+                        <div class="posi-banner-title">
+                            <i class="fa-solid fa-bell" style="color: #38bdf8;"></i> Distance Alarm
+                        </div>
                     </div>
-                    <p style="font-size: 0.88rem; color: var(--text-secondary);">
-                        Simulasi sistem alarm jarak berbasis Arduino Uno yang memberikan respons visual dan suara saat objek terdeteksi.
-                    </p>
-                    <ul class="card-list">
-                        <li><strong>Input Sensor:</strong> HC-SR04 mengukur jarak objek secara berkala.</li>
-                        <li><strong>Output Otomatis:</strong> Buzzer, LED, dan servo bekerja sebagai indikator serta respons alarm.</li>
-                    </ul>
+                    <div class="posi-card-body">
+                        <div class="posi-tag-row">
+                            <span class="posi-mini-tag"><i class="fa-solid fa-bullhorn"></i> Buzzer</span>
+                            <span class="posi-mini-tag"><i class="fa-solid fa-shield-halved"></i> Security</span>
+                        </div>
+                        <p class="posi-card-desc">
+                            Simulasi alarm jarak berbasis Arduino Uno dengan pemicu suara dan indikator visual.
+                        </p>
+                        <ul class="posi-card-list">
+                            <li>HC-SR04 mengukur jarak objek secara berkala.</li>
+                            <li>Respons otomatis Buzzer, LED, dan Servo.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="project-img-box">
-                    <a href="https://ibb.co.com/C36GXRk1" target="_blank" rel="noopener noreferrer" aria-label="Lihat Smart Distance Alarm di Wokwi"><img src="https://i.ibb.co.com/PvMHbq7m/Screenshot-2026-09-02-at-09-17-02.png" alt="Simulasi Smart Distance Alarm di Wokwi" loading="lazy"></a>
+                <div class="posi-card-footer">
+                    <a href="https://ibb.co.com/C36GXRk1" target="_blank" rel="noopener noreferrer" class="posi-btn-primary">
+                        Lihat Detail Proyek <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
 
@@ -1075,32 +1585,32 @@
             <div class="presence-section">
                 <h4><i class="fa-solid fa-hashtag" style="color: var(--secondary);"></i> Social Handles</h4>
                 <a class="social-link" href="https://wa.me/628156563851" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> WhatsApp</span> 
-                    <span class="handle">08156563851</span>
+                    <span><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> <strong>WhatsApp</strong></span> 
+                    <span class="handle"><strong>08156563851</strong></span>
                 </a>
                 <a class="social-link" href="https://www.instagram.com/kkay4na/" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-brands fa-instagram" style="color: #e1306c;"></i> Instagram</span> 
-                    <span class="handle">kkay4na</span>
+                    <span><i class="fa-brands fa-instagram" style="color: #e1306c;"></i> <strong>Instagram</strong></span> 
+                    <span class="handle"><strong>kkay4na</strong></span>
                 </a>
                 <a class="social-link" href="https://www.tiktok.com/@4bcdefgh.00" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-brands fa-tiktok" style="color: #000000;"></i> TikTok</span> 
-                    <span class="handle">4bcdefgh.00</span>
+                    <span><i class="fa-brands fa-tiktok" style="color: #000000;"></i> <strong>TikTok</strong></span> 
+                    <span class="handle"><strong>4bcdefgh.00</strong></span>
                 </a>
             </div>
             
             <div class="presence-section">
                 <h4><i class="fa-solid fa-gamepad" style="color: var(--secondary);"></i> Gaming Profiles</h4>
                 <a class="social-link" href="https://www.chess.com/member/splele" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-solid fa-chess-knight" style="color: #739552;"></i> Chess.com</span> 
-                    <span class="handle">Splele</span>
+                    <span><i class="fa-solid fa-chess-knight" style="color: #739552;"></i> <strong>Chess.com</strong></span> 
+                    <span class="handle"><strong>Splele</strong></span>
                 </a>
                 <a class="social-link" href="https://steamcommunity.com/search/users/#text=splesnot" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-brands fa-steam" style="color: #000000;"></i> Steam</span> 
-                    <span class="handle">@splesnot</span>
+                    <span><i class="fa-brands fa-steam" style="color: #000000;"></i> <strong>Steam</strong></span> 
+                    <span class="handle"><strong>@splesnot</strong></span>
                 </a>
                 <a class="social-link" href="https://www.roblox.com/search/users?keyword=santaiwoi" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-solid fa-cube" style="color: #ef4444;"></i> Roblox</span> 
-                    <span class="handle">santaiwoi</span>
+                    <span><i class="fa-solid fa-cube" style="color: #ef4444;"></i> <strong>Roblox</strong></span> 
+                    <span class="handle"><strong>santaiwoi</strong></span>
                 </a>
             </div>
         </div>
@@ -1134,21 +1644,13 @@
                 </div>
             </div>
 
-            <!-- FORM DENGAN WEB3FORMS (LANGSUNG MASUK EMAIL) -->
+            <!-- FORM DENGAN WEB3FORMS -->
             <form action="https://api.web3forms.com/submit" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
-                <!-- Access Key Web3Forms Kamu -->
                 <input type="hidden" name="access_key" value="1a2d86b5-caf4-4512-9feb-c955a7571dc1">
-                
-                <!-- Subject Email yang Masuk ke Inbox -->
                 <input type="hidden" name="subject" value="Pesan Baru dari Portofolio Website">
 
-                <!-- Nama Pengirim -->
                 <input type="text" name="Nama Pengirim" class="form-control-custom" placeholder="Nama Lengkap" required>
-                
-                <!-- Email Pengirim (harus format email valid) -->
                 <input type="email" name="Email Pengirim" class="form-control-custom" placeholder="Alamat Email" required>
-                
-                <!-- Isi Pesan -->
                 <textarea name="Pesan" class="form-control-custom" rows="4" placeholder="Pesan Anda..." required></textarea>
                 
                 <button type="submit" class="primary-action" style="justify-content: center; margin-top: 0;">
@@ -1161,7 +1663,7 @@
 
 <!-- FOOTER -->
 <footer>
-    <p>&copy; 2026 Laksita Javas Kayana Arfiansah. Built with HTML, CSS, & JavaScript.</p>
+    <p>Terimakasih telah mengunjungi portofolioku, this site Built with HTML, CSS, Bootstrap, & JavaScript.</p>
 </footer>
 
 <!-- OVERLAY POP-UP FULLSCREEN -->
@@ -1208,6 +1710,18 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    // SCRIPT DETEKSI WARNA IKON UNTUK EFFECT HOVER JUDUL
+    document.addEventListener("DOMContentLoaded", () => {
+        const cardSelectors = ".achievement-card, .school-list-item, .hardware-card, .posi-card";
+        document.querySelectorAll(cardSelectors).forEach(card => {
+            const icon = card.querySelector("i");
+            if (icon) {
+                const computedColor = window.getComputedStyle(icon).color;
+                card.style.setProperty("--hover-color", computedColor);
+            }
+        });
+    });
+
     // LOGIKA TOGGLE MENU AKADEMIK
     const academicToggleBtn = document.getElementById('academicToggleBtn');
     const academicSubmenu = document.getElementById('academicSubmenu');
