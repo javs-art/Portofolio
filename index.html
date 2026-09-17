@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laksita Javas Kayana Arfiansah - Tech Portfolio</title>
+    
+    <!-- SEO & Open Graph Metadata -->
+    <meta name="description" content="Portofolio Laksita Javas Kayana Arfiansah - Future Network/Cloud Engineer & Tech Enthusiast dari SMK IDN Boarding School Solo.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Laksita Javas Kayana - Tech Portfolio">
+    <meta property="og:description" content="Siswa TKJ SMK IDN Solo yang berfokus pada Networking, Cloud Architecture, dan Software Development.">
+    <meta property="og:image" content="./assets/img/foto muka.jpg">
+    <link rel="icon" type="image/jpeg" href="./assets/img/foto muka.jpg">
+
     <!-- Google Fonts & Font Awesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
     :root {
@@ -21,7 +29,10 @@
         --violet: #8b5cf6;
         --text-main: #0f172a;
         --text-sub: #475569;
-        --bg-glass: rgba(255, 255, 255, 0.85);
+        --bg-glass: rgba(255, 255, 255, 0.88);
+        --bg-card: #ffffff;
+        --border-color: #e2e8f0;
+        --chip-bg: rgba(148, 163, 184, 0.15);
 
         --bg-hero: #ffffff;
         --bg-prestasi: #f8fafc;
@@ -31,6 +42,28 @@
         --bg-presence: #f8fafc;
         --bg-contact: #ffffff;
         --bg-footer: #0f172a;
+    }
+
+    /* DARK MODE VARIABLES */
+    body.dark-mode {
+        --primary: #818cf8;
+        --primary-dark: #6366f1;
+        --text-main: #f8fafc;
+        --text-sub: #94a3b8;
+        --bg-glass: rgba(15, 23, 42, 0.88);
+        --bg-card: #1e293b;
+        --border-color: #334155;
+        --chip-bg: rgba(51, 65, 85, 0.6);
+
+        --bg-hero: #0f172a;
+        --bg-prestasi: #1e293b;
+        --bg-akademik: #0f172a;
+        --bg-skills: #1e293b;
+        --bg-projects: #0f172a;
+        --bg-presence: #1e293b;
+        --bg-contact: #0f172a;
+        --bg-footer: #020617;
+        background-color: #0f172a;
     }
 
     * {
@@ -50,27 +83,23 @@
         line-height: 1.6;
         overflow-x: hidden;
         padding-top: 72px;
+        transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .section-container {
         width: min(100% - 2rem, 1280px);
         margin: 0 auto;
-        padding: 3rem 1rem;
+        padding: 3.5rem 1rem;
     }
 
     .full-section {
-        width: 100vw;
-        min-height: calc(100vh - 72px);
+        width: 100%;
+        min-height: calc(100dvh - 72px);
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 3rem 0;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        border-bottom: 1px solid #f1f5f9;
+        border-bottom: 1px solid var(--border-color);
+        transition: background-color 0.3s ease;
     }
 
     #about-me { background-color: var(--bg-hero); }
@@ -92,8 +121,8 @@
         width: 52px;
         height: 52px;
         border-radius: 16px;
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -109,7 +138,7 @@
         letter-spacing: -0.02em;
     }
 
-    /* TOP NAVBAR DENGAN EFFECT GLASSMORPHISM */
+    /* TOP NAVBAR GLASSMORPHISM */
     .dashboard-nav {
         position: fixed;
         top: 0;
@@ -122,9 +151,10 @@
         justify-content: space-between;
         padding: 0 2rem;
         background: var(--bg-glass);
-        border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        border-bottom: 1px solid var(--border-color);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
+        transition: background-color 0.3s ease, border-color 0.3s ease;
     }
 
     .dashboard-brand {
@@ -190,6 +220,22 @@
         background: rgba(99, 102, 241, 0.08);
     }
 
+    .theme-toggle-btn, .nav-toggle-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--border-color);
+        background: var(--bg-card);
+        color: var(--text-main);
+        cursor: pointer;
+    }
+
+    .nav-toggle-btn { display: none; font-size: 1.2rem; }
+
     .academic-menu { position: relative; }
     .academic-submenu {
         position: absolute;
@@ -198,8 +244,8 @@
         min-width: 200px;
         padding: .6rem;
         list-style: none;
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         border-radius: 16px;
         box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.12);
         display: none;
@@ -231,7 +277,7 @@
         background: rgba(99, 102, 241, 0.08);
     }
 
-    /* HERO SECTION ENHANCEMENTS */
+    /* HERO SECTION */
     .hero-layout {
         display: flex;
         align-items: center;
@@ -254,16 +300,14 @@
         transition: transform 0.4s ease;
     }
 
-    .hero-profile-box:hover {
-        transform: translateY(-6px);
-    }
+    .hero-profile-box:hover { transform: translateY(-6px); }
 
     .hero-profile-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         border-radius: 24px;
-        background: #ffffff;
+        background: var(--bg-card);
     }
 
     .badge-group {
@@ -277,13 +321,19 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: #e0e7ff;
+        background: rgba(99, 102, 241, 0.15);
         border: 1px solid rgba(99, 102, 241, 0.2);
-        color: var(--primary-dark);
+        color: var(--primary);
         padding: 8px 18px;
         border-radius: 100px;
         font-size: 0.85rem;
         font-weight: 700;
+    }
+
+    .badge-accent {
+        color: var(--accent);
+        border-color: rgba(16, 185, 129, 0.2);
+        background: rgba(16, 185, 129, 0.08);
     }
 
     .hero h1 {
@@ -297,6 +347,7 @@
     .hero .subtitle {
         font-size: 1.25rem;
         background: linear-gradient(90deg, var(--primary), var(--secondary));
+        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 800;
@@ -326,6 +377,7 @@
         cursor: pointer;
         transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+        text-decoration: none;
     }
 
     .primary-action:hover {
@@ -334,7 +386,6 @@
         color: #ffffff;
     }
 
-    /* CARDS & HOVER EFFECTS DENGAN PEWARNAAN JUDUL DYNAMIS */
     .grid-2 {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -353,15 +404,21 @@
         transition: color 0.3s ease;
     }
 
-    /* JEJAK PENDIDIKAN CARD HOVER */
+    .list-desc {
+        color: var(--text-sub);
+        font-size: 0.92rem;
+        line-height: 1.6;
+    }
+
+    /* JEJAK PENDIDIKAN */
     .school-list-item {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 2rem;
         padding: 1.75rem;
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         border-radius: 22px;
         margin-bottom: 1.5rem;
         box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
@@ -374,10 +431,6 @@
         box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.12);
     }
 
-    .school-list-item:hover .list-title {
-        color: var(--hover-color, var(--primary));
-    }
-
     .school-info { flex: 1; }
 
     .school-img-wrapper {
@@ -387,9 +440,6 @@
         height: 155px;
         border-radius: 16px;
         overflow: hidden;
-        border: none;
-        background: transparent;
-        padding: 0;
         cursor: pointer;
     }
 
@@ -404,8 +454,8 @@
 
     .detail-button {
         margin-top: 1rem;
-        border: 1px solid #e2e8f0;
-        background: #f8fafc;
+        border: 1px solid var(--border-color);
+        background: var(--bg-card);
         color: var(--text-main);
         border-radius: 12px;
         padding: .55rem 1.1rem;
@@ -421,13 +471,13 @@
         box-shadow: 0 8px 15px -3px rgba(99, 102, 241, 0.3);
     }
 
-    /* PRESTASI CARD HOVER */
+    /* PRESTASI CARD */
     .achievement-card {
         display: flex;
         gap: 1.25rem;
         padding: 1.5rem;
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         border-radius: 20px;
         box-shadow: 0 10px 25px -10px rgba(15, 23, 42, 0.05);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -435,12 +485,8 @@
 
     .achievement-card:hover {
         transform: translateY(-4px);
-        border-color: #cbd5e1;
+        border-color: var(--primary);
         box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.1);
-    }
-
-    .achievement-card:hover .list-title {
-        color: var(--hover-color, var(--warning));
     }
 
     .achievement-icon {
@@ -456,7 +502,7 @@
         flex-shrink: 0;
     }
 
-    /* POSI-STYLE PROJECT CARDS HOVER */
+    /* POSI-STYLE PROJECT CARDS */
     .posi-card-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
@@ -465,10 +511,10 @@
     }
 
     .posi-card {
-        background: #ffffff;
+        background: var(--bg-card);
         border-radius: 24px;
         overflow: hidden;
-        border: 1px solid #e2e8f0;
+        border: 1px solid var(--border-color);
         box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
         display: flex;
         flex-direction: column;
@@ -488,6 +534,7 @@
         width: 100%;
         overflow: hidden;
         background: #0f172a;
+        cursor: pointer;
     }
 
     .posi-card-banner img {
@@ -497,9 +544,7 @@
         transition: transform 0.6s ease;
     }
 
-    .posi-card:hover .posi-card-banner img {
-        transform: scale(1.08);
-    }
+    .posi-card:hover .posi-card-banner img { transform: scale(1.08); }
 
     .posi-banner-overlay {
         position: absolute;
@@ -540,11 +585,6 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        transition: color 0.3s ease;
-    }
-
-    .posi-card:hover .posi-banner-title {
-        color: var(--hover-color, #ffffff);
     }
 
     .posi-card-body {
@@ -562,7 +602,7 @@
     }
 
     .posi-mini-tag {
-        background: #f1f5f9;
+        background: var(--chip-bg);
         color: var(--text-sub);
         padding: 4px 12px;
         border-radius: 8px;
@@ -630,7 +670,6 @@
         margin-bottom: 1rem;
         overflow-x: auto;
         border: 1px solid #334155;
-        box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
     }
 
     .keyword { color: #c678dd; }
@@ -638,7 +677,7 @@
     .comment { color: #5c6370; font-style: italic; }
     .function { color: #61afef; }
 
-    /* MODERNIZED TECH STACK & HARDWARE SETUP STYLES */
+    /* SKILLS & HARDWARE STYLES */
     .skills-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -665,8 +704,8 @@
     }
 
     .skill-card {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         padding: 0.85rem 1rem;
         border-radius: 16px;
         display: flex;
@@ -674,59 +713,29 @@
         gap: 12px;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
-        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
         position: relative;
         overflow: hidden;
     }
 
-    .skill-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 3px;
-        height: 100%;
-        background: var(--accent-color, var(--primary));
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
     .skill-card:hover {
         transform: translateY(-4px);
-        border-color: rgba(99, 102, 241, 0.3);
+        border-color: var(--primary);
         box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08);
-    }
-
-    .skill-card:hover::before {
-        opacity: 1;
-    }
-
-    .skill-card:hover .skill-name {
-        color: var(--accent-color, var(--primary));
     }
 
     .skill-icon-wrap {
         width: 40px;
         height: 40px;
         border-radius: 12px;
-        background: #f8fafc;
+        background: var(--chip-bg);
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1.25rem;
         flex-shrink: 0;
-        transition: transform 0.3s ease;
     }
 
-    .skill-card:hover .skill-icon-wrap {
-        transform: scale(1.1);
-    }
-
-    .skill-info {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-    }
+    .skill-info { display: flex; flex-direction: column; overflow: hidden; }
 
     .skill-name {
         font-size: 0.88rem;
@@ -735,19 +744,14 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        transition: color 0.3s ease;
     }
 
-    .skill-cat {
-        font-size: 0.72rem;
-        color: var(--text-sub);
-        font-weight: 600;
-    }
+    .skill-cat { font-size: 0.72rem; color: var(--text-sub); font-weight: 600; }
 
-    /* ENHANCED HARDWARE SETUP CARD */
+    /* HARDWARE SETUP CARD */
     .hardware-card {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         border-radius: 20px;
         padding: 1.25rem;
         margin-bottom: 1.2rem;
@@ -755,24 +759,20 @@
         gap: 1.2rem;
         align-items: flex-start;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 15px rgba(15, 23, 42, 0.02);
-        position: relative;
     }
 
     .hardware-card:hover {
         transform: translateY(-4px);
-        border-color: #cbd5e1;
+        border-color: var(--primary);
         box-shadow: 0 16px 30px -8px rgba(15, 23, 42, 0.08);
-    }
-
-    .hardware-card:hover .hardware-title {
-        color: var(--hover-color, var(--primary));
     }
 
     .hardware-icon-box {
         width: 48px;
         height: 48px;
         border-radius: 14px;
+        background: var(--chip-bg);
+        color: var(--primary);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -780,9 +780,7 @@
         flex-shrink: 0;
     }
 
-    .hardware-content {
-        flex: 1;
-    }
+    .hardware-content { flex: 1; }
 
     .hardware-title-row {
         display: flex;
@@ -795,7 +793,6 @@
         font-weight: 800;
         font-size: 1.05rem;
         color: var(--text-main);
-        transition: color 0.3s ease;
         display: flex;
         align-items: center;
         gap: 8px;
@@ -807,24 +804,16 @@
         padding: 3px 10px;
         border-radius: 100px;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        background: rgba(99, 102, 241, 0.15);
+        color: var(--primary);
     }
 
-    .hardware-desc {
-        font-size: 0.9rem;
-        color: var(--text-sub);
-        line-height: 1.5;
-    }
+    .hardware-desc { font-size: 0.9rem; color: var(--text-sub); line-height: 1.5; }
 
-    .hardware-specs {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-top: 0.75rem;
-    }
+    .hardware-specs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.75rem; }
 
     .spec-chip {
-        background: #f1f5f9;
+        background: var(--chip-bg);
         color: var(--text-sub);
         font-size: 0.75rem;
         font-weight: 700;
@@ -839,13 +828,12 @@
         justify-content: space-between;
         align-items: center;
         padding: 14px 18px;
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         border-radius: 14px;
         font-size: 0.95rem;
         color: var(--text-main);
         text-decoration: none;
-        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
         transition: all .25s ease;
     }
     
@@ -858,11 +846,7 @@
 
     .social-link .handle { color: var(--primary); font-family: 'Fira Code', monospace; font-weight: 600; }
 
-    .presence-section {
-        display: flex;
-        flex-direction: column;
-        gap: 0.8rem;
-    }
+    .presence-section { display: flex; flex-direction: column; gap: 0.8rem; }
 
     .presence-section h4 {
         margin-bottom: 0.8rem;
@@ -876,9 +860,9 @@
     .form-control-custom {
         width: 100%;
         padding: .9rem 1.25rem;
-        border: 1px solid #cbd5e1;
+        border: 1px solid var(--border-color);
         border-radius: 14px;
-        background: #ffffff;
+        background: var(--bg-card);
         color: var(--text-main);
         font-size: .95rem;
         transition: all 0.25s ease;
@@ -890,98 +874,97 @@
         box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
     }
 
-    /* MODAL DESIGN */
-    .modal-dialog { max-width: 820px; margin: 1.5rem auto; }
-    .modal-content {
-        background: #ffffff;
+    .visually-hidden {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0,0,0,0); border: 0;
+    }
+
+    /* PURE CSS CUSTOM MODAL SYSTEM */
+    .custom-modal-overlay {
+        position: fixed; inset: 0; z-index: 1050;
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(8px);
+        display: none; align-items: center; justify-content: center; padding: 1rem;
+    }
+
+    .custom-modal-overlay.active { display: flex; }
+
+    .custom-modal-box {
+        background: var(--bg-card);
         color: var(--text-main);
+        border: 1px solid var(--border-color);
         border-radius: 24px;
-        overflow: hidden;
-        border: none;
+        max-width: 600px; width: 100%;
+        padding: 2rem;
         box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+        animation: fadeIn 0.25s ease;
+    }
+
+    .custom-modal-header {
+        display: flex; justify-content: space-between; align-items: center;
+        margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-color);
+    }
+
+    .custom-modal-header h3 { font-size: 1.25rem; font-weight: 800; margin: 0; }
+    .custom-modal-close {
+        background: transparent; border: none; font-size: 1.5rem; color: var(--text-sub); cursor: pointer;
     }
 
     /* FOOTER */
     footer {
-        width: 100vw;
+        width: 100%;
         background: var(--bg-footer);
         color: #94a3b8;
         text-align: center;
-        padding: 3rem 0;
+        padding: 2.5rem 1rem;
         font-size: 0.95rem;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
     }
 
-    /* OVERLAY POP-UP FULLSCREEN */
-    #fullscreen-overlay {
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(15, 23, 42, 0.75); 
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999; 
+    /* FULLSCREEN IMAGE ZOOM MODAL STYLES */
+    img.zoomable { cursor: zoom-in; }
+
+    #image-zoom-overlay {
+        position: fixed; inset: 0; z-index: 10000;
+        background: rgba(15, 23, 42, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        display: none; align-items: center; justify-content: center; padding: 1.5rem;
+        cursor: zoom-out; animation: fadeIn 0.25s ease-out;
     }
 
-    .fs-popup-card {
-        background: #ffffff;
-        border-radius: 28px;
-        padding: 2.8rem 2.2rem;
-        max-width: 460px;
-        text-align: center;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
-        margin: 1rem;
-        animation: scaleUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    #image-zoom-overlay.active { display: flex; }
+
+    #image-zoom-overlay img {
+        max-width: 92vw; max-height: 92vh; object-fit: contain;
+        border-radius: 16px; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+        border: 2px solid rgba(255, 255, 255, 0.15);
     }
 
-    @keyframes scaleUp {
-        from { transform: scale(0.9); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
+    .zoom-close-btn {
+        position: absolute; top: 20px; right: 25px; color: #ffffff;
+        font-size: 2rem; cursor: pointer; background: rgba(255, 255, 255, 0.1);
+        width: 46px; height: 46px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
     }
 
-    .fs-popup-header {
-        display: flex; align-items: center; justify-content: center; gap: 15px;
-        margin-bottom: 1.4rem; padding-bottom: 1.4rem; border-bottom: 1px solid #e2e8f0;
-    }
-
-    .fs-profile-img {
-        width: 64px; height: 64px; border-radius: 50%; object-fit: cover;
-        border: 3px solid var(--primary);
-    }
-
-    .fs-popup-title {
-        color: var(--text-main); font-size: 1.15rem; font-weight: 800; margin: 0; text-align: left;
-    }
-
-    .fs-popup-body {
-        color: var(--text-sub); font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.6;
-    }
-
-    .btn-fullscreen {
-        padding: 14px 28px; font-size: 0.95rem; font-weight: 800; color: #ffffff;
-        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-        border: none; border-radius: 14px; cursor: pointer;
-        width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px;
-        transition: all 0.25s ease;
-        box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
-    }
-
-    .btn-fullscreen:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.5);
-    }
-
-    @media (max-width: 768px) {
+    /* RESPONSIVE HAMBURGER MENU */
+    @media (max-width: 868px) {
         body { padding-top: 65px; }
-        .dashboard-nav { padding: 0 1rem; }
-        .dashboard-links { gap: .3rem; }
-        .dashboard-link { padding: .4rem .6rem; font-size: .8rem; }
+        .dashboard-nav { padding: 0 1.25rem; height: 65px; }
+        .nav-toggle-btn { display: flex; }
+        
+        .dashboard-links {
+            position: fixed; top: 65px; left: 0; right: 0;
+            background: var(--bg-card); border-bottom: 1px solid var(--border-color);
+            flex-direction: column; align-items: flex-start; padding: 1.25rem; gap: 0.5rem;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1); display: none;
+        }
+
+        .dashboard-links.active { display: flex; }
+        .dashboard-links li { width: 100%; }
+        .dashboard-link { width: 100%; justify-content: flex-start; padding: 0.75rem 1rem; }
+        .academic-submenu { position: static; width: 100%; box-shadow: none; margin-top: 0.5rem; }
+
         .full-section { padding: 2.5rem 0; min-height: auto; }
         .hero-layout { flex-direction: column-reverse; text-align: center; gap: 2rem; }
         .hero-profile-box { width: 220px; height: 220px; }
@@ -990,6 +973,8 @@
         .school-list-item { flex-direction: column; align-items: flex-start; }
         .school-img-wrapper { width: 100%; height: 180px; }
     }
+
+    .posi-banner-overlay, .posi-floating-badge, .posi-banner-title { pointer-events: none; }
 </style>
 </head>
 <body>
@@ -1001,10 +986,14 @@
         <i class="fa-solid fa-code" style="color: var(--primary);"></i>
         <span class="brand-text">SERVER</span>
     </a>
-    <ul class="dashboard-links">
+
+    <button class="nav-toggle-btn" id="navToggleBtn" type="button" aria-label="Toggle Navigasi Mobile">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <ul class="dashboard-links" id="dashboardLinks">
         <li><a class="dashboard-link" href="#about-me"><i class="fa-solid fa-user"></i> About Me</a></li>
         
-        <!-- MENU AKADEMIK DENGAN CLICK TOGGLE -->
         <li class="academic-menu">
             <button class="dashboard-link" id="academicToggleBtn" type="button" aria-expanded="false">
                 <i class="fa-solid fa-graduation-cap"></i> Akademik <i class="fa-solid fa-chevron-down" style="font-size:.65rem; margin-left: 2px;"></i>
@@ -1019,6 +1008,12 @@
 
         <li><a class="dashboard-link" href="#prestasi"><i class="fa-solid fa-trophy"></i> Prestasi</a></li>
         <li><a class="dashboard-link" href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a></li>
+        
+        <li>
+            <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Toggle Mode Terang/Gelap">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </li>
     </ul>
 </nav>
 
@@ -1029,8 +1024,8 @@
             <div class="hero-text">
                 <div class="badge-group">
                     <div class="badge"><i class="fa-solid fa-location-dot" style="color: var(--coral);"></i> Surakarta, ID</div>
-                    <div class="badge" style="color: var(--accent); border-color: rgba(16, 185, 129, 0.2); background: rgba(16, 185, 129, 0.08);">
-                        <i class="fa-solid fa-graduation-cap" style="color: var(--accent);"></i> SMP ABBS & SMK IDN (TKJ)
+                    <div class="badge badge-accent">
+                        <i class="fa-solid fa-graduation-cap"></i> SMP ABBS & SMK IDN (TKJ)
                     </div>
                 </div>
                 <h1><strong>Laksita Javas Kayana Arfiansah</strong></h1>
@@ -1045,7 +1040,7 @@
             </div>
             
             <div class="hero-profile-box">
-                <img src="https://i.ibb.co.com/xKGd2xgk/20260526-073702.jpg" alt="Laksita Javas Kayana Arfiansah" class="hero-profile-img">
+                <img src="./assets/img/foto muka.jpg" alt="Laksita Javas Kayana Arfiansah" class="hero-profile-img zoomable">
             </div>
         </div>
     </div>
@@ -1063,7 +1058,7 @@
 
         <div class="grid-2">
             <div class="achievement-card">
-                <div class="achievement-icon" style="color: var(--warning);">
+                <div class="achievement-icon">
                     <i class="fa-solid fa-medal"></i>
                 </div>
                 <div>
@@ -1119,43 +1114,41 @@
             <div class="school-info">
                 <div class="list-title"><i class="fa-solid fa-school" style="color: var(--primary);"></i> SMK IDN Boarding School Solo</div>
                 <div class="list-desc">Sekolah Menengah Kejuruan berbasis <em>boarding school</em> dengan konsentrasi keahlian Teknik Komputer dan Jaringan (TKJ). Berfokus pada praktik arsitektur jaringan skala industri (MikroTik, PNETLab), simulasi sistem operasi (VirtualBox), Cloud Architecture, serta dasar-dasar pengembangan aplikasi berbasis web dan mobile.</div>
-                <button type="button" class="detail-button" data-bs-toggle="modal" data-bs-target="#schoolIdnModal"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat detail</button>
+                <button type="button" class="detail-button" onclick="openModal('schoolIdnModal')"><i class="fa-solid fa-globe me-1"></i> Detail Sekolah</button>
             </div>
-            <button type="button" class="school-img-wrapper" data-bs-toggle="modal" data-bs-target="#schoolIdnModal" aria-label="Buka detail SMK IDN Boarding School Solo">
-                <img src="https://i.ibb.co/JRqMtYpX/smk-idn.jpg" alt="SMK IDN Boarding School Solo">
-            </button>
+            <div class="school-img-wrapper">
+                <img src="./assets/img/smk idn.jpeg" alt="SMK IDN Boarding School Solo" class="zoomable">
+            </div>
         </div>
 
         <div class="school-list-item" id="smp">
             <div class="school-info">
                 <div class="list-title"><i class="fa-solid fa-building-columns" style="color: var(--secondary);"></i> SMP ABBS Surakarta</div>
                 <div class="list-desc">Pendidikan Sekolah Menengah Pertama (Al-Abidin Bilingual Boarding School) yang membentuk fondasi akademis yang kuat, melatih logika dasar matematika dan pemrosesan ICT (seperti JavaScript & pemrograman dasar), serta memperkuat pembentukan karakter kepemimpinan berbasis Islam.</div>
-                <button type="button" class="detail-button" data-bs-toggle="modal" data-bs-target="#schoolAbbsModal"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat detail</button>
+                <button type="button" class="detail-button" onclick="openModal('schoolAbbsModal')"><i class="fa-solid fa-globe me-1"></i> Detail Sekolah</button>
             </div>
-            <button type="button" class="school-img-wrapper" data-bs-toggle="modal" data-bs-target="#schoolAbbsModal" aria-label="Buka detail SMP ABBS Surakarta">
-                <img src="https://i.ibb.co/vxgVsnb8/smp-abbs.jpg" alt="SMP ABBS Surakarta">
-            </button>
+            <div class="school-img-wrapper">
+                <img src="./assets/img/smp abbs.jpg" alt="SMP ABBS Surakarta" class="zoomable">
+            </div>
         </div>
 
         <div class="school-list-item" id="sd">
             <div class="school-info">
                 <div class="list-title"><i class="fa-solid fa-book-bookmark" style="color: var(--accent);"></i> SDIT Ar-Risalah</div>
                 <div class="list-desc">Sekolah Dasar Islam Terpadu yang menanamkan fondasi awal pendidikan nilai-nilai keagamaan, kedisiplinan, serta membangun ketertarikan awal terhadap ilmu pengetahuan umum dan dasar-dasar teknologi informasi.</div>
-                <button type="button" class="detail-button" data-bs-toggle="modal" data-bs-target="#schoolRisalahModal"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat detail</button>
+                <button type="button" class="detail-button" onclick="openModal('schoolRisalahModal')"><i class="fa-solid fa-globe me-1"></i> Detail Sekolah</button>
             </div>
-            <button type="button" class="school-img-wrapper" data-bs-toggle="modal" data-bs-target="#schoolRisalahModal" aria-label="Buka detail SDIT Ar-Risalah">
-                <img src="https://i.ibb.co/hFQqXDqj/sdit-arisalah.jpg" alt="SDIT Ar-Risalah">
-            </button>
+            <div class="school-img-wrapper">
+                <img src="./assets/img/sdit arisalah.jpg" alt="SDIT Ar-Risalah" class="zoomable">
+            </div>
         </div>
     </div>
 </section>
 
-<!-- SECTION 4: SKILLS & GEAR (ENHANCED DESIGN) -->
+<!-- SECTION 4: SKILLS & GEAR -->
 <section class="full-section" id="skills">
     <div class="section-container">
         <div class="skills-grid">
-            
-            <!-- TECH & DESIGN STACK -->
             <div>
                 <div class="section-header">
                     <div class="icon-box" style="color: var(--primary);">
@@ -1168,8 +1161,8 @@
                     <i class="fa-solid fa-server" style="color: var(--secondary);"></i> Network & Cloud
                 </div>
                 <div class="skill-cards-container">
-                    <div class="skill-card" style="--accent-color: #0ea5e9;">
-                        <div class="skill-icon-wrap" style="color: #0ea5e9; background: rgba(14, 165, 233, 0.1);">
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap" style="color: #0ea5e9;">
                             <i class="fa-solid fa-network-wired"></i>
                         </div>
                         <div class="skill-info">
@@ -1178,8 +1171,8 @@
                         </div>
                     </div>
 
-                    <div class="skill-card" style="--accent-color: #8b5cf6;">
-                        <div class="skill-icon-wrap" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);">
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap" style="color: #8b5cf6;">
                             <i class="fa-solid fa-diagram-project"></i>
                         </div>
                         <div class="skill-info">
@@ -1188,8 +1181,8 @@
                         </div>
                     </div>
 
-                    <div class="skill-card" style="--accent-color: #10b981;">
-                        <div class="skill-icon-wrap" style="color: #10b981; background: rgba(16, 185, 129, 0.1);">
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap" style="color: #10b981;">
                             <i class="fa-solid fa-box-archive"></i>
                         </div>
                         <div class="skill-info">
@@ -1198,8 +1191,8 @@
                         </div>
                     </div>
 
-                    <div class="skill-card" style="--accent-color: #38bdf8;">
-                        <div class="skill-icon-wrap" style="color: #38bdf8; background: rgba(56, 189, 248, 0.1);">
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap" style="color: #38bdf8;">
                             <i class="fa-solid fa-cloud"></i>
                         </div>
                         <div class="skill-info">
@@ -1213,8 +1206,8 @@
                     <i class="fa-solid fa-code" style="color: var(--primary);"></i> Programming & Dev
                 </div>
                 <div class="skill-cards-container">
-                    <div class="skill-card" style="--accent-color: #f59e0b;">
-                        <div class="skill-icon-wrap" style="color: #f59e0b; background: rgba(245, 158, 11, 0.1);">
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap" style="color: #f59e0b;">
                             <i class="fa-brands fa-python"></i>
                         </div>
                         <div class="skill-info">
@@ -1223,8 +1216,8 @@
                         </div>
                     </div>
 
-                    <div class="skill-card" style="--accent-color: #eab308;">
-                        <div class="skill-icon-wrap" style="color: #eab308; background: rgba(234, 179, 8, 0.1);">
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap" style="color: #eab308;">
                             <i class="fa-brands fa-js"></i>
                         </div>
                         <div class="skill-info">
@@ -1233,8 +1226,8 @@
                         </div>
                     </div>
 
-                    <div class="skill-card" style="--accent-color: #38bdf8;">
-                        <div class="skill-icon-wrap" style="color: #38bdf8; background: rgba(56, 189, 248, 0.1);">
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap" style="color: #38bdf8;">
                             <i class="fa-solid fa-mobile-screen"></i>
                         </div>
                         <div class="skill-info">
@@ -1243,8 +1236,8 @@
                         </div>
                     </div>
 
-                    <div class="skill-card" style="--accent-color: #f97316;">
-                        <div class="skill-icon-wrap" style="color: #f97316; background: rgba(249, 115, 22, 0.1);">
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap" style="color: #f97316;">
                             <i class="fa-brands fa-html5"></i>
                         </div>
                         <div class="skill-info">
@@ -1258,8 +1251,8 @@
                     <i class="fa-solid fa-palette" style="color: var(--coral);"></i> Creative Tools
                 </div>
                 <div class="skill-cards-container">
-                    <div class="skill-card" style="--accent-color: #ec4899;">
-                        <div class="skill-icon-wrap" style="color: #ec4899; background: rgba(236, 72, 153, 0.1);">
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap" style="color: #ec4899;">
                             <i class="fa-brands fa-figma"></i>
                         </div>
                         <div class="skill-info">
@@ -1268,8 +1261,8 @@
                         </div>
                     </div>
 
-                    <div class="skill-card" style="--accent-color: #ac5ff4;">
-                        <div class="skill-icon-wrap" style="color: #ac5ff4; background: rgba(172, 95, 244, 0.1);">
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap" style="color: #ac5ff4;">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
                         </div>
                         <div class="skill-info">
@@ -1290,18 +1283,16 @@
                 </div>
 
                 <div class="hardware-card">
-                    <div class="hardware-icon-box" style="color: #64748b; background: rgba(100, 116, 139, 0.1);">
+                    <div class="hardware-icon-box">
                         <i class="fa-brands fa-apple"></i>
                     </div>
                     <div class="hardware-content">
                         <div class="hardware-title-row">
-                            <div class="hardware-title">
-                                MacBook Pro 14"
-                            </div>
-                            <span class="hardware-badge" style="background: rgba(99, 102, 241, 0.1); color: var(--primary);">Primary</span>
+                            <div class="hardware-title">MacBook Pro 14"</div>
+                            <span class="hardware-badge">Primary Workstation</span>
                         </div>
                         <div class="hardware-desc">
-                            Mesin utama untuk komputasi berat, simulasi jaringan, dan pengembangan aplikasi mobile.
+                            Mesin utama untuk komputasi berat, simulasi jaringan skala industri, dan pengembangan aplikasi mobile.
                         </div>
                         <div class="hardware-specs">
                             <span class="spec-chip">Apple M1 Pro</span>
@@ -1312,61 +1303,55 @@
                 </div>
 
                 <div class="hardware-card">
-                    <div class="hardware-icon-box" style="color: #3b82f6; background: rgba(59, 130, 246, 0.1);">
+                    <div class="hardware-icon-box">
                         <i class="fa-solid fa-mobile-screen-button"></i>
                     </div>
                     <div class="hardware-content">
                         <div class="hardware-title-row">
-                            <div class="hardware-title">
-                                Mobile Devices
-                            </div>
-                            <span class="hardware-badge" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">Ecosystem</span>
+                            <div class="hardware-title">Mobile Testing Devices</div>
+                            <span class="hardware-badge">Testing Env</span>
                         </div>
                         <div class="hardware-desc">
-                            Perangkat uji coba aplikasi Android dan produktivitas harian.
+                            Perangkat uji coba responsivitas aplikasi Android dan ekosistem komputasi harian.
                         </div>
                         <div class="hardware-specs">
                             <span class="spec-chip">Samsung A35</span>
                             <span class="spec-chip">Samsung A36</span>
-                            <span class="spec-chip">MagSafe TPU Case</span>
+                            <span class="spec-chip">Android 14</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="hardware-card">
-                    <div class="hardware-icon-box" style="color: #10b981; background: rgba(16, 185, 129, 0.1);">
-                        <i class="fa-solid fa-route"></i>
+                    <div class="hardware-icon-box">
+                        <i class="fa-solid fa-network-wired"></i>
                     </div>
                     <div class="hardware-content">
                         <div class="hardware-title-row">
-                            <div class="hardware-title">
-                                Mobility & Daily
-                            </div>
-                            <span class="hardware-badge" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">Commute</span>
+                            <div class="hardware-title">Network & Lab Gear</div>
+                            <span class="hardware-badge">Lab Tools</span>
                         </div>
                         <div class="hardware-desc">
-                            Dukungan mobilitas fleksibel menggunakan konektivitas online ride-hailing.
+                            Perangkat fisik untuk pengujian routing MikroTik, konfigurasi LAN, dan ekosistem IoT.
                         </div>
                         <div class="hardware-specs">
-                            <span class="spec-chip">Gojek</span>
-                            <span class="spec-chip">GrabCar</span>
-                            <span class="spec-chip">GrabBike</span>
+                            <span class="spec-chip">MikroTik RouterBOARD</span>
+                            <span class="spec-chip">FTDI Serial USB</span>
+                            <span class="spec-chip">Cat6 Cable</span>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </section>
 
-<!-- SECTION 5: PROJECTS & ACADEMICS (POSI-STYLE DISPLAY) -->
+<!-- SECTION 5: PROJECTS & ACADEMICS -->
 <section class="full-section" id="projects">
     <div class="section-container">
         
         <div style="text-align: center; max-width: 680px; margin: 0 auto 3rem;">
-            <div class="badge" style="margin-bottom: 0.8rem; background: #e0e7ff; color: #4338ca; border: none;">
+            <div class="badge" style="margin-bottom: 0.8rem;">
                 <i class="fa-solid fa-rocket"></i> Karya & Eksperimen
             </div>
             <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">Portofolio Proyek & Akademik</h2>
@@ -1379,7 +1364,7 @@
             <div class="posi-card">
                 <div>
                     <div class="posi-card-banner">
-                        <img src="https://i.ibb.co/zT6sSCdN/codex-clipboard-83161bda-6a50-4e56-bee4-d19bbde5c245.png" alt="RC Controller">
+                        <img src="./assets/img/mobil.png" alt="RC Controller" class="zoomable">
                         <div class="posi-banner-overlay"></div>
                         <span class="posi-floating-badge badge-purple">MIT App Inventor</span>
                         <div class="posi-banner-title">
@@ -1411,7 +1396,7 @@
             <div class="posi-card">
                 <div>
                     <div class="posi-card-banner">
-                        <img src="https://i.ibb.co/xtWDdQ7W/codex-clipboard-ef5e0545-4da2-4939-87a2-71f9b863c713.png" alt="Robot Obstacle Avoider">
+                        <img src="./assets/img/wokwi.png" alt="Robot Obstacle Avoider" class="zoomable">
                         <div class="posi-banner-overlay"></div>
                         <span class="posi-floating-badge badge-red">Tinkercad / Wokwi</span>
                         <div class="posi-banner-title">
@@ -1445,7 +1430,7 @@
             <div class="posi-card">
                 <div>
                     <div class="posi-card-banner">
-                        <img src="https://i.ibb.co/G4zdHDRw/codex-clipboard-a9b08ab0-940b-4de8-9b88-f4501b267625.png" alt="Tong Sampah Otomatis">
+                        <img src="./assets/img/tong sampah.png" alt="Tong Sampah Otomatis" class="zoomable">
                         <div class="posi-banner-overlay"></div>
                         <span class="posi-floating-badge badge-green">Smart IoT</span>
                         <div class="posi-banner-title">
@@ -1477,7 +1462,7 @@
             <div class="posi-card">
                 <div>
                     <div class="posi-card-banner">
-                        <img src="https://i.ibb.co/fGNq0T5c/codex-clipboard-2ae59bdb-32fe-43a0-b6ef-fe87416fd74a.png" alt="Pintu Garasi Otomatis">
+                        <img src="./assets/img/garasi.png" alt="Pintu Garasi Otomatis" class="zoomable">
                         <div class="posi-banner-overlay"></div>
                         <span class="posi-floating-badge badge-blue">Otomasi</span>
                         <div class="posi-banner-title">
@@ -1509,7 +1494,7 @@
             <div class="posi-card">
                 <div>
                     <div class="posi-card-banner">
-                        <img src="https://i.ibb.co/zVK66JFD/codex-clipboard-023185c0-cb8c-465c-8116-17f40a7eace0.png" alt="LED Dance & Pengukuran Suhu">
+                        <img src="./assets/img/led dance.jpg" alt="LED Dance & Pengukuran Suhu" class="zoomable">
                         <div class="posi-banner-overlay"></div>
                         <span class="posi-floating-badge badge-yellow">Mikrokontroler</span>
                         <div class="posi-banner-title">
@@ -1541,7 +1526,7 @@
             <div class="posi-card">
                 <div>
                     <div class="posi-card-banner">
-                        <img src="https://i.ibb.co/PvMHbq7m/Screenshot-2026-09-02-at-09-17-02.png" alt="Smart Distance Alarm">
+                        <img src="./assets/img/wokwi.png" alt="Smart Distance Alarm" class="zoomable">
                         <div class="posi-banner-overlay"></div>
                         <span class="posi-floating-badge badge-blue">Wokwi Simulation</span>
                         <div class="posi-banner-title">
@@ -1563,7 +1548,7 @@
                     </div>
                 </div>
                 <div class="posi-card-footer">
-                    <a href="https://ibb.co.com/C36GXRk1" target="_blank" rel="noopener noreferrer" class="posi-btn-primary">
+                    <a href="https://wokwi.com" target="_blank" rel="noopener noreferrer" class="posi-btn-primary">
                         Lihat Detail Proyek <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
@@ -1573,7 +1558,7 @@
     </div>
 </section>
 
-<!-- SECTION 6: ONLINE PRESENCE -->
+<!-- SECTION 6: ONLINE PRESENCE (PROFESIONAL REVISED) -->
 <section class="full-section" id="presence">
     <div class="section-container">
         <div class="section-header">
@@ -1583,34 +1568,34 @@
 
         <div class="grid-2">
             <div class="presence-section">
-                <h4><i class="fa-solid fa-hashtag" style="color: var(--secondary);"></i> Social Handles</h4>
+                <h4><i class="fa-solid fa-user-tie" style="color: var(--primary);"></i> Professional Profiles</h4>
+                <a class="social-link" href="https://www.linkedin.com/in/laksita-javas-485b37436/" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i> <strong>LinkedIn</strong></span> 
+                    <span class="handle"><strong>Laksita Javas</strong></span>
+                </a>
+                <a class="social-link" href="https://github.com" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fa-brands fa-github"></i> <strong>GitHub</strong></span> 
+                    <span class="handle"><strong>@laksitajavas</strong></span>
+                </a>
                 <a class="social-link" href="https://wa.me/628156563851" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> <strong>WhatsApp</strong></span> 
-                    <span class="handle"><strong>08156563851</strong></span>
-                </a>
-                <a class="social-link" href="https://www.instagram.com/kkay4na/" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-brands fa-instagram" style="color: #e1306c;"></i> <strong>Instagram</strong></span> 
-                    <span class="handle"><strong>kkay4na</strong></span>
-                </a>
-                <a class="social-link" href="https://www.tiktok.com/@4bcdefgh.00" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-brands fa-tiktok" style="color: #000000;"></i> <strong>TikTok</strong></span> 
-                    <span class="handle"><strong>4bcdefgh.00</strong></span>
+                    <span><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> <strong>WhatsApp Direct</strong></span> 
+                    <span class="handle"><strong>Chat Directly</strong></span>
                 </a>
             </div>
             
             <div class="presence-section">
-                <h4><i class="fa-solid fa-gamepad" style="color: var(--secondary);"></i> Gaming Profiles</h4>
+                <h4><i class="fa-solid fa-gamepad" style="color: var(--secondary);"></i> Casual & Hobbies</h4>
+                <a class="social-link" href="https://www.instagram.com/kkay4na/" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fa-brands fa-instagram" style="color: #e1306c;"></i> <strong>Instagram</strong></span> 
+                    <span class="handle"><strong>kkay4na</strong></span>
+                </a>
                 <a class="social-link" href="https://www.chess.com/member/splele" target="_blank" rel="noopener noreferrer">
                     <span><i class="fa-solid fa-chess-knight" style="color: #739552;"></i> <strong>Chess.com</strong></span> 
                     <span class="handle"><strong>Splele</strong></span>
                 </a>
                 <a class="social-link" href="https://steamcommunity.com/search/users/#text=splesnot" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-brands fa-steam" style="color: #000000;"></i> <strong>Steam</strong></span> 
+                    <span><i class="fa-brands fa-steam"></i> <strong>Steam</strong></span> 
                     <span class="handle"><strong>@splesnot</strong></span>
-                </a>
-                <a class="social-link" href="https://www.roblox.com/search/users?keyword=santaiwoi" target="_blank" rel="noopener noreferrer">
-                    <span><i class="fa-solid fa-cube" style="color: #ef4444;"></i> <strong>Roblox</strong></span> 
-                    <span class="handle"><strong>santaiwoi</strong></span>
                 </a>
             </div>
         </div>
@@ -1630,7 +1615,7 @@
         <div class="grid-2" style="align-items: start;">
             <div>
                 <p style="color: var(--text-sub); margin-bottom: 1.5rem; font-size: 1.05rem;">
-                    Kalau ada yang ingin kamu tanyakan atau diskusikan, jangan ragu untuk menghubungiku melalui email atau media sosial. Aku akan berusaha membalas dengan cepat.
+                    Kalau ada yang ingin kamu tanyakan atau diskusikan seputar proyek jaringan dan pengembangan aplikasi, silakan hubungi aku.
                 </p>
                 <div style="display: flex; flex-direction: column; gap: 1rem;">
                     <div class="social-link">
@@ -1644,14 +1629,18 @@
                 </div>
             </div>
 
-            <!-- FORM DENGAN WEB3FORMS -->
             <form action="https://api.web3forms.com/submit" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
                 <input type="hidden" name="access_key" value="1a2d86b5-caf4-4512-9feb-c955a7571dc1">
                 <input type="hidden" name="subject" value="Pesan Baru dari Portofolio Website">
 
-                <input type="text" name="Nama Pengirim" class="form-control-custom" placeholder="Nama Lengkap" required>
-                <input type="email" name="Email Pengirim" class="form-control-custom" placeholder="Alamat Email" required>
-                <textarea name="Pesan" class="form-control-custom" rows="4" placeholder="Pesan Anda..." required></textarea>
+                <label for="nama_pengirim" class="visually-hidden">Nama Lengkap</label>
+                <input type="text" id="nama_pengirim" name="Nama Pengirim" class="form-control-custom" placeholder="Nama Lengkap" required aria-label="Nama Lengkap">
+                
+                <label for="email_pengirim" class="visually-hidden">Alamat Email</label>
+                <input type="email" id="email_pengirim" name="Email Pengirim" class="form-control-custom" placeholder="Alamat Email" required aria-label="Alamat Email">
+                
+                <label for="pesan_pengirim" class="visually-hidden">Pesan Anda</label>
+                <textarea id="pesan_pengirim" name="Pesan" class="form-control-custom" rows="4" placeholder="Pesan Anda..." required aria-label="Pesan Anda"></textarea>
                 
                 <button type="submit" class="primary-action" style="justify-content: center; margin-top: 0;">
                     <i class="fa-solid fa-paper-plane"></i> Kirim Pesan
@@ -1663,66 +1652,111 @@
 
 <!-- FOOTER -->
 <footer>
-    <p>Terimakasih telah mengunjungi portofolioku, this site Built with HTML, CSS, Bootstrap, & JavaScript.</p>
+    <p>Terimakasih telah mengunjungi portofolioku. Built with HTML, Pure CSS, & JavaScript.</p>
 </footer>
 
-<!-- OVERLAY POP-UP FULLSCREEN -->
-<div id="fullscreen-overlay">
-    <div class="fs-popup-card">
-        <div class="fs-popup-header">
-            <img src="https://i.ibb.co.com/xKGd2xgk/20260526-073702.jpg" alt="Laksita Javas Kayana Arfiansah" class="fs-profile-img">
-            <h3 class="fs-popup-title">Laksita Javas Kayana<br>Arfiansah</h3>
+<!-- OVERLAY ZOOM IMAGE LIGHTBOX -->
+<div id="image-zoom-overlay">
+    <span class="zoom-close-btn">&times;</span>
+    <img id="zoomed-image-target" src="" alt="Zoomed View">
+</div>
+
+<!-- PURE CSS CUSTOM MODALS -->
+<div class="custom-modal-overlay" id="schoolIdnModal">
+    <div class="custom-modal-box">
+        <div class="custom-modal-header">
+            <h3>SMK IDN Boarding School Solo</h3>
+            <button type="button" class="custom-modal-close" onclick="closeModal('schoolIdnModal')">&times;</button>
         </div>
-        <div class="fs-popup-body">
-            <p><strong>Selamat datang di Portofolioku! 🚀</strong></p>
-            <p>Untuk mendapatkan pengalaman terbaik dan melihat detail antarmuka ini secara maksimal, mohon buka website ini dalam mode layar penuh.</p>
-        </div>
-        <button class="btn-fullscreen" id="fs-btn">
-            Masuk Full Screen <i class="fa-solid fa-expand"></i>
-        </button>
+        <p>SMK IDN Boarding School Solo jadi ruang pendalaman minat aku di <strong>Teknik Komputer dan Jaringan (TKJ)</strong> dalam lingkungan boarding school — tempat belajar mandiri, disiplin, dan makin dalam soal teknologi.</p>
+        <p>Praktik intensif meliputi <strong>MikroTik, PNETLab, VirtualBox</strong>, konsep cloud architecture, hingga dasar pengembangan web & mobile.</p>
     </div>
 </div>
 
-<!-- MODAL DETAIL PENDIDIKAN -->
-<div class="modal fade" id="schoolIdnModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header"><h5 class="modal-title"><i class="fa-solid fa-school me-2 text-primary"></i>SMK IDN Boarding School Solo</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
-        <div class="modal-body"><p>SMK IDN Boarding School Solo jadi ruang pendalaman minat aku di <strong>Teknik Komputer dan Jaringan (TKJ)</strong> dalam lingkungan boarding school — tempat belajar mandiri, disiplin, dan makin dalam soal teknologi.</p><p class="mb-0">Dua bulan pertama udah kebagian praktik <strong>MikroTik, PNETLab, VirtualBox</strong>, konsep cloud architecture, sampai fondasi pengembangan web & mobile.</p></div>
-        <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button></div>
-    </div></div>
+<div class="custom-modal-overlay" id="schoolAbbsModal">
+    <div class="custom-modal-box">
+        <div class="custom-modal-header">
+            <h3>SMP ABBS Surakarta</h3>
+            <button type="button" class="custom-modal-close" onclick="closeModal('schoolAbbsModal')">&times;</button>
+        </div>
+        <p>SMP Al-Abidin Bilingual Boarding School (ABBS) jadi fondasi akademis, karakter, dan ketertarikanku pada teknologi melalui riset logika dasar dan kompetisi robotika.</p>
+    </div>
 </div>
 
-<div class="modal fade" id="schoolAbbsModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header"><h5 class="modal-title"><i class="fa-solid fa-building-columns me-2 text-primary"></i>SMP ABBS Surakarta</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
-        <div class="modal-body"><p class="mb-0">SMP Al-Abidin Bilingual Boarding School (ABBS) jadi fondasi akademis, karakter, dan ketertarikanku pada teknologi.</p></div>
-        <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button></div>
-    </div></div>
+<div class="custom-modal-overlay" id="schoolRisalahModal">
+    <div class="custom-modal-box">
+        <div class="custom-modal-header">
+            <h3>SDIT Ar-Risalah</h3>
+            <button type="button" class="custom-modal-close" onclick="closeModal('schoolRisalahModal')">&times;</button>
+        </div>
+        <p>SDIT Ar-Risalah menanamkan fondasi awal pendidikan nilai keagamaan, kedisiplinan, serta ketertarikan awal terhadap ilmu pengetahuan dan IT.</p>
+    </div>
 </div>
 
-<div class="modal fade" id="schoolRisalahModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header"><h5 class="modal-title"><i class="fa-solid fa-book-bookmark me-2 text-success"></i>SDIT Ar-Risalah</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button></div>
-        <div class="modal-body"><p class="mb-0">SDIT Ar-Risalah jadi fondasi awal perjalanan pendidikanku sebagai Sekolah Dasar Islam Terpadu.</p></div>
-        <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button></div>
-    </div></div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // SCRIPT DETEKSI WARNA IKON UNTUK EFFECT HOVER JUDUL
-    document.addEventListener("DOMContentLoaded", () => {
-        const cardSelectors = ".achievement-card, .school-list-item, .hardware-card, .posi-card";
-        document.querySelectorAll(cardSelectors).forEach(card => {
-            const icon = card.querySelector("i");
-            if (icon) {
-                const computedColor = window.getComputedStyle(icon).color;
-                card.style.setProperty("--hover-color", computedColor);
-            }
+    // 1. LOGIKA DARK MODE
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = themeToggleBtn.querySelector('i');
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        if (isDark) {
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    // 2. LOGIKA HAMBURGER NAV MOBILE
+    const navToggleBtn = document.getElementById('navToggleBtn');
+    const dashboardLinks = document.getElementById('dashboardLinks');
+
+    navToggleBtn.addEventListener('click', () => {
+        dashboardLinks.classList.toggle('active');
+        const icon = navToggleBtn.querySelector('i');
+        if (dashboardLinks.classList.contains('active')) {
+            icon.classList.replace('fa-bars', 'fa-xmark');
+        } else {
+            icon.classList.replace('fa-xmark', 'fa-bars');
+        }
+    });
+
+    document.querySelectorAll('.dashboard-link').forEach(link => {
+        if (!link.classList.contains('theme-toggle-btn') && link.id !== 'academicToggleBtn') {
+            link.addEventListener('click', () => {
+                dashboardLinks.classList.remove('active');
+                navToggleBtn.querySelector('i').className = 'fa-solid fa-bars';
+            });
+        }
+    });
+
+    // 3. LOGIKA ZOOM LIGHTBOX (SELEKTIF KE IMAGE ZOOMABLE)
+    const imgZoomOverlay = document.getElementById('image-zoom-overlay');
+    const zoomedImageTarget = document.getElementById('zoomed-image-target');
+
+    document.querySelectorAll('img.zoomable').forEach(img => {
+        img.addEventListener('click', (e) => {
+            e.stopPropagation();
+            zoomedImageTarget.src = img.src;
+            zoomedImageTarget.alt = img.alt || 'Zoomed Photo';
+            imgZoomOverlay.classList.add('active');
         });
     });
 
-    // LOGIKA TOGGLE MENU AKADEMIK
+    imgZoomOverlay.addEventListener('click', () => {
+        imgZoomOverlay.classList.remove('active');
+    });
+
+    // 4. LOGIKA TOGGLE MENU AKADEMIK
     const academicToggleBtn = document.getElementById('academicToggleBtn');
     const academicSubmenu = document.getElementById('academicSubmenu');
 
@@ -1740,36 +1774,33 @@
         }
     });
 
-    // LOGIKA FULLSCREEN OVERLAY
-    const overlay = document.getElementById('fullscreen-overlay');
-    const fsBtn = document.getElementById('fs-btn');
-
-    function enterFullScreen() {
-        const elem = document.documentElement;
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen().catch((err) => console.log(err));
-        } else if (elem.webkitRequestFullscreen) {
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen();
-        }
+    // 5. LOGIKA CUSTOM MODAL PURE JS
+    function openModal(id) {
+        document.getElementById(id).classList.add('active');
+    }
+    function closeModal(id) {
+        document.getElementById(id).classList.remove('active');
     }
 
-    fsBtn.addEventListener('click', () => {
-        enterFullScreen();
+    // 6. KEYBOARD EVENT (ESC KEY TO CLOSE EVERYTHING)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (imgZoomOverlay.classList.contains('active')) {
+                imgZoomOverlay.classList.remove('active');
+            }
+            if (academicSubmenu.classList.contains('show')) {
+                academicSubmenu.classList.remove('show');
+                academicToggleBtn.setAttribute('aria-expanded', 'false');
+            }
+            if (dashboardLinks.classList.contains('active')) {
+                dashboardLinks.classList.remove('active');
+                navToggleBtn.querySelector('i').className = 'fa-solid fa-bars';
+            }
+            document.querySelectorAll('.custom-modal-overlay.active').forEach(modal => {
+                modal.classList.remove('active');
+            });
+        }
     });
-
-    function checkFullScreenStatus() {
-        if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
-            overlay.style.display = 'flex';
-        } else {
-            overlay.style.display = 'none';
-        }
-    }
-
-    document.addEventListener('fullscreenchange', checkFullScreenStatus);
-    document.addEventListener('webkitfullscreenchange', checkFullScreenStatus);
-    document.addEventListener('msfullscreenchange', checkFullScreenStatus);
 </script>
 </body>
 </html>
